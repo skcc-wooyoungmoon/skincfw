@@ -1,0 +1,59 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <div class="layerpop-box">
+    <h1>권한 검색</h1>
+        
+        <div class="skiaf-searchbox" id="searchBox">
+            <div class="searchbox-left">
+                <div class="searchbox">
+                    <div class="Divselect">
+                        <select id="roleTypeSelect">
+                            <option value="ALL" th:text="#{bcm.common.all}"></option>
+                            <option value="MENU" th:text="#{bcm.role.type.menu}"></option>
+                            <option value="PROGRAM" th:text="#{bcm.role.type.program}"></option>
+                            <option value="ELEMENT" th:text="#{bcm.role.type.element}"></option>
+                            <option value="BIZ" th:text="#{bcm.role.type.biz}"></option>
+                       </select>
+                       <span></span>
+                    </div>
+                </div>
+                <div class="skiaf-ui-search">                   
+                   <input data-bind="value: keyword" class="Textinput" th:placeholder="#{bcm.common.search-placeholder}" maxlength="20" /><button class="Icon Remove-sign remove"></button>
+                   <button class="Button search" th:text="#{bcm.common.search}"></button>
+               </div>
+               <div class="searchbox">
+                   <label class="ImageCheckbox">
+                       <input data-bind="checked: isunusedinclude" class="Checkbox" type="checkbox" name="chk2" value="check2" th:text="#{bcm.common.unused-include}" />
+                   </label>
+               </div>
+            </div>
+        </div>
+
+        <!-- alopexgrid -->
+        <div class="skiaf-grid">
+            <div id="roleSearchGrid"></div>
+        </div>
+        <!-- //alopexgrid -->
+        <div class="layerpop-btnwrap">
+            <button id="roleCancelBtn" class="Button Typeb" th:text="#{bcm.common.cancel}"></button>
+            <button id="roleSelectBtn" class="Button" th:text="#{bcm.common.confirm}"></button>
+        </div>
+    </div>
+    
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+    
+    <script type="text/javascript" th:src="@{/static/skiaf/script/role/role-search-popup.js}"></script>
+</html>

@@ -1,0 +1,101 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="skiaf/layout/default-layout">
+
+<th:block layout:fragment="html_head">
+    <title th:text="#{bcm.program.title}"></title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+
+<th:block layout:fragment="custom_css"></th:block>
+
+<th:block layout:fragment="content_body">
+    <!-- Content Area -->
+    <div class="skiaf-wrap-content">
+        <div class="skiaf-wrap-detail">
+            <h1 th:text="#{bcm.program.role.title}"></h1>
+        </div>
+        <!-- Sub Content Area -->
+        <div id="programRoleArea" class="skiaf-ui-contents">
+            <div id="programRoleSearchArea" class="skiaf-ui-layersearch Margin-bottom-20">
+                <input data-bind="value: keyword" class="Textinput Margin-right-5" th:placeholder="#{bcm.program.search-placeholder}" maxlength="20" style="width: 250px;" />
+                <button class="Icon Remove-sign remove"></button>
+                <button id="programRolePopup" class="Button primery-a">
+                    <span th:text="#{bcm.common.select}"></span><span class="Icon Search" data-position="left"></span>
+                </button>
+            </div>
+            <!-- table -->
+            <div class="skiaf-table">
+                <table class="Table Form-type">
+                    <colgroup>
+                        <col style="width: 180px;" />
+                        <col />
+                        <col style="width: 180px;" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th th:text="#{bcm.program.base-id}"></th>
+                            <td data-bind="text: baseProgramId"></td>
+                            <th th:text="#{bcm.program.type}"></th>
+                            <td><span data-bind="text: programType"></span>
+                                <button id="programDetailBtn" class="Button basic1 Onlyicon small Float-right">
+                                    <span class="Icon Chevron-down" data-position="top"></span>
+                                </button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- //table -->
+            <!--  alopexgrid -->
+            <div id="programDetailArea" class="skiaf-grid Margin-top-20" style="display: none;">
+                <div id="programDetailGrid"></div>
+            </div>
+            <!-- // alopexgrid -->
+            <div class="tab-detail Margin-top-20">
+                <h3 th:text="#{bcm.program.role.list}"></h3>
+            </div>
+
+            <!--  alopexgrid -->
+            <div class="skiaf-grid ">
+                <div id="programRoleGrid"></div>
+            </div>
+            <div class="skiaf-grid-btn">
+                <div class="left">
+                    <button id="addBtn" class="Button basic1 Onlyicon grid">
+                        <span class="Icon gridplus" data-position="top"></span>
+                    </button>
+                    <div class="Tooltip white" data-base="#addBtn" data-position="bottom" th:text="#{bcm.program.role.add}"></div>
+                </div>
+
+            </div>
+            <!-- // alopexgrid -->
+            <div class="skiaf-ui-rightbtn">
+                <button id="prevBtn" class="Button basic1 Float-left" th:text="#{bcm.common.previous}"></button>
+                <button id="deleteBtn" class="Button basic1" data-disabled="true" th:text="#{bcm.common.delete}"></button>
+                <button id="saveBtn" class="Button" data-disabled="true" th:text="#{bcm.common.save}"></button>
+            </div>
+        </div>
+        <!-- // Sub Content Area -->
+    </div>
+    <!-- // Content Area -->
+</th:block>
+
+<th:block layout:fragment="custom_js">
+    <script type="text/javascript" th:src="@{/static/skiaf/script/program/program-common.js}"></script>
+    <script type="text/javascript" th:src="@{/static/skiaf/script/program/program-role.js}"></script>
+</th:block>
+
+</html>

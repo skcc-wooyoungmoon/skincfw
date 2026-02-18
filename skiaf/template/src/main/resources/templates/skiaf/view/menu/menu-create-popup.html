@@ -1,0 +1,183 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="layerpop-box">
+    <h1>
+        <th:block th:text="#{bcm.menu.menu-add}" />
+    </h1>
+    <div class="skiaf-table" id="menuAddDetail">
+        <table class="Table Form-type">
+            <colgroup>
+                <col style="width: 150px;" />
+                <col />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th><th:block th:text="#{bcm.menu.menu-id}" /><span class="Color-danger">*</span></th>
+                    <td>
+                        <input class="Textinput" id="menuId" type="text" name="menuId" data-bind="value : menuId" maxlength="10" />
+                        <button class="Icon Remove-sign remove"></button>
+                        <button class="Button" id="btnDuplChk">
+                            <th:block th:text="#{bcm.common.duplicate-check}" />
+                        </button> <span data-for="menuId" class="Color-danger" id="duplChkMessage"></span>
+                        <p>
+                            *
+                            <th:block th:text="#{bcm.common.id.validation}" />
+                            <th:block th:text="#{bcm.menu.menu-id-length}" />
+                            <br /> *
+                            <th:block th:text="#{bcm.menu.menu-id-exam}" />
+                            <br />
+                        </p>
+                    </td>
+                </tr>
+                <tr th:each="langSupportedCode, iterStat : ${skiaf.i18n.langSupportedCodes}">
+                    <th>
+                        <span th:text="#{bcm.menu.menu-name} +' (' + ${langSupportedCode} + ')'"></span>
+                        <span th:if="${langSupportedCode == skiaf.i18n.langDefaultCode}" class="Color-danger">*</span>
+                    </th>
+                    <td>
+                        <input th:if="${langSupportedCode != skiaf.i18n.langDefaultCode}" th:attr="data-bind='value: menuName' + ${iterStat.index + 1}" class="Textinput" maxlength="50" /> 
+                        <input
+                            th:if="${langSupportedCode == skiaf.i18n.langDefaultCode}" th:id="menuNameRequiredInput" class="Textinput" maxlength="50"
+                            th:attr="data-bind='value: menuName' + ${iterStat.index + 1}, data-validation-message='{required : \'' + #{bcm.menu.valid.name(${skiaf.i18n.langDefaultCode})} + '\'}'"
+                            data-validation-rule="{required:true}" />
+                        <button class="Icon Remove-sign remove"></button> 
+                        <span th:if="${langSupportedCode == skiaf.i18n.langDefaultCode}" data-for="menuNameRequiredInput" class="Color-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><th:block th:text="#{bcm.menu.menu-desc}" /></th>
+                    <td>
+                        <input class="Textinput Width-100" type="text" name="menuDesc" data-bind="value : menuDesc" maxlength="500" />
+                        <button class="Icon Remove-sign remove"></button>
+                    </td>
+                </tr>
+                <tr>
+                    <th><th:block th:text="#{bcm.menu.menu-type}" /><span class="Color-danger">*</span></th>
+                    <td class="menu-type">
+                        <label class="ImageRadio af-radio-text"> 
+                            <input class="Radio" type="radio" name="menuTypeByAdd" value="FOLDER" data-bind="checked : menuType" />
+                            <th:block th:text="#{bcm.menu.menu-type-folder}" />
+                        </label> 
+                        <label class="ImageRadio af-radio-text"> 
+                            <input class="Radio" type="radio" name="menuTypeByAdd" value="PROGRAM" data-bind="checked : menuType" />
+                            <th:block th:text="#{bcm.menu.menu-type-program}" />
+                        </label> 
+                        <label class="ImageRadio af-radio-text"> 
+                            <input class="Radio" type="radio" name="menuTypeByAdd" value="URL" data-bind="checked : menuType" />
+                            <th:block th:text="#{bcm.menu.menu-type-url}" />
+                        </label>
+                    </td>
+                </tr>
+                <tr class="menu-type program" style="display: none;" data-bind="with: program">
+                    <th><th:block th:text="#{bcm.menu.program-id}" /><span class="Color-danger">*</span></th>
+                    <td>
+                        <input class="Textinput" type="text" id="programId" name="programId" data-bind="value : programId" data-disabled="true" data-validation-rule="{required:true}"
+                            th:attr="data-validation-message='{required : \'' + #{bcm.menu.valid.program} + '\'}'" />
+                        <button class="Icon Remove-sign remove"></button>
+                        <button class="Button Default" id="btnProgramSelectByAdd">
+                            <th:block th:text="#{bcm.menu.program-select}" />
+                            <span class="Icon Search" data-position="right"></span>
+                        </button> 
+                        <span data-for="programId" class="Color-danger"></span>
+                    </td>
+                </tr>
+                <tr class="menu-type url" style="display: none;">
+                    <th><th:block th:text="#{bcm.menu.url}" /><span class="Color-danger">*</span></th>
+                    <td>
+                        <input class="Textinput Width-100" type="text" id="urlAddr" name="urlAddr" data-bind="value : urlAddr" maxlength="500" data-validation-rule="{required:true}"
+                        th:attr="data-validation-message='{required : \'' + #{bcm.menu.valid.url} + '\'}'" />
+                        <button class="Icon Remove-sign remove"></button> 
+                        <span data-for="urlAddr" class="Color-danger"></span>
+                    </td>
+                </tr>
+                <tr class="menu-type openType" style="display: none;">
+                    <th><th:block th:text="#{bcm.menu.open-type}" /><span class="Color-danger">*</span></th>
+                    <td>
+                        <div class="Divselect">
+                            <select name="openType" data-bind="options: options, selectedOptions: openType" th:attr="data-placeholder=#{bcm.common.select}" id="openType">
+                            </select> <span></span>
+                        </div>
+                        <p class="Margin-top-10">
+                            *
+                            <th:block th:text="#{bcm.menu.open-type-rule1}" />
+                            <br /> *
+                            <th:block th:text="#{bcm.menu.open-type-rule2}" />
+                            <br /> *
+                            <th:block th:text="#{bcm.menu.open-type-rule3}" />
+                            <br />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><th:block th:text="#{bcm.menu.parent-menu}" /><span class="Color-danger">*</span></th>
+                    <td>
+                        <input type="hidden" id="parentMenuId" name="parentMenuId" data-bind="value : parentMenuId" data-validation-rule="{required:true}"
+                            th:attr="data-validation-message='{required : \'' + #{bcm.menu.valid.parent-menu} + '\'}'" /> 
+                        <input class="Textinput" type="text" name="parentMenuName" data-bind="value : parentMenuName" data-disabled="true" />
+                        <button class="Icon Remove-sign remove"></button>
+                        <button class="Button Default menumove" id="btnParentMenuSelectByAdd">
+                            <th:block th:text="#{bcm.menu.parent-menu-select}" />
+                            <span class="Icon Search" data-position="right"></span>
+                        </button> 
+                        <span data-for="parentMenuId" class="Color-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><th:block th:text="#{bcm.menu.sort-number}" /><span class="Color-danger">*</span></th>
+                    <td>
+                        <input class="Textinput" type="text" id="menuSortSeq" data-bind="value : menuSortSeq" data-keyfilter-rule="digits" data-validation-rule="{required:true}"
+                            th:attr="data-validation-message='{required : \'' + #{bcm.menu.valid.sort-number} + '\'}'" />
+                        <button class="Icon Remove-sign remove"></button> 
+                        <span data-for="menuSortSeq" class="Color-danger"></span>
+                        <p class="Margin-top-10">
+                            *
+                            <th:block th:text="#{bcm.menu.sort-number-rule1}" />
+                            <br /> *
+                            <th:block th:text="#{bcm.menu.sort-number-rule2}" />
+                            <br />
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th><th:block th:text="#{bcm.common.use-yn}" /><span class="Color-danger">*</span></th>
+                    <td>
+                        <label class="ImageRadio af-radio-text"> <input class="Radio" type="radio" name="useYn" value="true" data-bind="checked : useYn" />
+                            <th:block th:text="#{bcm.common.use-yn.yes}" />
+                        </label> 
+                        <label class="ImageRadio af-radio-text"> 
+                            <input class="Radio" type="radio" name="useYn" value="false" data-bind="checked : useYn" />
+                            <th:block th:text="#{bcm.common.use-yn.no}" />
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="layerpop-btnwrap">
+    <button class="Button Typeb" id="saveCancel">
+        <th:block th:text="#{bcm.common.cancel}" />
+    </button>
+    <button class="Button" id="saveMenu">
+        <th:block th:text="#{bcm.common.save}" />
+    </button>
+</div>
+
+<!-- popup data include -->
+<th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+<script type="text/javascript" th:src="@{/static/skiaf/script/menu/menu-create-popup.js}"></script>
+</html>

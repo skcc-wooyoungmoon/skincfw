@@ -1,0 +1,28 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+ 
+    <h2> hello </h2>
+    <table border="0">
+        <tr>
+            <td>ID</td>
+            <td>NAME</td>
+        </tr>
+        <tr th:each="list:${data}">
+            <td th:text="${list.id}"></td>
+            <td th:text="${list.name}"></td>
+        </tr>
+      
+    </table>
+  
+</html>

@@ -1,0 +1,57 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+
+    <script th:inline="javascript">
+
+        (function() {
+            // Context Path 를 구한다.
+            var contextPath = document.getElementsByTagName('base')[0].getAttribute('href');
+            if (!contextPath) {
+                return;
+            }
+            
+            // SKIAF 전역 객체가 없으면 생성
+            if (typeof window.SKIAF === "undefined") {
+                window.SKIAF = {};
+            }
+            
+            // SKIAF.contextPath 존재하는지 확인
+            if (typeof window.SKIAF.contextPath !== "undefined") {
+                return;
+            }
+    
+            // SKIAF.contextPath 생성 
+            contextPathLength = contextPath.length;
+            if (contextPath.lastIndexOf('/') === contextPathLength - 1) {
+                window.SKIAF.contextPath = contextPath.substr(0, contextPathLength - 1);
+            } else {
+                window.SKIAF.contextPath = contextPath;
+            }
+            
+            // 공통 데이터
+            /*<![CDATA[*/
+                window.SKIAF.i18n = /*[[${skiaf.i18n}]]*/ [];
+                window.SKIAF.elementRole = /*[[${skiaf.elementRole}]]*/ [];
+                window.SKIAF.program = /*[[${skiaf.program}]]*/ {};
+                window.SKIAF.bcmHomeUrl = /*[[${skiaf.bcmHomeUrl}]]*/ {};
+                window.SKIAF.bcmUIHomeUrl = /*[[${skiaf.bcmUIHomeUrl}]]*/ {};
+                window.SKIAF.loginUserInfo = /*[[${skiaf.loginUserInfo}]]*/ {};
+                window.SKIAF.PATH = /*[[${skiaf.path}]]*/ [];
+                window.SKIAF.CONSTATNT = /*[[${skiaf.constant}]]*/ [];
+                window.SKIAF.ENUM = /*[[${skiaf.enum}]]*/;
+                window.SKIAF.bcmDomain = /*[[${skiaf.bcmDomain}]]*/;
+            /*]]>*/
+        })();
+    </script>
+    
+</html>

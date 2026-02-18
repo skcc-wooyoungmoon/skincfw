@@ -1,0 +1,16 @@
+<xml version="1.0" encoding="UTF-8">
+<root>
+ <header>
+  <logging id="DB_LOGGER" value="true"></logging>
+  <bizappid id="cr.orh.CRORHO00#psCRORH54UM300_P002" name="인터페이스 포멧 파일"></bizappid>
+  <parsing id="VARIABLE_PARSE" col_separator=")___(" row_separator=")___."></parsing>	
+  <!-- XML_PARSE, FIXED_PARSE, VARIABLE_PARSE, //-->
+ </header>
+ <metadata>
+  <fld seq="1" id="programId" length="15" name="프로그램 ID" type="string" padding="L" paddchar=" "></fld>
+  <fld seq="2" id="httpMethod" length="10" name="HTTP METHOD" type="string" padding="R" paddchar="0x20"></fld>
+  <fld seq="3" id="programName" length="130" name="프로그램 명" type="string" padding="L" paddchar="*"></fld>
+  <fld seq="4" id="programType" length="50" name="프로그램 유형" type="string" padding="R" paddchar=":"></fld>
+  </metadata>
+</root>
+</xml>

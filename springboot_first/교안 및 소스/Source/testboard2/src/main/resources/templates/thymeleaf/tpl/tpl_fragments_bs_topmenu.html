@@ -1,0 +1,47 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+	
+		<title>최상단 네비게이션 탑메뉴</title>
+	</head>
+	<body>
+
+		<nav th:fragment="tpl_nav( naviVal )" class="navbar navbar-dark bg-dark navbar-expand-md">
+			<a class="navbar-brand" href="#">Starbox.com</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMyTopmenu">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			
+			<div class="collapse navbar-collapse" id="navbarMyTopmenu">
+				<ul class="navbar-nav">
+					<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+					<li class="nav-item" th:classappend="${naviVal} == 'main' ? 'active'"><a class="nav-link" href="/main">Main</a></li>
+					<li class="nav-item" th:classappend="${naviVal} == 'sub' ? 'active'"><a class="nav-link" href="/sub">Sub</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">Member CRUD</a></li>
+				</ul>
+			</div>
+		</nav>
+		
+
+	    
+	    <!-- jQuery and Bootstrap Bundle (with Popper) -->
+	    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+

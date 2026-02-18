@@ -1,0 +1,20 @@
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocatioin="ehcache.xsd" updateCheck="true"
+	dynamicConfig="true">
+	
+	<defaultCache
+		maxEntriesLocalHeap="100"
+	    memoryStoreEvictionPolicy="FIFO"
+	    eternal="false"
+	    timeToIdleSeconds="1800"
+	    timeToLiveSeconds="1800"
+	    />
+	     
+	<cache name="itemList" 
+		maxEntriesLocalHeap="100"
+		memoryStoreEvictionPolicy="FIFO"
+		eternal="false"  
+		timeToLiveSeconds="3600"
+		timeToIdleSeconds="3600"/>
+             
+</ehcache>

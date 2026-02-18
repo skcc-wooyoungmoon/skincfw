@@ -1,0 +1,38 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<body layout:fragment="bodyFragment">
+
+    <div class="skiaf-wrap"> <!-- skiaf-collapse :close -->
+    
+        <th:block layout:include="skiaf/fragments/header"></th:block>
+
+        <section class="skiaf-layout-content">
+        
+            <!-- Content Area -->
+            <th:block layout:fragment="content_body"></th:block>
+            <!-- // Content Area -->
+            
+        </section>
+
+        <th:block layout:include="skiaf/fragments/footer"></th:block>
+    
+    </div>
+
+    <th:block layout:include="skiaf/fragments/common-js"></th:block>
+    <th:block layout:fragment="custom_js"></th:block>
+
+</body>
+
+</html>

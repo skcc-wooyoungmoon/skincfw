@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- 
+		================================================================================================ 
+		[ Logback 설정 Sample ]
+		SpringBoot 에서 제공해주는 logback 기본 설정 파일들을 참고한 logback 설정.
+		base.xml 을 include 하지 않고, 사용할 appender 를 추가하는 Sample이다.
+		===============================================================================================
+	-->
+
+
+	<!--
+		[ defaults.xml, console-appender.xml include ]
+		- SpringBoot 에서 제공해주는 logback 기본 설정 파일인 base.xml을 include 할 경우,
+		  FixedWindowRollingPolicy 를 쓰는 RollingFileAppender가 자동 설정된다.
+		- 다른 file 정책을 사용하고 싶을 경우, 아래와 같이 설정한다. 
+		- console 로그 설정은, defaults.xml 와 console-appender.xml 를 include 해서 base.xml 과 동일하게 사용한다.
+	-->
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+
+	<!-- 
+		[ TimeBasedRollingPolicy 을 사용하는 RollingFileAppender 추가 ]
+		- ch.qos.logback.core.rolling.RollingFileAppender 를 사용해서 로그를 파일로 출력한다.
+		- TimeBasedRollingPolicy 를 사용함으로써 시간별로 파일을 분리해서 적재할 수 있다.
+	-->	
+	<!-- 파일 경로 -->
+	<property name="LOG_PATH" value="c:/skiaf/log" />
+
+	<!-- FILE Appender -->
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${LOG_PATH}/skiaf_template_logfile.log</file>
+		<!-- 일자별로 로그파일 적용 -->
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/archived/skiaf_template_logfile_%d{yyyyMMdd}</fileNamePattern>
+			<maxHistory>60</maxHistory> <!-- 일자별 백업파일의 보관기간 -->
+			<totalSizeCap>100MB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5p] [%F]%M\(%L\) : %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<!--
+		[ root 로그 레벨 설정 ]
+		- root 로그 레벨을 설정한다.
+		- 추가한 DBAppender를 등록한다.
+	-->
+	<root level="INFO">
+		<appender-ref ref="FILE" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+	<logger name="org.hibernate.SQL" level="INFO" />
+
+</configuration>

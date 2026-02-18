@@ -1,0 +1,65 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head layout:fragment="configFragment">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+    <meta charset="UTF-8"/>
+    <base th:href="@{/}" />
+
+    <!-- 페이지 head -->
+    <th:block layout:fragment="html_head"></th:block>
+
+    <!-- css -->
+    <!-- alopex css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/skiaf/alopex/ui/css/alopex-ui-default.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/skiaf/alopex/grid/alopex-grid.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/skiaf/alopex/ui/css/src/alopex-ext.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/skiaf/alopex/grid-plugin-search/alopex-grid-plugin-search.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/skiaf/alopex/ui/script/src/webeditor/alopex-webeditor.css}" />
+
+    <!-- common css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/static/skiaf/css/common/skiaf-common.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/skiaf/css/common/skiaf-layout.css}" />
+
+    <!-- 페이지별 lib css -->
+    <th:block layout:fragment="add_lib_css"></th:block>
+
+    <!-- 페이지별 css -->
+    <th:block layout:fragment="custom_css"></th:block>
+
+    <!-- data include -->
+    <th:block layout:include="skiaf/fragments/data"></th:block>
+
+    <!-- js -->
+    <!-- jquery js -->
+    <script type="text/javascript" th:src="@{/static/skiaf/script/jquery/jquery.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/skiaf/script/jquery/js.cookie.js}"></script>
+
+    <!-- alopex js -->
+    <script type="text/javascript" th:src="@{/static/skiaf/alopex/ui/script/alopex-ui.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/skiaf/alopex/grid/alopex-grid.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/skiaf/alopex/ui/script/src/alopex-ext.min.js}"></script>
+    <script type="text/javascript" th:src="@{/static/skiaf/alopex/ui/script/src/alopex-ext-setup.js}"></script>
+    <script type="text/javascript" th:src="@{/static/skiaf/alopex/ui/script/src/webeditor/alopex-webeditor.min.js}"></script>
+    <script type="text/javascript" async="async" th:src="@{/static/skiaf/alopex/grid/alopex-grid-excel.min.js}"></script>
+    <script type="text/javascript" async="async" th:src="@{/static/skiaf/alopex/grid-plugin-search/alopex-grid-plugin-search.min.js}"></script>
+    <script type="text/javascript" async="async" th:src="@{/static/skiaf/alopex/ui/script/src/webeditor/alopex-webeditor-setup.js}"></script>
+
+</head>
+</html>

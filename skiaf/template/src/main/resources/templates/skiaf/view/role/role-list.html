@@ -1,0 +1,79 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="skiaf/layout/default-layout">
+
+    <th:block layout:fragment="html_head">
+        <title th:text="#{bcm.role.title}"></title>
+    </th:block>
+
+    <th:block layout:fragment="add_lib_css"></th:block>
+
+    <th:block layout:fragment="custom_css"></th:block>
+
+    <th:block layout:fragment="content_body">
+        <!-- Content Area -->
+        <div class="skiaf-wrap-content">
+            <div class="skiaf-wrap-detail">
+                <h1 th:text="#{bcm.role.title}"></h1>
+            </div>
+            <!-- Sub Content Area -->
+            <div class="skiaf-ui-contents">
+                <!-- searchbox -->
+                <div class="skiaf-searchbox">
+                    <div id="searchBox" class="searchbox-left">
+                        <div class="searchbox">
+                            <div class="Divselect">
+                                <select id="roleTypeSelect">
+                                    <option value="ALL" th:text="#{bcm.common.all}"></option>
+                                    <option th:value="${skiaf.enum.ROLE_TYPE.MENU}" th:text="#{bcm.role.type.menu}"></option>
+                                    <option th:value="${skiaf.enum.ROLE_TYPE.PROGRAM}" th:text="#{bcm.role.type.program}"></option>
+                                    <option th:value="${skiaf.enum.ROLE_TYPE.ELEMENT}" th:text="#{bcm.role.type.element}"></option>
+                                    <option th:value="${skiaf.enum.ROLE_TYPE.BIZ}" th:text="#{bcm.role.type.biz}"></option>
+                                </select>
+                                <span></span>
+                            </div>
+                        </div>
+                        <div class="skiaf-ui-search">
+                            <input data-bind="value: keyword" class="Textinput" th:placeholder="#{bcm.role.search-placeholder}" maxlength="20" /><button class="Icon Remove-sign remove"></button>
+                            <button class="Button search"><span th:text="#{bcm.common.search}"></span></button>
+                        </div>
+                        <div class="searchbox">
+                            <label class="ImageCheckbox">
+                                <input data-bind="checked: isunusedinclude" class="Checkbox" type="checkbox" name="chk2" value="roleListCheck" th:text="#{bcm.common.unused-include}" />
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <!-- // searchbox -->
+                <div class="skiaf-ui-rightbtn top">
+                    <button id="roleEditBtn" class="Button" th:text="#{bcm.common.modify}"></button>
+                    <button id="roleCreateBtn" class="Button" th:text="#{bcm.common.register}"></button>
+                    <button id="roleMapBtn" class="Button link" th:text="#{bcm.role.user.title}"></button>
+                </div>
+                <!--  alopexgrid -->
+                <div class="skiaf-grid ">
+                    <div id="roleGrid">
+
+                    </div>
+                </div>
+                <!-- // alopexgrid -->
+            </div>
+            <!-- // Sub Content Area -->
+        </div>
+        <!-- // Content Area -->
+    </th:block>
+    <th:block layout:fragment="custom_js">
+        <script th:inline="javascript" type="text/javascript" th:src="@{/static/skiaf/script/role/role-list.js}"></script>
+    </th:block>
+</html>

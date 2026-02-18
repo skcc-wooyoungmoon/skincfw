@@ -1,0 +1,58 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="layerpop-box">
+    <h1 th:text="#{bcm.element.role.add}"></h1>
+    <div class="layerpop-left-area">
+        <div class="tab-detail">
+            <h3 style="margin-bottom: 53px;" th:text="#{bcm.element.element-select}"></h3>
+        </div>
+        <!--  alopexgrid -->
+        <div class="skiaf-grid">
+            <div id="elementGrid"></div>
+        </div>
+        <!--  //alopexgrid -->
+    </div>
+    <div class="layerpop-right-area">
+        <div class="tab-detail">
+            <h3 th:text="#{bcm.element.role-select}"></h3>
+        </div>
+        <div class="skiaf-searchbox">
+            <div class="searchbox-left">
+                <div class="skiaf-ui-search">
+                    <input id="searchRole" class="Textinput" th:placeholder="#{bcm.common.search-placeholder}" />
+                    <button class="Icon Remove-sign remove"></button>
+                    <button class="Button search" id="btnRoleSearch" th:text="#{bcm.common.search}"></button>
+                </div>
+            </div>
+        </div>
+        <!--  alopexgrid -->
+        <div class="skiaf-grid">
+            <div id="roleGrid"></div>
+        </div>
+        <!--  //alopexgrid -->
+    </div>
+
+</div>
+<div class="layerpop-btnwrap">
+    <button id="roleCancelBtn" class="Button basic1" th:text="#{bcm.common.cancel}"></button>
+    <button id="roleAddBtn" class="Button" th:text="#{bcm.common.add}"></button>
+</div>
+
+<!-- popup data include -->
+<th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+<script type="text/javascript" th:src="@{/static/skiaf/script/element/element-role-popup.js}"></script>
+
+</html>

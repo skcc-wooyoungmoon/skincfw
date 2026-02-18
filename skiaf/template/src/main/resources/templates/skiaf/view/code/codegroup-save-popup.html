@@ -1,0 +1,75 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <div class="layerpop-box">
+        <div class="skiaf-table">
+            <table id="codeGroupTable" class="Table Form-type">
+                <colgroup>
+                    <col style="width:155px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th><span th:text="#{bcm.code.codegroup.id}"></span><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="codeGroupIdInput" data-bind="value: codeGroupId"  data-disabled="false" class="Textinput" maxlength="30"
+                                data-validation-rule="{required:true}"
+                                th:attr="data-validation-message='{required : \'' + #{bcm.code.codegroup.valid.id} + '\'}'"/><button class="Icon Remove-sign remove"></button>
+                                <button id="codeGroupIdCheck" class="Button" th:text="#{bcm.common.duplicate-check}"></button>
+                            <span data-for="codeGroupIdInput" class="Color-danger"></span>
+                            <span data-for="" id="codeGroupIdCheckMsg" class="Color-danger" style="display: none;"></span>
+                        </td>
+                    </tr>
+                    <tr th:each="langSupportedCode,iterStat : ${skiaf.i18n.langSupportedCodes}">
+                        <th>
+                            <span th:text="#{bcm.code.codegroup.name} + ' (' + ${langSupportedCode} + ')'"></span><span th:if="${langSupportedCode == skiaf.i18n.langDefaultCode}" class="Color-danger">*</span>
+                        </th>
+                        <td>
+                            <input th:if="${langSupportedCode != skiaf.i18n.langDefaultCode}" th:attr="data-bind='value: codeGroupName' + ${iterStat.index + 1}" class="Textinput Width-100" maxlength="128" /><button th:if="${langSupportedCode != skiaf.i18n.langDefaultCode}" class="Icon Remove-sign remove"></button>
+                            <input th:if="${langSupportedCode == skiaf.i18n.langDefaultCode}" id="codeGroupNameRequiredInput" class="Textinput Width-100" maxlength="128"
+                                th:attr="data-bind='value: codeGroupName' + ${iterStat.index + 1}, data-validation-message='{required : \'' + #{bcm.code.codegroup.valid.name(${skiaf.i18n.langDefaultCode})} + '\'}'" 
+                                data-validation-rule="{required:true}" /><button th:if="${langSupportedCode == skiaf.i18n.langDefaultCode}" class="Icon Remove-sign remove"></button>
+                            <span th:if="${langSupportedCode == skiaf.i18n.langDefaultCode}" data-for="codeGroupNameRequiredInput" class="Color-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.code.codegroup.desc}"></th>
+                        <td><input data-bind="value: codeGroupDesc" class="Textinput Width-100" maxlength="2000" /><button class="Icon Remove-sign remove"></button></td>
+                    </tr>
+                    <tr>
+                        <th><span th:text="#{bcm.common.use-yn}"></span><span class="Color-danger">*</span></th>
+                        <td>
+                            <label class="ImageRadio">
+                                <input data-bind="checked:useYn" class="Radio" type="radio" name="radio3" value="true" checked="checked" th:text="#{bcm.common.use-yn.yes}" />
+                            </label>
+                            <label class="ImageRadio">
+                                <input data-bind="checked:useYn" class="Radio" type="radio" name="radio3" value="false" th:text="#{bcm.common.use-yn.no}" />
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="layerpop-btnwrap">
+        <button id="codeGroupCancleBtn" class="Button Typeb" th:text="#{bcm.common.cancel}" ></button>
+        <button id="codeGroupSaveBtn" class="Button" th:text="#{bcm.common.save}" ></button>
+    </div>
+
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+    
+    <script type="text/javascript" th:src="@{/static/skiaf/script/code/code-common.js}"></script>
+    <script type="text/javascript" th:src="@{/static/skiaf/script/code/codegroup-save-popup.js}"></script>
+</html>

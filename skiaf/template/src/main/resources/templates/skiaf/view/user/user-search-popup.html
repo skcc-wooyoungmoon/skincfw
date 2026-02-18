@@ -1,0 +1,41 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <div class="layerpop-box">
+        <h1><th:block th:text="#{bcm.user.user-search}"/></h1>
+        <div class="skiaf-searchbox">
+            <div class="searchbox-left">          
+                <div class="skiaf-ui-search">
+                    <input id="defaultSearchText" class="Textinput" th:placeholder="#{bcm.user.user-search-placeholder}" />
+                    <button class="Icon Remove-sign remove"></button>
+                    <button id="defaultSearchBtn" class="Button search"><th:block th:text="#{bcm.common.search}"/></button>
+                </div>
+            </div>
+        </div>
+        <!-- alopexgrid -->
+        <div class="skiaf-grid">
+            <div id="listGrid"></div>
+        </div>
+        <!-- //alopexgrid -->
+        <div class="layerpop-btnwrap">
+            <button  id="userCancelBtn" class="Button Typeb"><th:block th:text="#{bcm.common.cancel}"/></button>
+            <button id="userSelectBtn" class="Button"><th:block th:text="#{bcm.common.confirm}"/></button>
+        </div>
+    </div>
+    
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+    
+    <script type="text/javascript" th:src="@{/static/skiaf/script/user/user-search-popup.js}"></script>
+</html>

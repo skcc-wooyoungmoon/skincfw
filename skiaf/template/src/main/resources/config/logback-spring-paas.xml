@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!--
+		================================================================================================
+		[ Logback 설정 ]
+		SpringBoot 에서 제공해주는 logback 기본 설정 파일(base.xml)을 사용, console과 file로 로그를 출력한다.
+		DBAppender 를 사용해서 DB에 로그를 추가 적재한다.
+		TurboFilter 를 사용해서 해당 마커를 포함하는 로그는 레벨 설정과 상관없이 출력되도록 한다. 
+		File 경로 또는 로그 pattern을 변경 하고 싶을 경우, application.properties 에서 override 한다.
+		================================================================================================
+	-->
+
+
+	<!--
+		[ base.xml include ]
+		- SpringBoot 에서 제공해주는 logback 기본 설정 파일인 base.xml을 include 한다.(spring-boot-1.5.15.RELEASE.jar 내에 존재)
+		- include 하게 되면 기본으로 ConsoleAppender 와 RollingFileAppender 가 추가 된다.
+		- CONSOLE : ch.qos.logback.core.ConsoleAppender 를 사용해서 서버 콘솔에 로그를 출력한다.
+		- FILE : ch.qos.logback.core.rolling.RollingFileAppender 를 사용해서 파일로 로그를 출력한다.
+	-->
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+
+
+	<!-- 
+		[ DBAppender 추가 ]
+		- DBAppender manual : https://logback.qos.ch/manual/appenders.html#DBAppender
+		- ch.qos.logback.classic.db.DBAppender 를 사용해서 연결된 DB에 로그를 적재시킨다.
+	-->
+    <springProperty name="driverClassName" source="spring.datasource.driverClassName"/>
+    <springProperty name="url" source="spring.datasource.url"/>
+    <springProperty name="username" source="spring.datasource.username"/>
+    <springProperty name="password" source="spring.datasource.password"/>
+
+	<appender name="db" class="ch.qos.logback.classic.db.DBAppender">
+        <connectionSource class="ch.qos.logback.core.db.DriverManagerConnectionSource">
+            <driverClass>${driverClassName}</driverClass>
+            <url>${url}</url>
+            <user>${username}</user>
+            <password>${password}</password>
+        </connectionSource>
+    </appender>
+    
+
+    <!--
+    	[ MakerFilter 설정 ]
+    	- MakerFilter manual : https://logback.qos.ch/manual/filters.html#TurboFilters
+    	- Marker : 마커를 구분할 마커 명칭을 설정한다.
+    	- OnMatch : ACCEPT 일 경우 해당 마커를 사용한 로그는 필터링되지 않고 출력된다. (DENY, NEUTRAL, ACCEPT)
+    	- TurboFilter 는 로깅 컨텍스트에 연결되기 때문에 주어진 appender가 사용될 때뿐만 아니라 로깅 요청이 발생할 때마다 호출된다.
+    	- 때문에 마커를 사용해서 찍은 로그는 logback의 레벨설정과 상관없이 무조건 찍히게된다. 
+    -->
+ 	<turboFilter class="ch.qos.logback.classic.turbo.MarkerFilter">
+		<Marker>EVENT</Marker>
+		<OnMatch>ACCEPT</OnMatch>
+	</turboFilter>
+
+
+	<!--
+		[ root 로그 레벨 설정 ]
+		- root 로그 레벨을 설정한다.
+		- 추가한 DBAppender를 등록한다.
+	-->
+	<root level="INFO">
+		<appender-ref ref="db" />
+	</root>
+	<logger name="org.hibernate.SQL" level="INFO" />
+
+</configuration>

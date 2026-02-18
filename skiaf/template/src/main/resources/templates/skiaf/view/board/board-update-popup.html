@@ -1,0 +1,124 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="layerpop-box">
+    <h1 th:text="#{bcm.board.board-update}"></h1>
+    <div class="skiaf-table">
+        <table class="Table Form-type" id="updateBoardTable">
+            <colgroup>
+                <col style="width: 150px;" />
+                <col />
+                <col style="width: 150px;" />
+                <col />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th th:text="#{bcm.board.id}"></th>
+                    <td colspan="3"><input class="Textinput" data-bind="value : boardId" data-disabled="true"/>
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.board.board-title}"><span class="Color-danger">*</span></th>
+                    <td colspan="3"><input class="Textinput Width-100" data-bind="value : boardName"/>
+                    <button class="Icon Remove-sign remove"></button></td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.board.desc}"></th>
+                    <td colspan="3"><textarea class="Textarea Width-100" rows="3" data-bind="value : boardDesc"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.board.detail-type}"></th>
+                    <td colspan="3">
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="boardType" value="M" data-bind="checked : boardType" th:text="#{bcm.board.detail-type-main}" />
+                        </label>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="boardType" value="P" data-bind="checked : boardType" th:text="#{bcm.board.detail-type-popup}"/>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.board.attach-file}"></th>
+                    <td colspan="3">
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="attachFileType" value="NO" data-bind="checked : attachFileType" th:text="#{bcm.board.no}" />
+                        </label>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="attachFileType" value="SINGLE" data-bind="checked : attachFileType" th:text="#{bcm.board.attach-file-single}" />
+                        </label>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="attachFileType" value="MULTI" data-bind="checked : attachFileType" th:text="#{bcm.board.attach-file-multi}" />
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.board.emergency-notice}"></th>
+                    <td>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="emergencyUseYn" value="true" data-bind="checked : emergencyUseYn" th:text="#{bcm.board.yes}" />
+                        </label>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="emergencyUseYn" value="false" data-bind="checked : emergencyUseYn" th:text="#{bcm.board.no}" />
+                        </label>
+                    </td>
+                    <th th:text="#{bcm.board.article-publication-period}"></th>
+                    <td>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="termUseYn" value="true" data-bind="checked : termUseYn" th:text="#{bcm.board.yes}" />
+                        </label>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="termUseYn" value="false" data-bind="checked : termUseYn" th:text="#{bcm.board.no}" />
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.common.use-yn}"></th>
+                    <td>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="useYn" value="true" data-bind="checked : useYn" th:text="#{bcm.board.yes}" />
+                        </label>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="useYn" value="false" data-bind="checked : useYn" th:text="#{bcm.board.no}" />
+                        </label>
+                    </td>
+                    <th th:text="#{bcm.board.comment}"></th>
+                    <td>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="commentUseYn" value="true" data-bind="checked : commentUseYn" th:text="#{bcm.board.yes}" />
+                        </label>
+                        <label class="ImageRadio">
+                            <input class="Radio" type="radio" name="commentUseYn" value="false" data-bind="checked : commentUseYn" th:text="#{bcm.board.no}" />
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.board.base-path}"></th>
+                    <td colspan="3" data-bind="text : basePath"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="layerpop-btnwrap">
+    <button class="Button basic1" id="boardCancelBtn" th:text="#{bcm.common.cancel}"></button>
+    <button class="Button" id="boardSaveBtn" th:text="#{bcm.common.save}"></button>
+</div>
+
+<!-- popup data include -->
+<th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+<script type="text/javascript" th:src="@{/static/skiaf/script/board/board-update-popup.js}"></script>
+
+</html>

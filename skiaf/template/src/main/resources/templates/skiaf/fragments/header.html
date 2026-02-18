@@ -1,0 +1,77 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org">
+
+    <!-- header -->
+    <!-- 20180813 수정 -->
+    <header id="header" class="skiaf-layout-header">
+        <div class="row">
+            <h1>
+                <a th:href="@{${skiaf.bcmUIHomeUrl}}"><img width="122px" height="39px" th:src="@{/static/skiaf/images/img_logo.png}" alt="SKIAF" /><span>SKIAF</span></a>
+            </h1>
+            <nav class="gnb">
+                <ul class="navMenu clearfix">
+                    <li class="" th:if="${skiaf.bcmDomain != ''}">
+                        <a th:href="@{/guide/html/intro/UI_INT_1000.html}">UI 표준 가이드</a>
+                        <ul style="display: none;">
+                            <li>
+                                <a th:href="@{/guide/html/intro/UI_INT_1000.html}">UI  표준 개요</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/guide/html/intro/UI_INT_2000.html}">UI 가이드</a>
+                                <ul>
+                                    <li><a th:href="@{/guide/html/intro/UI_INT_2000.html}">가이드 소개</a></li>
+                                    <li><a th:href="@{/guide/html/intro/UI_INT_3000.html}">IA</a></li>
+                                    <li><a th:href="@{/guide/html/layout/UI_LAY_1100.html}">Layout</a></li>
+                                    <li><a th:href="@{/guide/html/nav/UI_NAV_1110.html}">Navigation</a></li>
+                                    <li><a th:href="@{/guide/html/page/UI_PAG_1110.html}">Page Template</a></li>
+                                    <li><a th:href="@{/guide/html/component/UI_COM_1110.html}">Component</a></li>
+                                    <li><a th:href="@{/guide/html/label/UI_LAB_1100.html}">Labeling</a></li>
+                                    <li><a th:href="@{/guide/html/global/UI_GLO_1100.html}">Globalization</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a th:href="@{/guide/html/validation/UI_CHE_1000.html}">UI 준수 체크리스트</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="" th:if="${skiaf.bcmDomain != ''}">
+                        <a th:href="@{/guide/html/fwguide/FW_INT_1000.html}">F/W 개발 가이드</a>
+                    </li>
+                    <li class="" th:if="${skiaf.bcmDomain != ''}">
+                         <a th:href="@{/guide/html/download/DW_INT_1000.html}">다운로드</a>
+                    </li>
+                    <li class=""> 
+                        <a th:href="@{${skiaf.path.VIEW_LOGIN}}">SKIAF(Demo)</a>
+                    </li> 
+                </ul>
+                <aside class="topUtil">
+                    <ul class="clearfix">
+                        <li th:if="${skiaf.loginUserInfo != null}">
+                            <span data-position="top" class="Icon User"></span>
+                            <th:block th:text="${skiaf.loginUserInfo.user.userName}"/>
+                            <span>(<th:block th:text="${skiaf.loginUserInfo.user.loginId}"/>)</span><th:block th:if="${skiaf.i18n.langCurrentCode == 'ko'}" th:text="#{bcm.common.login-id-tail}"/>
+                        </li>
+                        <li th:if="${skiaf.loginUserInfo != null}">
+                            <th:block th:text="${skiaf.i18n.langCurrentCodeName}"/>
+                        </li>
+                        <li th:if="${skiaf.loginUserInfo != null}">
+                            <a id="Off" th:href="@{${skiaf.path.LOGOUT}}"><span data-position="top" class="Icon Off"></span></a>
+                            <div th:text="#{bcm.common.logout}" data-base="#Off" data-position="bottom" style="min-width: 50px;" class="Tooltip white"></div>
+                        </li>
+                    </ul>
+                </aside>
+            </nav>
+        </div>
+    </header>
+    <script type="text/javascript" async="async" th:src="@{/static/skiaf/script/fragments/header.js}"></script>
+</html>

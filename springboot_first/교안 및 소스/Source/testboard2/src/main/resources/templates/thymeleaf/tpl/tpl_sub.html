@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	
+	<head th:replace="/tpl/tpl_fragments :: tpl_head( '서브 페이지' )" />
+	
+	<body>
+	
+		<nav th:replace="/tpl/tpl_fragments_bs_topmenu :: tpl_nav( naviVal='sub' )" />
+	
+		<header th:replace="/tpl/tpl_fragments :: tpl_header" />
+	
+		<div th:replace="/tpl/tpl_fragments :: tpl_main_title( 'Sub Page', 'Event' )" class="container mt-5 mb-5">
+			<h3>Sub Page</h3>
+		</div>
+		
+		<footer th:replace="/tpl/tpl_fragments :: tpl_footer" />
+
+	</body>
+</html>

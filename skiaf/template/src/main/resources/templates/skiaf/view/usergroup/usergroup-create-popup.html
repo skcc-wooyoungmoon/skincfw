@@ -1,0 +1,73 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<!-- Content Area -->
+<div class="layerpop-box">
+    <h1 th:text="#{bcm.usergroup.create.title}"></h1>
+    <div class="skiaf-table" id="userGroupCreate">
+        <table id="userGroupCreateTable" class="Table Form-type">
+            <colgroup>
+                <col style="width: 150px;" />
+                <col />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th><span th:text="#{bcm.usergroup.id}"></span><span class="Color-danger">*</span></th>
+                    <td>
+                        <input class="Textinput" id="inputUserGroupId" data-bind="value : userGroupId" maxlength="30" data-keyfilter-rule="english|digits" data-keyfilter="-._" data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.usergroup.valid.id} + '\'}'" />
+                        <button class="Icon Remove-sign remove"></button>
+                        <button class="Button Margin-left-10" id="btnDuplicateCheck" th:text="#{bcm.common.duplicate-check}"></button>
+                        <span data-for="inputUserGroupId" class="Color-danger"></span>
+                        <span data-for="" id="userGroupIdCheckMsg" class="Color-danger" style="display: none;"></span>
+                         
+                    </td>
+                </tr>
+                <tr>
+                    <th><span th:text="#{bcm.usergroup.name}"></span><span class="Color-danger">*</span></th>
+                    <td><input class="Textinput Width-100" id="inputUserGroupName" data-bind="value : userGroupName" maxlength="128" data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.usergroup.valid.name} + '\'}'"/>
+<!--                     <button class="Icon Remove-sign remove"></button> -->
+                    <span data-for="inputUserGroupName" class="Color-danger"></span></td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.usergroup.desc}"></th>
+                    <td><input class="Textinput Width-100" name="userGroupDesc" data-bind="value : userGroupDesc" />
+<!--                     <button class="Icon Remove-sign remove"></button> -->
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.usergroup.company}"></th>
+                    <td>
+                        <div class="Divselect">
+                            <select id="selectPopup" data-bind-option="codeId:codeName" data-bind="options:dataPopup, selectedOptions:optionSelected"></select>
+                            <span></span>
+                        </div>
+<!--                         <span data-for="selectPopup" class="Color-danger"></span> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="layerpop-btnwrap">
+    <button class="Button Typeb" id="btnCreateUserGroupCancel" th:text="#{bcm.common.cancel}"></button>
+    <button class="Button" id="btnCreateUserGroup" th:text="#{bcm.common.save}"></button>
+</div>
+
+<!-- popup data include -->
+<th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+<script type="text/javascript" th:src="@{/static/skiaf/script/usergroup/usergroup-create-popup.js}"></script>
+
+</html>

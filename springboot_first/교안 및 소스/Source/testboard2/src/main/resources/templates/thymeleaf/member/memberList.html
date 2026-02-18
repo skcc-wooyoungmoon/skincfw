@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Member List Page</title>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+	</head>
+	<style>
+		.btn-myButton {
+			background-color: #00FFFF;
+			border: none;
+			color: #000;
+			padding: 10px 50px;
+			margin-bottom: 10px;
+			cursor: pointer;
+			float: right;
+		}
+		.btn-myButton:hover {
+			background-color: #000;
+			color: #FFF;
+			transition: all .35s;
+			cursor: pointer;  /* wait, crosshair, not-allowed, zoom-in, grab */
+		}
+	</style>
+	<body>
+		
+		<div class="container">
+			<h3 style="text-align: center; padding: 50px 0 20px">
+				Member List Page
+				<small class="text-muted">by Bs v4.x</small>
+			</h3>
+			
+			<button class="btn-myButton" onclick="location.href='/member/memberWriteFormNew';">Member Join</button>
+					
+			<table class="table table-striped text-center table-hover table-sm">
+				<caption>List of members</caption>
+				<thead class="thead-dark">
+					<tr>
+						<th width=100>#</th>
+						<th>Name</th>
+						<th>ID</th>
+						<th>Phone</th>
+						<th>Modify</th>
+						<th>Delete</th>
+					</tr>						
+				</thead>
+				<tbody>
+					<tr th:each="row : ${memberList}">
+						<th th:text="${row.num}"></th>
+						<td th:text="${row.name}"></td>
+						<td th:text="${row.id}"></td>
+						<td th:text="${row.phone}"></td>
+						<td><a href="#" th:href="@{/member/memberWriteFormNew( num=${row.num} )}" style="color: #85BCA6">수정</a></td>
+						<td><a href="#none" th:onclick="btnDel( [[${row.num}]] );" style="color: #c1c100">삭제</a></td>
+					</tr>
+					<tr>
+						<td class="bg-primary"></td>
+						<td class="bg-info" colspan=3></td>
+						<td class="bg-success" colspan=2></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="text-center">
+				<button type="button" class="btn btn-outline-warning rounded-0" onclick="history.go(-1);">← BACK</button>
+				<button type="button" class="btn btn-outline-secondary rounded-0" onclick="location.href='/';">↑ MAIN</button>
+				<button type="button" class="btn btn-primary rounded-0" id="btn-myButton">MEMBER JOIN</button>
+			</div>
+			
+			<div class="mb-5">
+				&nbsp;
+			</div>
+		</div>
+	
+		<script>
+			// 버튼 가져오기
+			const btnMyButton = document.querySelector( '#btn-myButton' );
+			console.log( btnMyButton );
+			
+			// 버튼 클릭 시 --> 할 일 처리
+			btnMyButton.addEventListener( 'click', () => {
+				location.href = '/member/memberWriteFormNew';				
+			} );
+			
+			// 삭제 클릭 시 --> 컨펌 후 --> 할 일 처리
+			function btnDel( num ) {
+				
+				// 컨펌 처리
+				if( confirm(num + "번 회원을 정말 삭제하시겠습니까?") == true ) {
+					location.href = '/member/memberDeleteOk?num=' + num;
+				}
+				else {
+					return;
+				}
+				
+			}
+			
+		</script>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

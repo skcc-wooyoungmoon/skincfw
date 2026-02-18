@@ -1,0 +1,72 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <div class="layerpop-box">
+        <h1>권한 수정</h1>
+        <div class="skiaf-table">
+            <table class="Table Form-type">
+                <colgroup>
+                    <col style="width:150px;" />
+                    <col />
+                </colgroup>
+                <tbody id="roleForm">
+                    <tr>
+                        <th th:text="#{bcm.role.type}"></th>
+                        <td data-bind="text : roleType">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.role.id}"></th>
+                        <td data-bind="text : roleId">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.role.name}"><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="roleNameInput" data-bind="value: roleName" class="Textinput Width-100" maxlength="128" data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.role.valid.name} + '\'}'" />
+                            <button class="Icon Remove-sign remove"></button>
+                            <span data-for="roleNameInput" class="Color-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.role.desc}"></th>
+                        <td>
+                            <input class="Textinput Width-100"  data-bind="value: roleDesc" maxlength="2000" /><button class="Icon Remove-sign remove"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.common.use-yn}"><span class="Color-danger">*</span></th>
+                        <td>
+                            <label class="ImageRadio af-radio-text">
+                                <input class="Radio" type="radio" name="roleUseYn" value="Y" data-bind="checked: useYn" th:text="#{bcm.common.use-yn.yes}" />
+                            </label>
+                            <label class="ImageRadio af-radio-text">
+                                <input class="Radio" type="radio" name="roleUseYn" value="N" data-bind="checked: useYn" th:text="#{bcm.common.use-yn.no}" />
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="layerpop-btnwrap">
+        <button id="cancleBtn" class="Button Typeb" th:text="#{bcm.common.cancel}"></button>
+        <button id="saveBtn" class="Button" th:text="#{bcm.common.save}"></button>
+    </div>
+
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+    <script type="text/javascript" th:src="@{/static/skiaf/script/role/role-edit-popup.js}"></script>
+</html>

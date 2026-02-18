@@ -1,0 +1,212 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="skiaf/layout/default-layout">
+
+<th:block layout:fragment="html_head">
+    <title th:text="#{bcm.examp.lov.title}"></title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+
+<th:block layout:fragment="custom_css"></th:block>
+
+<th:block layout:fragment="content_body">
+    <!-- Content Area -->
+    <div class="skiaf-wrap-content">
+        <div class="skiaf-wrap-detail">
+            <h1 th:text="#{bcm.examp.lov.title}"></h1>
+        </div>
+        <!-- Sub Content Area -->
+        <div class="skiaf-ui-contents">
+            <div id="lovSearchArea">
+                <div class="skiaf-searchbox">
+                    <div class="skiaf-ui-layersearch" id="searchBox">
+                        <span class="Margin-right-5" th:text="#{bcm.code.codegroup.id}"></span>
+                        <input id="codeGroupId" value="" class="Textinput Margin-right-5" th:placeholder="#{bcm.common.search-placeholder}" />
+                        <button class="Icon Remove-sign remove"></button>
+                        <button id="codeGroupBtn" class="Button primery-a" th:text="#{bcm.common.select}"><span class="Icon Search" data-position="left"></span></button>
+                    </div>
+                </div>
+                <div class="skiaf-ui-rightbtn top">
+                    <button class="Dropdownbutton Button" style="padding-right:30px;" id="lovDescBtn">설명</button>
+                </div>
+                <table class="Table Form-type">
+                    <colgroup>
+                        <col style="width: 280px;" />
+                        <col style="width: 83px;" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th>
+                               	<span>에제 1. lovPopup (단일건 선택)</span>
+                            </th>
+                            <td>
+                                <button class="Button" id="lovBtn1">확인</button>
+                            </td>
+                            <td>
+                                <div class="skiaf-searchbox">
+                                    <div class="searchbox-left" id="codeDetailDataArea1">
+                                        <div class="skiaf-ui-search">
+                                            <input id="codeDetailId1" data-bind="value : codeId" class="Textinput" /><button class="Icon Remove-sign remove"></button>
+                                            <input id="codeDetailName1" data-bind="value : codeName" class="Textinput" /><button class="Icon Remove-sign remove"></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                               	<span>에제 2. lovPopup (복수건 선택)</span>
+                            </th>
+                            <td>
+                                <button class="Button" id="lovBtn3">확인</button>
+                            </td>
+                            <td>
+                                <div id="codeDetailDataArea3">
+                                    <div class="skiaf-ui-search">
+                                        <textarea id="codeDetailData3" data-bind="value : data" rows="5" style="width: 100%; padding: 4px"></textarea>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span>에제 3. lovCodeList (select box setting)</span>
+                            </th>
+                            <td>
+                                <button class="Button" id="lovBtn4">확인</button>
+                            </td>
+                            <td>
+                                <div class="Divselect" id="codeDetailDataArea4">
+                                    <select id="select" data-bind-option="codeId:codeName" data-bind="options:data, selectedOptions:optionSelected"></select>
+                                    <span></span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span>에제 4. lovCodeList (check box 생성)</span>
+                            </th>
+                            <td>
+                                <button class="Button" id="lovBtn5">확인</button>
+                            </td>
+                            <td>
+                                <div id="codeDetailDataArea5" data-bind="foreach: data" style="display: none;">
+                                    <label class="ImageCheckbox">
+                                    	<input id="checkCode" class="Checkbox" type="checkbox" name="checkbox" data-bind="value : codeId" />
+                                    	<span data-bind="text : codeName"></span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <span>에제 5. lovCodeList (radio button 생성)</span>
+                            </th>
+                            <td>
+                                <button class="Button" id="lovBtn6">확인</button>
+                            </td>
+                            <td>
+                                <div id="codeDetailDataArea6" data-bind="foreach: data" style="display: none;">
+                                    <label class="ImageRadio" >
+                                        <input id="radioCode" class="Radio" type="radio" name="redio" data-bind="value : codeId" />
+                                        <span data-bind="text : codeName" ></span>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="divDescParent" style="display: none;">
+                <div class="Margin-top-15" >
+                    <h5>소스 코드</h5>
+                </div>
+                <table class="Table Form-type">
+                    <colgroup>
+                        <col style="width: 280px;" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr><th><span>에제 1. lovPopup (단일건 선택)</span></th>
+                            <td>
+<pre>
+    SKIAF.util.lovPopup({
+        codeGroupId : $('#codeGroupId').val(),
+        keyword : $('#codeDetailId1').val()
+    }, function(data) {
+        $('#codeDetailDataArea1').setData(data[0]);
+    });
+</pre>
+                            </td>
+                        </tr>
+                        <tr><th><span>에제 2. lovPopup (복수건 선택)</span></th>
+                            <td>
+<pre>                            
+    SKIAF.util.lovPopup({
+        codeGroupId : $('#codeGroupId').val(),
+        singleSelect : false
+    }, function(data) {
+        $('#codeDetailDataArea3').setData({
+            data : JSON.stringify(data)
+        });
+    });
+</pre>
+                            </td>
+                        </tr>
+                        <tr><th><span>에제 3. lovCodeList (select box setting)</span></th>
+                            <td>
+<pre>                            
+    SKIAF.util.lovCodeList($('#codeGroupId').val(), function(data) {
+        $('#codeDetailDataArea4').setData({
+            data : data
+        });
+    });
+</pre>
+                            </td>
+                        </tr>
+                        <tr><th><span>에제 4. lovCodeList (check box 생성)</span></th>
+                            <td>
+<pre>                            
+    SKIAF.util.lovCodeList($('#codeGroupId').val(), function(data) {
+        $('#codeDetailDataArea5').setData({
+            data : data
+        });
+    });
+</pre>
+                            </td>
+                        </tr>
+                        <tr><th><span>에제 5. lovCodeList (radio button 생성)</span></th>
+                            <td>
+<pre>                            
+    SKIAF.util.lovCodeList($('#codeGroupId').val(), function(data) {
+        $('#codeDetailDataArea6').setData({
+            data : data
+        });
+    });
+</pre>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- // Sub Content Area -->
+    </div>
+    <!-- // Content Area -->
+</th:block>
+
+<th:block layout:fragment="custom_js">
+    <script type="text/javascript" th:src="@{/static/skiaf/script/examp/examp-lov.js}"></script>
+</th:block>
+
+</html>

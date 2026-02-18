@@ -1,0 +1,62 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <div class="layerpop-box">
+        <h1><th:block th:text="#{bcm.menu.menu-role-info}"/></h1>
+        <div class="skiaf-table">
+            <table class="Table Form-type" id="menuRoleInfo">
+                <colgroup>
+                    <col style="width:150px;" />
+                    <col />
+                    <col style="width:150px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th><th:block th:text="#{bcm.menu.menu-id}"/></th>
+                        <td data-bind="text : menuId"></td>
+                        <th><th:block th:text="#{bcm.menu.menu-type}"/></th>
+                        <td data-bind="text : menuTypeTxt"></td>
+                    </tr>
+                    <tr data-bind="html : trByMenuType">
+                    
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- alopexgrid -->
+        <div class="skiaf-grid Margin-top-20">
+            <div id="roleEditGrid">
+    
+            </div>
+        </div>
+        <div class="skiaf-grid-btn">
+            <div class="left">
+                <button class="Button basic1 Onlyicon grid" id="btnRoleAdd"><span class="Icon gridplus" data-position="top"></span></button>
+                <div class="Tooltip white" data-base="#btnRoleAdd" data-position="bottom"><th:block th:text="#{bcm.menu.role-add}"/></div>
+            </div>
+        </div>
+        <!-- //alopexgrid -->
+    </div>
+    <div class="layerpop-btnwrap">
+        <button class="Button basic1" id="btnRoleCancel"><th:block th:text="#{bcm.common.cancel}"/></button>
+        <button class="Button" id="btnRoleRemove" data-disabled="true"><th:block th:text="#{bcm.common.delete}"/></button>
+        <button class="Button" id="btnRoleSave" data-disabled="true"><th:block th:text="#{bcm.common.save}"/></button>
+    </div>
+    
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+    
+    <script type="text/javascript" th:src="@{/static/skiaf/script/menu/menu-role-popup.js}"></script>
+</html>

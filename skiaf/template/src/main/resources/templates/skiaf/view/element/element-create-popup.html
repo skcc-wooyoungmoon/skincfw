@@ -1,0 +1,83 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" 
+    xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="layerpop-box">
+    <h1 th:text="#{bcm.element.element-create}"></h1>
+
+
+    <!-- 등록 table -->
+    <div class="skiaf-table">
+        <!--                     <h3>프로그램요소 등록</h3> -->
+        <table id="createElementTable" class="Table Form-type">
+            <colgroup>
+                <col style="width: 150px;" />
+                <col />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th th:text="#{bcm.element.program-id}"></th>
+                    <td data-bind="text : programId">
+                        <!--                                     <input class="Textinput" id="inputProgramId" data-bind="value : programId"/> --> <!--                                     <button class="Button Default" id="programSearchPopupBtn">프로그램 검색<span class="Icon Search" data-position="right"></span></button> -->
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.element.program-name}"></th>
+                    <td data-bind="text : programName">
+                        <!--                                     <input class="Textinput" id="inputProgramName" data-bind="value : programName" /> -->
+                    </td>
+                </tr>
+                <tr>
+                    <th><span th:text="#{bcm.element.element-key}"></span><span class="Color-danger">*</span></th>
+                    <td>
+                        <div class="skiaf-inputbox">
+                            <input class="Textinput" id="elementKeyInput" data-bind="value : elementKey" style="width: 250px;" maxlength="128" data-validation-rule="{required:true}" />
+                            <button class="Icon Remove-sign remove"></button>
+                            <button class="Button Default" id="elementDuplicateBtn" th:text="#{bcm.common.duplicate-check}">
+                                <!-- <span class="Icon Search" data-position="right"></span> -->
+                            </button>
+                            <span data-for="elementKeyInput" class="Color-danger"></span> <span data-for="" id="elementKeyCheckMsg" class="Color-danger" style="display: none;"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.element.element-desc}"></th>
+                    <td><input class="Textinput Width-100" id="inputElementDesc" data-bind="value : elementDesc" />
+                        <button class="Icon Remove-sign remove"></button></td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.common.use-yn}"><span class="Color-danger">*</span></th>
+                    <td><label class="ImageRadio"> <input class="Radio" type="radio" name="useYnTxt" value="Y" th:text="#{bcm.common.use-yn.yes}" data-bind="checked : useYn"
+                            checked="checked" />
+                    </label> <label class="ImageRadio"> <input class="Radio" type="radio" name="useYnTxt" value="N" th:text="#{bcm.common.use-yn.no}" data-bind="checked : useYn" />
+                    </label></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!-- //등록 table -->
+
+    <!-- // Sub Content Area -->
+</div>
+<div class="layerpop-btnwrap">
+    <button class="Button basic1" id="elementCancelBtn" th:text="#{bcm.common.cancel}"></button>
+    <button class="Button" id="elementSaveBtn" th:text="#{bcm.common.save}"></button>
+</div>
+
+<!-- popup data include -->
+<th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+<script type="text/javascript" th:src="@{/static/skiaf/script/element/element-create-popup.js}"></script>
+
+</html>

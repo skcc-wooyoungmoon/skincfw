@@ -1,0 +1,215 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="skiaf/layout/default-layout">
+
+<th:block layout:fragment="html_head">
+    <title>엑셀 Export Sample</title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+
+<th:block layout:fragment="custom_css"></th:block>
+
+<th:block layout:fragment="content_body">
+    <!-- Content Area -->
+    <div class="skiaf-wrap-content">
+        <div class="skiaf-wrap-detail">
+            <h1>엑셀 Export Sample</h1>
+        </div>
+        <!-- Sub Content Area -->
+        <div class="skiaf-ui-contents">
+            <div class="Tabs">
+                <ul>
+                    <li data-content="#tab1">내부 grid Export</li>
+                    <li data-content="#tab2">URL 호출 Export</li>
+                </ul>
+                <div id="tab1">
+                    <!-- searchbox -->
+                    <div class="tab-detail">
+                        <h3>화면에 있는 그리드 내용을 엑셀로 Export 받음</h3>
+                        <div class="detail-right">
+                            <button class="Dropdownbutton Button" id="btnDescGrid">설명</button>
+                            <button class="Button" id="btnExcel">엑셀</button>
+                        </div>
+                    </div>
+                    <!-- alopexgrid -->
+                    <div class="skiaf-grid">
+                        <div id="programGrid"></div>
+                    </div>
+                    <div id="divDescGrid" style="display: none;">
+                        <div>
+                            <h5 class="Margin-bottom-15">파라메타 설명</h5>
+                            <table class="Table Form-type">
+                                <tbody>
+                                    <colgroup>
+                                        <col style="width: 120px;" />
+                                        <col style="width: 100px;" />
+                                        <col style="width: 200px;" />
+                                        <col />
+                                    </colgroup>
+                                    <tr>
+                                        <th>파라메타명</th>
+                                        <th>필수여부</th>
+                                        <th>설명</th>
+                                        <th>기타</th>
+                                    </tr>
+                                    <tr><th>gridId</th><td>필수</td><td>엑셀 eport 대상 grid ID</td><td></td></tr>
+                                    <tr><th>fileName</th><td>옵션</td><td>엑셀 eport 파일명</td><td>default 파일명 : SKIAF_excel_yyyyMMddHHmmss</td></tr>
+                                    <tr><th>Alopex 옵션</th><td>옵션</td><td>Alopex 엑셀 Export 옵션</td><td>merge, exportHidden, useGridColumnWidth, exportNewline, filtered, selected</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div>
+                            <h5 class="Margin-top-15 Margin-bottom-15">소스 코드</h5>
+                            <table class="Table Form-type">
+                                <tbody>
+                                <colgroup>
+                                    <col style="width: 200px;" />
+                                        <col />
+                                    </colgroup>
+                                    <tr>
+                                        <th>grid ID만으로 호출시</th>
+                                        <td>
+<pre>
+    SKIAF.excelUtil.excelExportGrid("#programGrid");
+</pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>엑셀 파라메타전달 시</th>
+                                        <td>
+<pre>
+    SKIAF.excelUtil.excelExportGrid({
+        gridId : "#programGrid",
+        fileName : "Alopex엑셀Grid",
+        exportHidden : false,
+        useGridColumnWidth : true
+    });
+</pre>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab2">
+                    <div class="tab-detail">
+                        <h3>URL을 호출 한  후 받은 data를 엑셀로 Export 받음</h3>
+                        <div class="detail-right">
+                            <button class="Dropdownbutton Button" id="btnDescUrl">설명</button>
+                            <button class="Button" id="btnExcelUrlProgram">엑셀</button>
+                        </div>
+                    </div>
+                    <div id="divDescUrl" style="display: none;">
+                        <div>
+                            <h5 class="Margin-bottom-15">파라메타 설명</h5>
+                            <table class="Table Form-type">
+                                <tbody>
+                                    <colgroup>
+                                        <col style="width: 120px;" />
+                                        <col style="width: 100px;" />
+                                        <col style="width: 200px;" />
+                                            <col />
+                                        </colgroup>
+                                        <tr>
+                                            <th>파라메타명</th>
+                                            <th>필수여부</th>
+                                            <th>설명</th>
+                                            <th>기타</th>
+                                        </tr>
+                                        <tr><th>url</th><td>필수</td><td>호출 URL</td><td>'/api/usergroups'</td></tr>
+                                        <tr><th>method</th><td>필수</td><td>method</td><td>GET, POST ...</td></tr>
+                                        <tr><th>resultListName</th><td>필수</td><td>호출시 result list 이름</td><td>예) programList</td></tr>
+                                        <tr><th>data</th><td>옵션</td><td>URL 호출을 위한 파라메타</td><td> data : {page: 0, size: 10, isUnusedInclude: false}</td></tr>
+                                        <tr><th>fileName</th><td>옵션</td><td>엑셀 eport 파일명</td><td>default 파일명 : SKIAF_excel_yyyyMMddHHmmss</td></tr>
+                                        <tr><th>columnNames</th><td>옵션</td><td>호출 column과 매핑 되는 컬럼명 </td>
+                                            <td>
+<pre>
+1. JSON 포맷 사용시 그리드 columns 사용과 동일, title/key 는 필수 사항임 
+    예) columnNames :  {{title : '프로그램 ID', key : 'programId'},
+                          {title : '프로그램명', key : 'programName'}}
+2. 배열 사용시 호출 순서와 배열이 순차적으로 매핑됨, 배열이 모자랄 경우 호출된 컬럼며이 컬럼명으로 매핑됨
+   예) columnNames : [ '등록자', '수정자', '등록일' ]
+</pre>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                        <div>
+                            <h5 class="Margin-top-15 Margin-bottom-15">소스 코드</h5>
+                            <table class="Table Form-type">
+                                <tbody>
+                                <colgroup>
+                                    <col style="width: 200px;" />
+                                        <col />
+                                    </colgroup>
+                                    <tr>
+                                        <th>Alopex columnNames 포맷</th>
+                                        <td>
+<pre>
+    SKIAF.excelUtil.excelExportUrl({
+        url : '/api/programs',
+        method : 'GET',
+        data : {
+            page : 0,
+            size : 10,
+            isUnusedInclude : false
+        },
+        resultListName : "programList",
+        columnNames : [ { title : '프로그램 ID', key : 'programId' }, 
+            { title : '프로그램명', key : 'programName' }, 
+            { title : '유형', key : 'programType' }, 
+            { title : '설명', key : 'programDesc' },  
+            { title : '메소드', key : 'httpMethod' }, 
+            { title : '경로', key : 'programPath' } 
+        ]
+    });
+</pre>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>컬럼 배열 순차 매핑</th>
+                                        <td>
+<pre>
+    SKIAF.excelUtil.excelExportUrl({
+        url : '/api/usergroups',
+        method : 'GET',
+        data : {
+            page : 0,
+            size : 10,
+            isUnusedInclude : false
+        },
+        resultListName : "programList",
+        fileName : "Alopex엑셀테스트Url",
+        columnNames : [ '프로그램 ID', '프로그램명', '유형' ]
+    });
+</pre>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- //tab -->
+        </div>
+        <!-- // Sub Content Area -->
+    </div>
+    <!-- // Content Area -->
+</th:block>
+
+<th:block layout:fragment="custom_js">
+    <script type="text/javascript" th:src="@{/static/skiaf/script/examp/examp-excel-export.js}"></script>
+</th:block>
+</html>

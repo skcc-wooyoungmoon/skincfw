@@ -1,0 +1,67 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="skiaf/layout/error-layout">
+
+<th:block layout:fragment="html_head">
+    <title><th:block th:text="#{bcm.common.error}" /></title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+
+<th:block layout:fragment="custom_css"></th:block>
+
+<th:block layout:fragment="content_body">
+    <!-- Error Area -->
+    <div class="skiaf-ui-error">
+        <div class="error-box">
+            <div class="error-area">
+                <div class="left">
+                    <img width="100px" height="100px" th:src="@{/static/skiaf/images/error500.jpg}" alt="error" />
+                </div>
+                <div class="right">
+                    <h4>
+                        <th:block th:text="#{bcm.error.4xx.error-title.label}" />
+                    </h4>
+                    <p>
+                        <th:block th:utext="#{bcm.error.4xx.error-desc.label}" />
+                    </p>
+                    <!-- <p th:text="${userMessage}"></p> -->
+                    <p th:text="${systemMessage}"></p>
+                </div>
+            </div>
+            <ul>
+                <li><th:block th:text="#{bcm.common.person-in-charge.name.label}" /> : <span><th:block th:text="#{bcm.common.person-in-charge.name}" /></span></li>
+                <li><th:block th:text="#{bcm.common.person-in-charge.cell-phone.label}" /> : <span><th:block th:text="#{bcm.common.person-in-charge.cell-phone}" /></span></li>
+            </ul>
+        </div>
+        <div class="error-btn">
+            <button type="button" class="Button basic1 Large" id="prevPageBtn">
+                <th:block th:text="#{bcm.error.prev-page.label}" />
+            </button>
+            <button type="button" class="Button Large" id="homeBtn">
+                <th:block th:text="#{bcm.error.home.label}" />
+            </button>
+            <button type="button" class="Button Typeb Large" id="closeBtn" style="display: none;">
+                <th:block th:text="#{bcm.common.close}" />
+            </button>
+        </div>
+    </div>
+    <!-- Error Area -->
+</th:block>
+
+<th:block layout:fragment="custom_js">
+    <script type="text/javascript" th:src="@{/static/skiaf/script/error/error.js}"></script>
+</th:block>
+
+</html>

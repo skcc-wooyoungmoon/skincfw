@@ -1,0 +1,2022 @@
+/**
+ * Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SK INNOVATION.
+ * You shall not disclose such confidential information and shall use it only in accordance
+ * with the terms of the license agreement you entered into with SK INNOVATION.
+ */
+@charset "UTF-8";
+/************************************************************************************************************
+
+   Common CSS
+
+************************************************************************************************************/
+
+/************************************************************************************************************
+   Setting
+************************************************************************************************************/
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, button, textarea {
+    margin: 0;
+    padding: 0;
+    font-family: 'MalgunGothic',Arial,sans-serif,Verdana, Helvetica;
+}
+
+.Accordion, .Accordion *, .Button, .Button *, .Carousel, .Carousel *, .Checkbox, .Checkbox *, .Dateinput, .Dateinput *, .Datepicker, .Datepicker *, .Daterange, .Daterange *, .Dialog, .Dialog *, .Divselect, .Divselect *, .Dropdown, .Dropdown *, .Dropdownbutton, .Dropdownbutton *, .Group, .Group *, .Groupbutton, .Groupbutton *, .Icon, .Icon *, .List, .List *, .Navigationbar, .Navigationbar *, .Navmenu, .Navmenu *, .Paging, .Paging *, .Panel, .Panel *, .Progressbar, .Progressbar *, .Radio, .Radio *, .Searchinput, .Searchinput *, .Select, .Select *, .Slider, .Slider *, .Spinner, .Spinner *, .Switch, .Switch *, .Table, .Table *, .Tabs, .Tabs *, .Textarea, .Textarea *, .Textinput, .Textinput *, .Tooltip, .Tooltip *, .Tree, .Tree *, .Label, .Label *, .Quotation, .Quotation *, .Cite, .Cite *, .Mark, .Mark *, .Code, .Code *, .Small, .Small *, .Strong, .Strong *, .Del, .Del *, .Alink, .Alink *, .Splitter, .Splitter *, .Hierarchical, .Hierarchical *, .MultiSelect, .MultiSelect *, .Autocomplete, .Autocomplete *, .Combobox, .Combobox *, .Flexbox, .Flexbox *, .alopexgrid, .alopexgrid * {
+    font-family: 'MalgunGothic',Arial,sans-serif,Verdana, Helvetica;
+}
+
+html, body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: none;
+    -moz-text-size-adjust: none;
+    -ms-text-size-adjust: none;
+    text-size-adjust: none;
+    font-size: 12px;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+img, button, fieldset {
+    border: 0 none;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+}
+
+button * {
+    position: relative;
+}
+
+button::-moz-focus-inner {
+    padding: 0;
+    border: 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+em, address {
+    font-style: normal;
+}
+
+a, u {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+}
+
+fieldset, legend {
+    border: 0;
+}
+
+legend {
+    height: 0;
+    visibility: hidden;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+input, textarea {
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+select {
+    cursor: pointer;
+}
+
+a, button, input, select, textarea {
+    outline: 0;
+}
+
+a {
+    color: #222222;
+}
+
+/************************************************************************************************************
+   Common UI : Alopex ui custom
+************************************************************************************************************/
+
+/* Button  ==  basic2 */
+
+.Button,
+.basic2 {
+    min-width: 70px;
+    height: 30px;
+    padding-top: 3px;
+    padding-bottom: 6px;
+    -webkit-padding-before: 4px;
+    font-size: 12px;
+    border-radius: 3px;
+    border: 1px solid #4f5f6f;
+    background-color: #4f5f6f;
+}
+
+.Button:hover,
+.Button:active,
+.Button:focus,
+.Button.Checked,
+.basic2:hover,
+.basic2:active,
+.basic2:focus,
+.basic2.Checked {
+    min-width: 70px;
+    height: 30px;
+    /* padding-top: 3px;
+    padding-bottom: 6px; */
+    -webkit-padding-before: 4px;
+    border-color: #4f5f6f;
+    background-color: #2b343d;
+}
+
+/* Onlyicon */
+
+.Button.Onlyicon {
+    min-width: 26px;
+    height: 26px;
+}
+
+.Button.Onlyicon:hover,
+.Button.Onlyicon:active,
+.Button.Onlyicon.Checked {
+    min-width: 26px;
+    height: 26px;
+}
+
+/* small */
+
+.Button.small {
+    height: 20px !important;
+    padding: 0px 10px 2px 10px !important;
+    font-size: 11px;
+    line-height: 11px;
+}
+
+.Button.small:hover,
+.Button.small:active,
+.Button.small.Checked {
+    height: 20px !important;
+    padding: 0px 10px 2px 10px !important;
+    line-height: 11px;
+}
+
+/* .Button.small .Icon{
+    position : relative !important;
+    top : -1px !important;
+    margin-top: -5px !important;
+} */
+
+/* Large */
+
+.Button.Large {
+    height: 40px;
+    line-height: 36px;
+}
+.Button.Large:hover,
+.Button.Large:active,
+.Button.Large.Checked{
+    padding-top: 1px;
+    -webkit-padding-before: 0px;
+    -webkit-padding-after: 0px;
+}
+
+/* basic1 */
+
+.Button.basic1 {
+    color: #555555;
+    border: 1px solid #b9bfc5;
+    background-color: #ffffff;
+}
+
+.Button.basic1:hover,
+.Button.basic1:active,
+.Button.basic1:focus,
+.Button.basic1.Checked {
+    color: #222222;
+    border: 1px solid #727f8c;
+    background-color: #ffffff;
+}
+
+.Button.Typeb {
+    color: #555555;
+    border: 1px solid #b9bfc5;
+    background-color: #ffffff;
+}
+
+.Button.Typeb:hover,
+.Button.Typeb:active,
+.Button.Typeb:focus,
+.Button.Typeb.Checked {
+    color: #222222;
+    border: 1px solid #727f8c;
+    background-color: #ffffff;
+}
+
+/* basic3 */
+
+.Button.basic3 {
+    color: #ffffff;
+    border: 0;
+    background-color: #959fa9;
+}
+
+.Button.basic3:hover,
+.Button.basic3:active,
+.Button.basic3:focus,
+.Button.basic3.Checked {
+    color: #ffffff;
+    border: 0;
+    background-color: #676e75;
+}
+
+/* primery-a */
+
+.Button.primery-a {
+    color: #ffffff;
+    border: 0;
+    background-color: #e2101e;
+}
+
+.Button.primery-a:hover,
+.Button.primery-a:active,
+.Button.primery-a:focus,
+.Button.primery-a.Checked {
+    color: #ffffff;
+    border: 0;
+    background-color: #b00c17;
+}
+
+/* primery-b */
+
+.Button.primery-b {
+    color: #ffffff;
+    border: 0;
+    background-color: #ef8009;
+}
+
+.Button.primery-b:hover,
+.Button.primery-b:active,
+.Button.primery-b:focus,
+.Button.primery-b.Checked {
+    color: #ffffff;
+    border: 0;
+    background-color: #ef8009;
+}
+
+/* Table 내 버튼 */
+
+.Table .Button {
+    padding: 2px 10px;
+    height: 26px;
+}
+
+.Table .Button:active,
+.Table .Button.Checked {
+    padding: 2px 10px;
+    height: 26px;
+}
+
+/* grid 셀 내 버튼 */
+
+.alopexgrid .Button {
+    margin-top: -3px;
+}
+
+/* grid 제어 버튼 */
+
+.Button.grid {
+    height: 26px;
+    width: 28px;
+}
+
+.Button.grid:active,
+.skiaf-grid-btn .Button.grid.Checked {
+    height: 26px;
+    width: 28px;
+}
+
+/*그리드 행 추가*/
+
+.Button.grid .Icon.gridplus {
+    background: url("../../images/gridbtn.png") no-repeat 1px 0px;
+}
+
+/*그리드 행 삭제*/
+
+.Button.grid .Icon.gridminus {
+    background: url("../../images/gridbtn.png") no-repeat -32px 0px;
+}
+
+/*그리드 행 복제*/
+
+.Button.grid .Icon.gridcopy {
+    background: url("../../images/gridbtn.png") no-repeat -65px 0px;
+}
+
+/*그리드 엑셀 다운로드*/
+
+.Button.grid .Icon.griddownload {
+    width: 16px;
+    margin-left: -8px !important;
+    background: url("../../images/gridbtn.png") no-repeat -97px 0px;
+}
+
+/*그리드 엑셀 업로드*/
+
+.Button.grid .Icon.gridupload {
+    left: 46% !important;
+    width: 16px;
+    background: url("../../images/gridbtn.png") no-repeat -130px 0px;
+}
+
+/* Disabled */
+
+.Button.Disabled,
+.Button.Disabled:hover {
+    color: #aaaaaa;
+    background-color: #edeff0;
+    border: 1px solid #b9bfc5;
+}
+
+/* Icon Chevron-down */
+
+.Icon.Chevron-down,
+.Button .Icon.Chevron-down,
+.Button.Typeb .Icon.Chevron-down {
+    top: 7px !important;
+    background: url("../../alopex/ui/css/images/glyphicons-halflings.png") no-repeat -313px -119px;
+}
+
+/* Icon Chevron-up */
+
+.Icon.Chevron-up,
+.Button .Icon.Chevron-up,
+.Button.Typeb .Icon.Chevron-up {
+    top: 7px !important;
+    background: url("../../alopex/ui/css/images/glyphicons-halflings.png") no-repeat -288px -120px;
+}
+
+/* Icon Repeat */
+
+.Icon.Repeat,
+.Button .Icon.Repeat,
+.Button.Typeb .Icon.Repeat {
+    width: 16px;
+    height: 16px;
+    background: url("../../images/repeat.png") no-repeat 0 0;
+}
+
+/* Daterange */
+
+.Dateinput>input,
+.Daterange .Startdate>input,
+.Daterange .Enddate>input {
+    width: 170px;
+    border-color: #dcdfe2;
+}
+
+.Dateinput>input:hover,
+.Daterange .Startdate>input:hover,
+.Daterange .Enddate>input:hover,
+.Dateinput>input:focus,
+.Daterange .Startdate>input:focus,
+.Daterange .Enddate>input:focus {
+    border: 1px solid #727f8c;
+}
+
+.Dateinput>input.Disabled,
+.Daterange .Startdate>input.Disabled,
+.Daterange .Enddate>input.Disabled {
+    color: #aaaaaa;
+    background: #edeff0;
+    border: 1px solid #dcdfe2;
+}
+
+.Dateinput .Calendar {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    width: 18px;
+    height: 16px;
+    border: 0;
+    background-color: transparent;
+    background: url("../../images/calendar.png") no-repeat 0 0;
+}
+
+.Dateinput>.Calendar:hover,
+.Daterange .Calendar:hover,
+.Dateinput>.Calendar:active,
+.Daterange .Calendar:active {
+    border: 0;
+    background-color: transparent;
+    background: url("../../images/calendar.png") no-repeat 0 0;
+}
+
+.Dateinput>.Calendar.Disabled,
+.Daterange .Startdate>.Calendar.Disabled,
+.Daterange .Enddate>.Calendar.Disabled {
+    background: url("../../images/calendar.png") no-repeat -18px 0;
+}
+
+/* Datepicker  */
+
+.Datepicker {
+    padding: 0;
+    border: 2px solid #4f5f6f;
+}
+
+.Datepicker .Header {
+    height: 44px;
+    padding: 11px 10px 0 10px;
+    color: #ffffff;
+    background-color: #4f5f6f;
+}
+
+.Datepicker .Weekdays {
+    font-size: 11px;
+    font-weight: normal;
+    color: #ffffff;
+    border: 0;
+    background-color: #616f7e;
+}
+
+.Datepicker thead th:first-child {
+    border: 0;
+}
+
+.Datepicker .Cell {
+    border-color: #dcdfe2;
+}
+
+.Datepicker .Day.Holiday {
+    color: #ff0000;
+    background-color: #ffffff;
+}
+
+.Datepicker .Day.Sat {
+    color: #006bc8;
+}
+
+.Datepicker .Day.Sat:hover{
+    color: #ffffff;
+}
+
+.Datepicker .CurrentYear {
+    width: 95px;
+}
+
+.Datepicker .PrevYear,
+.Datepicker .PrevMonth,
+.Datepicker .NextYear,
+.Datepicker .NextMonth {
+    width: 7px;
+    height: 14px;
+    opacity: 0.6;
+}
+
+.Datepicker .PrevYear .Control,
+.Datepicker .PrevMonth .Control {
+    width: 7px;
+    height: 14px;
+    background: url("../../images/calendar-btns.png") no-repeat 0 -2px;
+}
+
+.Datepicker .NextYear .Control,
+.Datepicker .NextMonth .Control {
+    width: 7px;
+    height: 14px;
+    background: url("../../images/calendar-btns.png") no-repeat -7px -2px;
+}
+
+.Datepicker .PrevYear .Control:hover,
+.Datepicker .PrevMonth .Control:hover {
+    background: url("../../images/calendar-btns.png") no-repeat 0 -2px;
+}
+
+.Datepicker .PrevYear .Control:active,
+.Datepicker .PrevMonth .Control:active {
+    background: url("../../images/calendar-btns.png") no-repeat 0 -2px;
+}
+
+.Datepicker .PrevYear .Control.Disabled,
+.Datepicker .PrevMonth .Control.Disabled {
+    cursor: default;
+    background: url("../../images/calendar-btns.png") no-repeat 0 -2px;
+}
+
+/**/
+
+.Datepicker .NextYear .Control:hover,
+.Datepicker .NextMonth .Control:hover {
+    background: url("../../images/calendar-btns.png") no-repeat -7px -2px;
+}
+
+.Datepicker .NextYear .Control:active,
+.Datepicker .NextMonth .Control:active {
+    background: url("../../images/calendar-btns.png") no-repeat -7px -2px;
+}
+
+.Datepicker .NextYear .Control.Disabled,
+.Datepicker .NextMonth .Control.Disabled {
+    cursor: default;
+    background: url("../../images/calendar-btns.png") no-repeat -7px -2px;
+}
+
+.Datepicker .BtnClose {
+    top: 10px;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    opacity: 0.6;
+}
+
+.Datepicker .BtnClose .Control {
+    width: 20px;
+    height: 20px;
+    background: url("../../images/calendar-btns.png") no-repeat -14px 0px;
+}
+
+.Datepicker .BtnClose .Control:hover,
+.Datepicker .BtnClose .Control:active {
+    background: url("../../images/calendar-btns.png") no-repeat -14px 0px;
+}
+
+/* Dialog */
+
+.Dialog {
+    width: 400px;
+    -webkit-box-shadow: 0px 0px 0px;
+    box-shadow: 0px 0px 0px;
+    border: 0;
+}
+
+.Dialog .Header {
+    padding-left: 20px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: normal;
+    text-align: left;
+    background-color: #33414f;
+    border: 0;
+}
+
+.Dialog >div:last-child {
+    border: 1px solid #dcdfe2;
+    border-top: 0;
+}
+
+.Dialog .Header .DialogBtn:hover {
+    background-position: -54px -236px;
+}
+
+.Dialog .Dialog-contents {
+    padding: 0;
+    height: auto;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.Dialog .layerpop-box {
+    padding: 30px;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.Dialog .layerpop-box::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.Dialog .layerpop-box .layerpop-left-area {
+    float: left;
+    width: calc(50% - 20px);
+    width: -webkit-calc(50% - 20px);
+    margin-right: 20px;
+}
+
+.Dialog .layerpop-box .layerpop-right-area {
+    float: left;
+    width: 50%;
+}
+
+.Dialog .layerpop-btnwrap {
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.Dialog .layerpop-btnwrap.cookie {
+    margin: 0;
+    margin-top: 16px;
+    height: 46px;
+    padding: 8px;
+    text-align: inherit;
+    background-color: #edeff0;
+}
+
+.Dialog .layerpop-btnwrap.cookie button {
+    float: right;
+}
+
+.Dialog .layerpop-btnwrap.cookie .ImageCheckbox {
+    top: 6px;
+}
+
+.Dialog.alert {
+    width: 400px;
+    -webkit-box-shadow: 0px 0px 0px;
+    box-shadow: 0px 0px 0px;
+}
+
+.Dialog.alert .Header {
+    padding-left: 20px;
+    height: 40px;
+    color: #222222;
+    text-align: left;
+    font-size: 16px;
+    font-weight: normal;
+    background-color: #ffffff;
+    border-top: 3px solid #33414f;
+    border-right: 1px solid #dcdfe2;
+    border-bottom: 1px solid #dcdfe2;
+}
+
+.Dialog.alert .alert-ui {
+    padding: 0;
+    height: auto !important;
+    text-align: center;
+    font-size: 13px;
+    line-height: 20px;
+}
+
+.Dialog.alert .alert-box {
+    margin-top: 40px;
+}
+
+.Dialog.alert .alert-box span,
+.Dialog.alert .alert-box .text {
+    display: inline-block;
+    position: relative;
+    max-width: 250px;
+    vertical-align: middle;
+    text-align: left;
+}
+
+/* alert */
+
+.Dialog.alert .alert-img {
+    width: 60px;
+    height: 54px;
+    margin-right: 25px;
+    margin-bottom: 6px;
+    background: url("../../images/alert.png") no-repeat 0px 0px;
+}
+
+.Dialog.alert .alert-btnwrap {
+    margin: 40px 0;
+    text-align: center;
+}
+
+/* confirm */
+
+.Dialog.alert .alert-box.confirm .alert-img {
+    height: 60px;
+    margin-bottom: 0;
+    background-position: 0px -54px;
+}
+
+/* exception */
+
+.Dialog.alert .alert-box.exception .alert-img {
+    height: 60px;
+    margin-bottom: 0;
+    background-position: 0px -114px;
+}
+
+.Dialog.alert .text.more {
+    max-width: 260px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    text-align: left;
+}
+
+.Dialog.alert .text.more p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.Dialog.alert .text.more a {
+    display: block;
+    width: 60px;
+    margin-top: 15px;
+    color: #222222;
+}
+
+.Dialog.alert .text.more a::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: 9px;
+    width: 1px;
+    height: 1px;
+    border: 4px solid transparent;
+    border-top: 4px solid #4f5f6f;
+}
+
+.Dialog.alert .moreview {
+    display: none;
+    margin-top: 15px;
+    max-height: 300px;
+    overflow: auto;
+    text-align: left;
+    background-color: #ffdc9a;
+}
+
+.Dialog.alert .moreview p {
+    margin: 0;
+    padding: 30px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-wrap: normal;
+    color: #666666;
+}
+
+.Dialog.alert .moreview[style*="display:block"]+.alert-btnwrap {
+    margin-top: 30px;
+}
+
+/* Divselect */
+
+.Divselect {
+    min-width: 120px;
+    padding: 5px 25px 5px 10px;
+    height: 26px;
+    font-size: 13px;
+    color: #222222;
+    vertical-align: middle;
+    font-size: 12px;
+    line-height: 12px;
+    border-color: #dcdfe2;
+    background-color: white;
+    background-image: url('../../images/arrow_bottom.png');
+    background-position: top 50% right 10px;
+}
+
+.Divselect:hover,
+.Divselect:active,
+.Divselect.ui-state-active {
+    border-color: #727f8c;
+    background-color: white;
+    background-image: url('../../images/arrow_bottom.png');
+    background-position: top 50% right 10px;
+}
+
+.Divselect select {
+    font-size: 12px;
+    padding: 0 10px;
+}
+
+.Divselect.Disabled {
+    color: #aaaaaa;
+    background-color: #edeff0;
+}
+
+/* ImageCheckbox */
+
+.ImageCheckbox>.Checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.searchbox .ImageCheckbox {
+    display: block;
+}
+
+.ImageCheckbox:after {
+    margin-top: -8px;
+    width: 16px;
+    height: 16px;
+    background: url("../../images/checkbox.png") no-repeat 0 -42px;
+}
+
+.ImageCheckbox.Checked:after {
+    background: url("../../images/checkbox.png") no-repeat 0 0;
+}
+
+.ImageCheckbox.Disabled:after {
+    background: url("../../images/checkbox.png") no-repeat 0 -84px;
+}
+
+/* ImageRadio */
+
+.ImageRadio>.Radio {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.ImageRadio:after {
+    top: 50%;
+    margin-top: -7px;
+    width: 16px;
+    height: 16px;
+    background: url("../../images/radio.png") no-repeat 0 0;
+}
+
+.ImageRadio.Checked:after {
+    background: url("../../images/radio.png") no-repeat 0 -42px;
+}
+
+.ImageRadio.Disabled:after {
+    background: url("../../images/radio.png") no-repeat 0 -84px;
+}
+
+/* Label */
+
+.Label {
+    height: 18px;
+    padding: 2px 8px;
+    margin-right: 10px;
+    font-size: 10px;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 15px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.Label.new {
+    padding: 4px 9px 3px 8px;
+    font-family: 'Arial';
+    background-color: #ef6100;
+}
+
+.Label.urgent {
+    padding: 3px 9px 3px 9px;
+    font-size: 11px;
+    background-color: #e2101e;
+}
+
+.alopexgrid .Label {
+    display: inline;
+}
+
+/* Panel */
+
+.Panel.skiaf-panel {
+    border-color: #dcdfe2;
+}
+
+.Panel.skiaf-panel .Panel-header {
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 13px;
+    background-color: white;
+    border-color: #dcdfe2;
+}
+
+.Panel.skiaf-panel .Panel-header .Button {
+    padding: 0;
+    width: 16px;
+    height: 16px;
+}
+
+.Panel.skiaf-panel .Panel-content {
+    padding: 20px;
+    font-size: 12px;
+}
+.Panel.notice_panel .Panel-content li {
+    padding: 15px 0;
+}
+
+.Panel.notice_panel .Panel-content li:first-child {
+    padding-top: 0;
+}
+
+.Panel.notice_panel .Panel-content li:last-child {
+    padding-bottom: 0;
+}
+/* Table */
+
+.Table, .Table td,
+.Table.Form-type tr,
+.Table tr,
+.Table.Form-type tbody th,
+.Table th {
+    line-height: 16px;
+    border-color: #dcdfe2;
+}
+
+.Table.Form-type tbody th,
+.Table th {
+    padding: 6px 20px 7px 20px;
+    text-align: left;
+    color: #222222;
+    background: #f7f7f7;
+}
+
+.Table.Form-type tbody td,
+.Table td {
+    padding: 7px;
+}
+
+.Table.Form-type tbody,
+.Table tbody {
+    border-top: 2px solid #4f5f6f;
+}
+
+/* multitype */
+.Table.multitype .af-table-head th{
+    background-color: #edeff0;
+}
+
+.Table.multitype tbody th{
+    padding: 6px 0px 7px 0px;
+    text-align: center;
+}
+
+/* Tab */
+
+.Tabs {
+    position: inherit;
+}
+
+.Tabs>ul {
+    width: auto;
+    border-bottom: 0;
+}
+
+.Tabs>.af-tabs-content {
+    padding-top: 20px;
+    margin-top: -1px;
+    border-top: 1px solid #4f5f6f;
+}
+
+.Tabs>ul>li {
+    padding: 10px 64px;
+    line-height: 14px;
+    height: 40px;
+    border-bottom: 1px solid #4f5f6f;
+}
+
+.Tabs>ul>li.Selected {
+    color: #222222;
+    border-color: #4f5f6f;
+    border-bottom: 0;
+}
+
+/* Textinput */
+
+.Textinput {
+    border-color: #dcdfe2;
+}
+
+.Textinput:hover,
+.Textinput:focus,
+.Textinput:active {
+    border: 1px solid #727f8c;
+}
+
+.Textinput.Disabled {
+    color: #aaaaaa;
+    background-color: #edeff0;
+}
+
+.Textinput.Disabled:hover {
+    border: 1px solid #dcdfe2;
+}
+
+.Textinput.NumberInput {
+    padding-right: 0;
+}
+
+/* Textarea */
+
+.Textarea {
+    border-color: #dcdfe2;
+}
+
+.Textarea:hover, .Textarea:focus, .Textarea:active {
+    border: 1px solid #727f8c;
+}
+
+.Textarea.Disabled {
+    color: #aaaaaa;
+    background-color: #edeff0;
+}
+
+.Textarea.Disabled:hover {
+    border: 1px solid #dcdfe2;
+}
+
+/* Tooltip */
+
+.Tooltip {
+    padding: 7px 10px;
+    z-index: 1000;
+    line-height: 12px;
+    font-size: 12px;
+}
+
+.Tooltip.white {
+    color: #222222;
+    background: #ffffff;
+    border: 1px solid #b9bfc5;
+}
+
+.Tooltip.white.Top:before {
+    top: 102%;
+    border-top: 6px solid #b9bfc5;
+}
+
+.Tooltip.white.Bottom:before {
+    top: -6px;
+    border-bottom: 6px solid #b9bfc5;
+}
+
+.Tooltip.white.Left:before {
+    left: 100%;
+    margin-left: 1px;
+    border-left: 6px solid #b9bfc5;
+}
+
+.Tooltip.white.Right:before {
+    left: -6px;
+    border-right: 6px solid #b9bfc5;
+}
+
+.Tooltip:after {
+    content: '';
+    position: absolute;
+    z-index: 10;
+    display: block;
+}
+
+.Tooltip.white.Top:after {
+    top: 100%;
+    left: 50%;
+    margin-left: -6px;
+    border-top: 6px solid #ffffff;
+    border-right: 6px solid transparent;
+    border-bottom: 0;
+    border-left: 6px solid transparent;
+}
+
+.Tooltip.white.Bottom:after {
+    top: -5px;
+    left: 50%;
+    margin-left: -6px;
+    border-width: 0px 6px 6px;
+    border-top: 0;
+    border-right: 6px solid transparent;
+    border-bottom: 6px solid #ffffff;
+    border-left: 6px solid transparent;
+}
+
+.Tooltip.white.Left:after {
+    left: 100%;
+    top: 50%;
+    margin-top: -6px;
+    border-top: 6px solid transparent;
+    border-right: 0;
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid #ffffff;
+}
+
+.Tooltip.white.Right:after {
+    left: -5px;
+    top: 50%;
+    margin-top: -6px;
+    border: 0;
+    border-top: 6px solid transparent;
+    border-right: 6px solid #ffffff;
+    border-bottom: 6px solid transparent;
+    border-left: 0;
+}
+
+/* Tree */
+
+.Tree li>span.Arrow {
+    background-image: url("../../alopex/ui/css/images/component_mustard.png");
+}
+
+.Tree li.Expanded>span.Arrow {
+    background-image: url("../../alopex/ui/css/images/component_white.png");
+}
+
+.Tree ul::before {
+    width: 0px;
+    border-left: 0px solid #e2e4e7;
+}
+
+.Tree ul li::before {
+    border-top: 0px solid #e2e4e7;
+}
+
+.Tree li.expandable li.expandable[data-expand="false"]>a {
+    padding-left: 2px;
+}
+
+.Tree li>a.Selected {
+    color: #e60724;
+    border-bottom: 1px dotted #e60724;
+}
+
+/************************************************************************************************************
+   Common UI : AlopexGrid Custom
+************************************************************************************************************/
+
+.skiaf-grid .alopexgrid {
+    border-top: 2px solid #4f5f6f;
+}
+
+/* a 태그링크 */
+
+.skiaf-grid .alopexgrid a {
+    color: rgba(250, 63, 46, 1);
+}
+
+.skiaf-grid .alopexgrid a:hover {
+    color: #ef8009;
+    text-decoration: underline;
+}
+
+.skiaf-grid .alopexgrid a:visited {
+    color: #8d47bd;
+}
+/* 그리드 게시판 내 a링크 */
+.skiaf-grid .alopexgrid a.boardlist {
+    color: #222222;
+    cursor: pointer;
+}
+
+/* grid style */
+
+.skiaf-grid .alopexgrid .wrapper {
+    border-color: #dcdfe2;
+}
+
+.skiaf-grid .alopexgrid .wrapper .cell.headercell {
+    color: #222222;
+    border-right: 1px solid #dcdfe2;
+    background-color: #edeff0;
+}
+
+.skiaf-grid .alopexgrid .wrapper .cell.headercell.header-group-colspan {
+    border-bottom: 1px solid #e2e2e2;
+}
+
+.skiaf-grid .alopexgrid .wrapper .cell.headercell.filtercell {
+    border-top: 0;
+    border-right: 1px solid #dcdfe2;
+    border-bottom: 1px solid #dcdfe2;
+    background-color: inherit;
+}
+
+/* 행고정 */
+
+.skiaf-grid .alopexgrid .wrapper .cell.bodycell.cell-fixcol {
+    border-bottom: 1px solid #ecede2;
+    border-right: 1px solid #ecede2;
+    background-color: #c9cfd5;
+}
+
+.skiaf-grid .alopexgrid .wrapper .bodycell.cell-fixcol.cell-fixcol-lastcolumn {
+    border-right: 1px solid #a5aaac;
+}
+
+.skiaf-grid .alopexgrid .bodycell.cell-fixrow {
+    border-bottom: 1px solid #ecede2;
+    border-right: 1px solid #ecede2;
+    background-color: #c9cfd5;
+}
+
+.skiaf-grid .alopexgrid .wrapper .bodycell.cell-fixrow-lastrow {
+    border-bottom: 1px solid #a5aaac;
+}
+
+.skiaf-grid .alopexgrid .wrapper .cell.cell-fixcol.bodycell.selected,
+.skiaf-grid .alopexgrid .wrapper .cell.cell-fixrow.bodycell.selected {
+    background-color: #b9bfc5;
+}
+
+/* pager */
+
+.skiaf-grid .alopexgrid .pager .page-button {
+    margin-right: 12px;
+}
+
+.skiaf-grid .alopexgrid .pager .page-button a {
+    width: 23px;
+    height: 24px;
+    border-radius: 2px;
+    border: 1px solid #dcdfe2;
+}
+
+.skiaf-grid .alopexgrid .pager .page-list a {
+    border: 0;
+}
+
+.skiaf-grid .alopexgrid .pager .page-button.current a,
+.skiaf-grid .alopexgrid .pager .page-button.hovering a {
+    color: #ef8009;
+    background-color: transparent;
+}
+
+.skiaf-grid .alopexgrid .pager .pager-left {
+    font-weight: bold;
+}
+
+.alopexgrid .pager .pager-center {
+    padding-top: 15px;
+}
+
+.alopexgrid .pager .page-list {
+    margin-top: 0px;
+}
+
+.alopexgrid .pager .pager-left,
+.alopexgrid .pager .pager-right {
+    top: 17px;
+}
+
+/* selectorColumn에 위치한 체크박스에 대한 스타일 */
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper:after {
+    bottom: 0px;
+    width: 16px;
+    height: 16px;
+    background: url("../../images/checkbox.png") no-repeat 0 -42px;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper:focus:after,
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper:hover:after {
+    background: url("../../images/checkbox.png") no-repeat 0 -42px;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper.checked:after {
+    background: url("../../images/checkbox.png") no-repeat 0 0;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper.checked:focus:after,
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper.checked:hover:after {
+    background: url("../../images/checkbox.png") no-repeat 0 0;
+}
+
+.alopexgrid .headercell .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper.disabled:after {
+    background: url("../../images/checkbox.png") no-repeat 0 -84px;
+}
+
+.alopexgrid .headercell .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper:after {
+    width: 16px;
+    height: 16px;
+    background: url("../../images/checkbox.png") no-repeat 0 -42px;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper.checked:after {
+    background: url("../../images/checkbox.png") no-repeat 0 0;
+}
+
+.alopexgrid .headercell .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper:focus:after,
+.alopexgrid .headercell .alopexgrid-input-wrapper.alopexgrid-input-checkbox-wrapper:hover:after {
+    background: url("../../images/checkbox.png") no-repeat 0 0;
+}
+
+/* 그리드 내 라디오버튼에 대한 스타일 */
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper {
+    margin-right: 8px;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper>span {
+    margin-left: 3px;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper:after {
+    width: 16px;
+    height: 16px;
+    background: url("../../images/radio.png") no-repeat 0 0;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper:focus:after,
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper:hover:after {
+    background: url("../../images/radio.png") no-repeat 0 0;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper.checked:focus:after,
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper.checked:hover:after {
+    background: url("../../images/radio.png") no-repeat 0 -42px;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper.checked:after {
+    background: url("../../images/radio.png") no-repeat 0 -42px;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper.disabled:after {
+    background: url("../../images/radio.png") no-repeat 0 -84px;
+}
+
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper.disabled.checked:after,
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper.disabled.checked:focus:after,
+.alopexgrid .alopexgrid-input-wrapper.alopexgrid-input-radio-wrapper.disabled.checked:hover:after {
+    background: url("../../images/radio.png") no-repeat 0 -84px;
+}
+
+/* tree */
+
+.alopexgrid .alopexgrid-cell .alopexgrid-treecolumn-icon.expanded.expandable {
+    background: url("../../images/icon_tree02.png") no-repeat center;
+}
+
+.alopexgrid .alopexgrid-cell .alopexgrid-treecolumn-icon.expandable {
+    background: url("../../images/icon_tree01.png") no-repeat center;
+}
+
+/* 우클릭시 제어 contextmenu */
+
+.alopexgrid.alopexgrid-contextmenu-wrapper .alopexgrid-contextmenu {
+    padding: 15px 20px;
+}
+
+.alopexgrid.alopexgrid-contextmenu-wrapper .alopexgrid-contextmenu li:hover {
+    background-color: #ffffff;
+}
+
+.alopexgrid.alopexgrid-contextmenu-wrapper .alopexgrid-contextmenu li:hover a {
+    color: #ef8009;
+    background: url("../../images/gridcontextmenu.png") no-repeat 0 7px;
+}
+
+.alopexgrid.alopexgrid-contextmenu-wrapper .alopexgrid-contextmenu li a {
+    padding-left: 12px;
+    padding-right: 0px;
+    background: url("../../images/gridcontextmenu.png") no-repeat 0 -17px;
+}
+
+/*  그리드 내 달력 아이콘 */
+
+.alopexgrid .dateinput {
+    margin-left: 5px;
+}
+
+.alopexgrid .dateinput .Icon.Calendar {
+    width: 14px;
+    height: 12px;
+    margin-top: -8px;
+    border: 0;
+    background-color: transparent;
+    background: url("../../images/calendar_grid.png") no-repeat 0 0;
+}
+
+/* 그리드 스크롤 */
+.alopexgrid .scrollbar,
+.alopexgrid .scrollbar .scrollbutton.upbutton,
+.alopexgrid .scrollbar .scrollbutton.downbutton,
+.alopexgrid .scrollbar .scrollbutton.leftbutton,
+.alopexgrid .scrollbar .scrollbutton.rightbutton{
+    background-color: #f1f1f1;
+}
+
+.alopexgrid .scrollbar.x{
+    z-index: 41;
+}
+
+.alopexgrid .scrollbar.x::before{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #dcdfe2;
+}
+
+.alopexgrid .scrollbar.y::before{
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    border-left: 1px solid #dcdfe2;
+}
+
+.alopexgrid .scrollbar .scrollhandle{
+    background-color: #c1c1c1;
+}
+
+.alopexgrid .scrollbar.y .scrollhandle{
+    right: 1px;
+    width: 7px;
+}
+
+.alopexgrid .scrollbar.x .scrollhandle{
+    bottom : 1px;
+    height: 7px;
+}
+
+.alopexgrid .scrollbar .scrollbutton.rightbutton{
+    right: 0;
+    background-position: 4px -13px;
+}
+
+.alopexgrid .scrollbar .scrollbutton.leftbutton{
+    background-position: 3px 2px;
+}
+
+.alopexgrid .scrollbar .scrollbutton.upbutton{
+    background-position: 2px -40px;
+}
+
+.alopexgrid .scrollbar .scrollbutton.downbutton{
+    background-position: 2px -26px;
+}
+
+.alopexgrid .scrollbar .scrollbutton.leftbutton,
+.alopexgrid .scrollbar .scrollbutton.rightbutton{
+    border-top: 1px solid #dcdfe2;
+}
+
+.alopexgrid .scrollbar .scrollbutton.upbutton,
+.alopexgrid .scrollbar .scrollbutton.downbutton{
+    border-left: 1px solid #dcdfe2;
+}
+
+/************************************************************************************************************
+   Component UI : AlopexGrid Custom - highlight, sorting, bodycell 여백
+************************************************************************************************************/
+
+.skiaf-grid .alopexgrid .Icon {
+    margin-top: -6px;
+    cursor: pointer;
+}
+
+.skiaf-grid .alopexgrid .wrapper .bodycell {
+    padding: 0px 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+    line-height: 30px;
+    color: #222222;
+}
+
+.skiaf-grid .alopexgrid .sorting .sorting-handle {
+    background-image: url("../../alopex/grid/grid/grid_sorting_lightgray.png");
+}
+
+.skiaf-grid #tooltip {
+    font-size: 11px;
+    line-height: 18px;
+}
+
+/* 맨앞 checkbox*/
+
+.skiaf-grid .headercell.selector-column.set {
+    padding-top: 0;
+}
+
+/* grid highlight custom */
+
+.alopexgrid .cell.bodycell.selected,
+.skiaf-grid .cell.bodycell.selected.nextrow-selected,
+.skiaf-grid .cell.bodycell.selected.prevrow-selected {
+    background-color: #f7f7f7;
+}
+
+.skiaf-grid .alopexgrid-cell.bodycell.highlight-add,
+.skiaf-grid .alopexgrid-cell.bodycell.highlight-add.selected,
+.skiaf-grid .alopexgrid-cell.bodycell.highlight-add.selected.nextrow-selected,
+.skiaf-grid .alopexgrid-cell.bodycell.highlight-add.selected.prevrow-selected {
+    background-color: #fdf1ce;
+}
+
+.skiaf-grid .alopexgrid-cell.bodycell.highlight-edit,
+.skiaf-grid .alopexgrid-cell.bodycell.highlight-edit.selected,
+.skiaf-grid .alopexgrid-cell.bodycell.highlight-edit.selected.nextrow-selected,
+.skiaf-grid .alopexgrid-cell.bodycell.highlight-edit.selected.prevrow-selected {
+    background-color: #e5f5fd;
+}
+
+.skiaf-grid .alopexgrid-cell.bodycell.highlight-blur {
+    color: #aaaaaa !important;
+    text-decoration: line-through;
+}
+
+/************************************************************************************************************
+   Component UI :  AlopexGrid control button & input
+************************************************************************************************************/
+
+.skiaf-grid-btn {
+    margin-top: 15px;
+    height: 26px;
+}
+
+.skiaf-grid-btn::after {
+    content: "";
+    clear: both;
+}
+
+.skiaf-grid-btn .left {
+    float: left;
+}
+
+.skiaf-grid-btn .right {
+    float: right;
+}
+
+/* 그리드 버튼 위치 ImageCheckbox */
+
+.skiaf-grid-btn .ImageCheckbox {
+    vertical-align: middle;
+    font-size: 12px;
+}
+
+/************************************************************************************************************
+   Common UI : AlopexGrid Search Custom
+************************************************************************************************************/
+
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section input {
+    border-radius: 3px;
+    padding: 0 10px;
+    width: 190px;
+    height: 26px !important;
+    font-size: 12px;
+    border-color: #dcdfe2 !important;
+}
+
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section input:hover,
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section input:focus,
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section input:active {
+    border: 1px solid #727f8c !important;
+}
+
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section .alopexgrid-search-plugin-result {
+    top: 6px !important;
+    right: 30px !important;
+}
+
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section {
+    margin-left: 3px;
+}
+
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section .alopexgrid-search-plugin-search {
+    min-width: 45px;
+    height: 26px !important;
+    border: 0 !important;
+    border-radius: 3px;
+    background-color: #4f5f6f !important;
+}
+
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section .alopexgrid-search-plugin-search:after {
+    top: -1px !important;
+    color: #ffffff;
+}
+
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section .alopexgrid-search-plugin-prev {
+    width: 30px !important;
+    height: 26px !important;
+    margin-left: 3px !important;
+    border: 0 !important;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+    border-right: 1px solid #7a8692 !important;
+    background-color: #4f5f6f !important;
+    background-image: url("../../images/gridsearch.png") !important;
+    background-position: top left !important;
+}
+
+.alopexgrid-search-plugin .alopexgrid-search-plugin-section .alopexgrid-search-plugin-next {
+    width: 30px !important;
+    height: 26px !important;
+    border: 0 !important;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    background-color: #4f5f6f !important;
+    background-image: url("../../images/gridsearch.png") !important;
+    background-position: top right !important;
+}
+
+/* search-highlight */
+
+.alopexgrid .alopexgrid-cell.cell-search-highlight-row.cell-search-highlight-column {
+    background-color: #f4b10a !important;
+}
+
+.alopexgrid .alopexgrid-cell.cell-search-highlight-row {
+    background-color: #f9d884 !important;
+}
+
+/************************************************************************************************************
+   Common UI : Alopex webeditor Custom
+************************************************************************************************************/
+
+/* Button */
+
+.Table .webeditor-header .Button {
+    padding: 0 12px;
+    height: 26px;
+}
+
+.Table .webeditor-header .Button:active,
+.Table .webeditor-header .Button.Checked {
+    padding: 0 12px;
+    height: 26px;
+}
+
+/* note-codable */
+
+.note-editor.note-frame .note-editing-area .note-codable {
+    font-size: 12px;
+    font-family: 'dotum';
+}
+
+/************************************************************************************************************
+   Common UI : Alopex FileUpload Custom
+************************************************************************************************************/
+
+.preview-btn .Button,
+.onefile-button .Button {
+    padding: 0;
+    color: #666666;
+    border: 1px solid #b9bfc5;
+    background-color: #ffffff;
+}
+
+.onefile-button .Button {
+    margin-top: -5px;
+}
+
+.preview-btn .Button:hover,
+.preview-btn .Button:active,
+.preview-btn .Button:focus,
+.preview-btn .Button.Checked,
+.onefile-button .Button:hover,
+.onefile-button .Button:active,
+.onefile-button .Button:focus,
+.onefile-button .Button.Checked {
+    color: #222222;
+    border: 1px solid #727f8c;
+    background-color: #ffffff;
+}
+
+.preview-btn .Button .Icon,
+.onefile-button .Button .Icon {
+    background-image: url("../../alopex/ui/css/images/glyphicons-halflings.png");
+}
+
+.onefile {
+    overflow: hidden;
+    height: 30px;
+    padding-top: 6px;
+}
+
+.onefile .onefile-text {
+    margin-top: -1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+}
+
+.skiaf-fileupload .preview-title .ImageCheckbox {
+    display: none;
+}
+
+.skiaf-fileupload .fileupload-box,
+.preview-container .hide {
+    display: none !important;
+}
+
+/************************************************************************************************************
+
+   Component CSS
+
+************************************************************************************************************/
+
+/************************************************************************************************************
+   Component UI : Title Area
+************************************************************************************************************/
+
+/*h1*/
+
+.skiaf-wrap-detail {
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.skiaf-wrap-detail h1 {
+    height: 40px;
+    width: 100%;
+    /* float: left; */
+    margin: 0;
+    vertical-align: top;
+    text-align: left;
+    font-size: 21px;
+    color: #222222;
+    border-bottom: solid 1px #dcdfe2;
+}
+
+.skiaf-wrap-detail .detail-right,
+.skiaf-ui-contents .tab-detail .detail-right {
+    float: right;
+}
+
+.skiaf-wrap-detail .detail-right {
+    font-size: 13px;
+}
+
+/*h2*/
+
+.tab-detail {
+    position: relative;
+}
+
+.tab-detail::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.tab-detail h2 {
+    float: left;
+    margin-bottom: 30px;
+    vertical-align: top;
+    text-align: left;
+    color: #222222;
+    font-size: 18px;
+}
+
+/*h3*/
+
+.tab-detail h3 {
+    float: left;
+    padding-top: 4px;
+    margin-bottom: 16px;
+    vertical-align: top;
+    text-align: left;
+    color: #222222;
+    font-size: 16px;
+}
+
+/************************************************************************************************************
+   Component UI : input
+************************************************************************************************************/
+
+/* text input뒤 remove 버튼 */
+
+input:not([type])+.Icon.remove,
+input[type='text']+.Icon.remove,
+input[type='password']+.Icon.remove {
+    position: absolute;
+    margin-left: -26px;
+    margin-top: 5px;
+    width: 16px;
+    height: 16px;
+    visibility: hidden;
+    background: url("../../images/remove.png") no-repeat 0 0;
+}
+
+/************************************************************************************************************
+   Component UI : searchbox
+************************************************************************************************************/
+
+.skiaf-searchbox {
+    overflow: hidden;
+    font-size: 12px;
+    /* border-bottom: 1px solid #dcdfe2; */
+}
+
+.Dialog .skiaf-searchbox {
+    margin-bottom: 10px;
+}
+
+.skiaf-searchbox:after {
+    content: "";
+    clear: both;
+}
+
+.skiaf-searchbox .searchbox {
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.skiaf-searchbox .skiaf-ui-search {
+    display: inline-block;
+}
+
+.skiaf-ui-search input {
+    width: 288px;
+    line-height: 12px;
+    border-color: #dcdfe2;
+}
+
+.skiaf-ui-search .search {
+    height: 26px;
+    padding: 2px 10px;
+    background-color: #e2101e;
+    border-color: #e2101e;
+}
+
+.skiaf-searchbox button:nth-child(3) {
+    margin-left: 4px;
+}
+
+.skiaf-searchbox .searchbox-right {
+    overflow: hidden;
+    text-align: right;
+}
+
+.skiaf-searchbox .searchbox-left {
+    overflow: hidden;
+    text-align: left;
+}
+
+.skiaf-searchbox .searchbox-left label {
+    margin-left: 10px;
+}
+
+/* NOTE: 상세검색 버튼 */
+
+.skiaf-searchbox .open {
+    height: 26px;
+    padding: 2px 10px;
+    margin-left: 2px;
+    color: #222222;
+    background-color: #ffffff;
+}
+
+.skiaf-searchbox .open.close::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    left: 9px;
+    width: 1px;
+    height: 1px;
+    margin-right: 8px;
+    border: 4px solid transparent;
+    border-top: 4px solid #4f5f6f;
+}
+
+.skiaf-searchbox .open::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: -3px;
+    left: 9px;
+    width: 1px;
+    height: 1px;
+    margin-right: 8px;
+    border: 4px solid transparent;
+    border-bottom: 4px solid #4f5f6f;
+}
+
+/* 선택 버튼 */
+
+.skiaf-ui-layersearch input {
+    width: 190px;
+    line-height: 12px;
+}
+
+.skiaf-ui-layersearch .Button {
+    margin-left: -2px;
+    padding-top:2px;
+    -webkit-padding-before: 3px;
+    height: 26px;
+}
+
+.skiaf-ui-layersearch .Button:active,
+.skiaf-ui-layersearch .Button.Checked {
+    padding: 2px 10px;
+    -webkit-padding-before: 3px;
+    height: 26px;
+}
+
+.skiaf-ui-layersearch .Button.Onlyicon {
+    margin-left: 0;
+}
+
+/************************************************************************************************************
+   Component UI : searchbox 상세 검색 조건
+************************************************************************************************************/
+
+.skiaf-searchdetail {
+    display: block;
+    position: relative;
+    height: 0px;
+    overflow: hidden;
+    padding: 0;
+    margin-top: 16px;
+    border-bottom: 1px solid #dcdfe2;
+    background-color: #f0f0f0;
+}
+
+.skiaf-searchdetail.visible {
+    display: block;
+    height: auto;
+    padding: 20px 30px;
+    border-top: 1px dotted #dcdfe2;
+}
+
+.skiaf-searchdetail .Table tbody th {
+    padding-left: 0px;
+    padding-right: 13px;
+}
+
+.skiaf-searchdetail .Table tbody th.Margin-left-40 {
+    padding-left: 33px;
+}
+
+.skiaf-searchdetail .Table,
+.skiaf-searchdetail .Table tbody,
+.skiaf-searchdetail .Table tbody tr,
+.skiaf-searchdetail .Table tbody th,
+.skiaf-searchdetail .Table tbody td {
+    border: 0;
+    background-color: #f0f0f0;
+}
+
+.skiaf-searchdetail .Table.Form-type tr:nth-child(even) td {
+    background-color: #f0f0f0;
+}
+
+/************************************************************************************************************
+   Component UI : table 내부
+************************************************************************************************************/
+
+.skiaf-table td>p {
+    font-size: 11px;
+}
+
+.skiaf-table td>p:not([class^=Color]) {
+    color: #b28850;
+}
+
+.skiaf-table.posts td>p{
+    color: #222222;
+}
+
+.skiaf-table td {
+    color: #222222;
+}
+
+.skiaf-table td>input:not([type]),
+.skiaf-table td>input[type='text'],
+.skiaf-table td>input[type='password'],
+.skiaf-table td .Divselect,
+.skiaf-table td[colspan="3"]>input:not([type]),
+.skiaf-table td[colspan="3"]>input[type='text'],
+.skiaf-table td[colspan="3"]>input[type='password'] {
+    width: 45%;
+}
+
+.skiaf-table td>input.Width-100, .skiaf-table td>select.Width-100 {
+    width: 100%;
+}
+
+.skiaf-table td[colspan="3"]>input.Width-100 {
+    width: 100%;
+}
+
+.skiaf-table th .Color-danger {
+    padding-right: 5px;
+    font-size: 16px;
+}
+
+.skiaf-table div.role-select:not(:nth-child(3)) {
+    display: none;
+}
+
+.skiaf-table span[data-for] {
+    display: block;
+    font-size: 11px;
+}
+
+.skiaf-table span[data-for].Color-danger {
+    color: #e2101e;
+}

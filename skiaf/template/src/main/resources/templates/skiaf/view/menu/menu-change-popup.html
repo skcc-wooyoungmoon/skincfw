@@ -1,0 +1,41 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <style>
+    .alopexgrid .cell {
+        border-right: 0;
+        border-bottom: 0;
+    }
+    .alopexgrid .wrapper {
+        border: 0;
+    }
+    </style>
+    
+    <div class="layerpop-box">
+        <h1><th:block th:text="#{bcm.menu.menu-order-change}"/></h1>
+        <div class="" id="menuTreeGrid">
+    
+        </div>
+    
+    </div>
+    <div class="layerpop-btnwrap">
+        <button class="Button basic1" id="btnTreeSaveCancel"><th:block th:text="#{bcm.common.cancel}"/></button>
+        <button class="Button" id="btnTreeSave"><th:block th:text="#{bcm.common.save}"/></button>
+    </div>
+    
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+    
+    <script type="text/javascript" th:src="@{/static/skiaf/script/menu/menu-change-popup.js}"></script>
+</html>

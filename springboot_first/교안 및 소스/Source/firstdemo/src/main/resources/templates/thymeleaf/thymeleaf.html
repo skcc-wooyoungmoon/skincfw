@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>ThymeleafExam</title>
+</head>
+<body>
+
+	<h1>th:text</h1>
+	<p th:text="${ username }">유저네임</p>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<h1>unescape text (th:utext)</h1>
+	<div th:text="${ message }"></div>
+	<div th:utext="${ message }"></div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<h1>th:inline</h1>
+	<p th:inline="text">Hello, [[${ username }]] ~ !!!!!!!!!!</p>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<h1>문자열 연결</h1>
+	<p th:text="'Hello, ' + ${ username }"></p>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<h1>치환</h1>
+	<p>|${…}|를 사용하면 텍스트 안쪽에 변수 값을 넣을 수 있다. 없이 사용하면 에러.</p>
+	<p th:text="|Hello, ${ username }|"></p>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	
+	<h1>변수 값이 null일 경우 기본값을 셋팅 --> 삼항 연산자</h1>
+	<p th:text="${ userid } ?: 'guest'"></p>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<h1>strings.defaultString</h1>
+	<p th:text="${ #strings.defaultString( username, '게스트' ) }"></p>
+	<p th:text="${ #strings.defaultString( userid, 'guest' ) }"></p>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+</body>
+</html>
+
+
+
+
+
+

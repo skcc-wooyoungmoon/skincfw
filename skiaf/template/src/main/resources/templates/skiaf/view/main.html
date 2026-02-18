@@ -1,0 +1,63 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="skiaf/layout/default-layout">
+
+	<th:block layout:fragment="html_head">
+		<title>main page</title>
+	</th:block>
+	
+	<th:block layout:fragment="add_lib_css">
+		<!-- 추가 css 라이브 러리 -->
+	</th:block>
+	
+	<th:block layout:fragment="custom_css">
+		<!-- 이 페이지의 css -->
+	</th:block>
+	
+	
+	<th:block layout:fragment="content_body">
+
+		<!-- Content Area -->
+		<div class="skiaf-wrap-content">
+            <div class="skiaf-main">
+                <div class="skiaf-main-txt">
+                    <h2><th:block th:text="#{bcm.main.info-title}" /></h2>
+                    <p>
+                        <b><th:block th:text="#{bcm.main.info-txt1}" /></b><br />
+                        <th:block th:text="#{bcm.main.info-txt2}" /><br />
+                        <th:block th:text="#{bcm.main.info-txt3}" /><br />
+                    </p>
+                    <ul>
+                        <li>
+                            <span><th:block th:text="#{bcm.main.notice}" /></span>
+                            <p><th:block th:text="#{bcm.main.notice-txt}" /></p>
+                            <button class="Button" id="btnNoticeMore">more +</button>
+                        </li>
+                        <li>
+                            <span><th:block th:text="#{bcm.main.faq}" /></span>
+                            <p><th:block th:text="#{bcm.main.faq-txt}" /></p>
+                            <button class="Button" id="btnFaqMore">more +</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+	</th:block>
+	
+	
+	<th:block layout:fragment="custom_js">
+        <script th:inline="javascript" th:src="@{/static/skiaf/script/main.js}"></script>
+    </th:block>
+
+</html>

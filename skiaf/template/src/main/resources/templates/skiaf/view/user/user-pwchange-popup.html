@@ -1,0 +1,91 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <!--  <head layout:replace="skiaf/fragments/config :: configFragment"></head> -->
+
+     <div class="layerpop-box" id="userInfo" style="margin-bottom : -10px;">
+        <h1><th:block th:text="#{bcm.user.password-change}"/></h1>
+        <div class="skiaf-table">
+            <input type="hidden" class="Textinput" data-bind="value: userId"/>
+            <table class="Table Form-type">
+                <colgroup>
+                    <col style="width:150px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.login-id}"/></th>
+                        <td data-bind="text : loginId"></td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.user-name}"/></th>
+                        <td data-bind="text : userName"></td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.pre-password}"/><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="prePassword" data-bind="value: prePassword" type="password" maxlength="128" autocomplete="off" class="Textinput Width-100" />
+                            <button class="Icon Remove-sign remove"></button>
+                            <span data-for="prePassword" class="Color-danger" id="prePasswordMessage"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.new-password}"/><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="password" data-bind="value: password" type="password" maxlength="128" autocomplete="off" class="Textinput Width-100" />
+                            <button class="Icon Remove-sign remove"></button>
+                            <span data-for="password" class="Color-danger" id="passwordMessage"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.password-confirm}"/><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="passwordCheck" data-bind="value: passwordCheck"  type="password" maxlength="128" autocomplete="off" class="Textinput Width-100" />
+                            <button class="Icon Remove-sign remove"></button>
+                            <span data-for="passwordCheck" class="Color-danger" id="passwordCheckMessage"></span>                      
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+    
+        </div>
+        <div class="guide">
+            <dl>
+                <dt>[ <th:block th:text="#{bcm.common.password-rule-title}"/> ]</dt>
+                <dd><th:block th:text="#{bcm.common.password-mix-rule}"/>
+                    <ul>
+                        <li><th:block th:text="#{bcm.common.password-mix-element}"/></li>
+                    </ul>
+                </dd>
+                <dd>
+                    <th:block th:text="#{bcm.common.password-check-title}"/>
+                    <ul>
+                        <li><th:block th:text="#{bcm.common.password-check1}"/></li>
+                        <li><th:block th:text="#{bcm.common.password-check2}"/></li>
+                        <li><th:block th:text="#{bcm.common.password-check3}"/></li>
+                        <li><th:block th:text="#{bcm.common.password-check4}"/></li>
+                    </ul>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="layerpop-btnwrap">
+        <button id="cancleBtn" class="Button Typeb"><th:block th:text="#{bcm.common.cancel}"/></button>
+        <button id="saveBtn" class="Button"><th:block th:text="#{bcm.common.save}"/></button>
+    </div>
+
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+    <script type="text/javascript" th:src="@{/static/skiaf/script/user/user-pwchange-popup.js}"></script>
+</html>

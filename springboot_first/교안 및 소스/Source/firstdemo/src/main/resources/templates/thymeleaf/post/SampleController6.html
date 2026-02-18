@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>타임리프 반복 출력</title>
+		<link rel="stylesheet" href="#" th:href="@{ /css/SampleController6.css }">
+	</head>
+	<body>
+
+		<h1>Thymeleaf Board Table</h1>
+		
+		<table>
+			<thead>
+				<tr>
+					<th>Number</th>
+					<th>Title</th>
+					<th>Name</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:object="${ boardDTO }">
+					<td th:text="*{num}"></td>
+					<td th:text="*{btitle}"></td>
+					<td th:text="*{bname}"></td>
+				</tr>
+				<tr th:each="b : ${ bList }">
+					<td th:text="${b.num}">1</td>
+					<td th:text="${b.btitle}">하늘이 무척 맑은 날씨네요..</td>
+					<td th:text="${b.bname}">이순신</td>
+				</tr>
+			</tbody>
+		</table>
+
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

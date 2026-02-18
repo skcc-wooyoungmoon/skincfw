@@ -1,0 +1,69 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="layerpop-box">
+        <h1 th:utext="#{bcm.code.code.title}"></h1>
+        <!-- table -->
+        <div class="skiaf-ui-layersearch Margin-bottom-20">
+            <div class="skiaf-table" id="codeEditArea">
+                <table class="Table Form-type">
+                    <colgroup>
+                        <col style="width: 120px;" />
+                        <col />
+                        <col style="width: 120px;" />
+                        <col />
+                        <col style="width: 120px;" />
+                        <col />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <th><span th:text="#{bcm.code.codegroup.id}"></span></th>
+                            <td data-bind="text: codeGroupId"></td>
+                            <th><span th:text="#{bcm.code.code.name}"></span> (<span data-bind="text: codeGroupLang"></span>)</th>
+                            <td data-bind="text: codeGroupName"></td>
+                            <th><span th:text="#{bcm.common.use-yn}"></span></th>
+                            <td data-bind="text: useYnText"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- //table -->
+        <div id="lovPopSearchArea" class="skiaf-searchbox">
+            <div class="searchbox-left">
+                <div class="skiaf-ui-search">
+                    <input id="lovPopSearchText" data-bind="value : keyword" class="Textinput" maxlength="20" th:placeholder="#{bcm.common.search-placeholder}" />
+                    <button class="Icon Remove-sign remove"></button>
+                    <button id="lovPopSearchBtn" class="Button search" th:text="#{bcm.common.search}"></button>
+                </div>
+            </div>
+        </div>
+        <!-- alopexgrid -->
+        <div class="skiaf-grid">
+            <div id="codeLovGrid">
+    
+            </div>
+        </div>
+        <!-- //alopexgrid -->
+    </div>
+    <div class="layerpop-btnwrap">
+        <button id="popupCancleBtn" class="Button Typeb" th:text="#{bcm.common.cancel}"></button>
+        <button id="popupConfirmBtn" class="Button" th:text="#{bcm.common.confirm}"></button>
+    </div>
+    
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+    
+    <script type="text/javascript" th:src="@{/static/skiaf/script/code/codelov-select-popup.js}"></script>
+</html>

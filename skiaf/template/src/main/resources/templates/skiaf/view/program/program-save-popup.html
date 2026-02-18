@@ -1,0 +1,215 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="layerpop-box">
+    <h1 th:text="#{bcm.program.add}"></h1>
+    <!-- view -->
+    <div id="viewArea" class="typebox view">
+        <div class="skiaf-table">
+            <table id="viewEditTable" class="Table Form-type" style="display: none;">
+                <colgroup>
+                    <col style="width: 180px;" />
+                    <col />
+                    <col style="width: 180px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th th:text="#{bcm.program.base-id}"></th>
+                        <td data-bind="text: programId"></td>
+                        <th th:text="#{bcm.program.type}"></th>
+                        <td data-bind="text: programType"></td>
+                    </tr>
+                    <tr data-bind="text: programName" style="display: none;"></tr>
+                </tbody>
+            </table>
+            <table id="viewCreateTable" class="Table Form-type" style="display: none;">
+                <colgroup>
+                    <col style="width: 180px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr class="type">
+                        <th th:text="#{bcm.program.type}"></th>
+                        <td><label class="ImageRadio af-radio-text"> <input class="Radio" type="radio" name="radio1" value="VIEW" checked="checked" />VIEW
+                        </label> <label class="ImageRadio af-radio-text"> <input class="Radio" type="radio" name="radio1" value="SERVICE" />SERVICE
+                        </label></td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.program.base-id}"><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="viewProgramIdInput" data-bind="value: programId" class="Textinput" maxlength="10" data-validation-rule="{required:true}"
+                                th:attr="data-validation-message='{required : \'' + #{bcm.program.valid.base-id} + '\'}'" />
+                            <button class="Icon Remove-sign remove"></button>
+                            <button id="viewCheckBtn" class="Button" th:text="#{bcm.common.duplicate-check}"></button> 
+                            <span data-for="viewProgramIdInput" class="Color-danger"></span> 
+                            <span data-for="" id="viewProgramIdCheckMsg" class="Color-danger" style="display: none;"></span>
+                            <p th:utext="#{bcm.program.id.desc.html}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.program.base-name}"><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="viewProgramNameInput" data-bind="value: programName" class="Textinput" maxlength="128" data-validation-rule="{required:true}"
+                                th:attr="data-validation-message='{required : \'' + #{bcm.program.valid.base-name} + '\'}'" />
+                            <button class="Icon Remove-sign remove"></button>
+                            <span data-for="viewProgramNameInput" class="Color-danger"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- alopexgrid -->
+        <div class="skiaf-grid Margin-top-20">
+            <div id="viewGrid"></div>
+        </div>
+        <div class="skiaf-grid-btn">
+            <div class="left">
+                <button id="viewAddBtn" class="Button basic1 Onlyicon grid">
+                    <span class="Icon gridplus" data-position="top"></span>
+                </button>
+                <div class="Tooltip white" data-base="#viewAddBtn" data-position="bottom" th:text="#{bcm.common.add}"></div>
+            </div>
+        </div>
+        <!-- //alopexgrid -->
+
+    </div>
+    <!-- //view -->
+    <!-- service -->
+    <div id="serviceArea" class="typebox service">
+        <div class="skiaf-table">
+            <table id="serviceEditTable" class="Table Form-type" style="display: none;">
+                <colgroup>
+                    <col style="width: 180px;" />
+                    <col />
+                    <col style="width: 180px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th th:text="#{bcm.program.base-id}"></th>
+                        <td data-bind="text: programId"></td>
+                        <th th:text="#{bcm.program.type}"></th>
+                        <td data-bind="text: programType"></td>
+                    </tr>
+                    <tr data-bind="text: programName" style="display: none;"></tr>
+                </tbody>
+            </table>
+            <table id="serviceCreateTable" class="Table Form-type" style="display: none;">
+                <colgroup>
+                    <col style="width: 180px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr class="type">
+                        <th th:text="#{bcm.program.type}"></th>
+                        <td>
+                            <label class="ImageRadio af-radio-text"> <input class="Radio" type="radio" name="radio3" value="VIEW" />VIEW</label> 
+                            <label class="ImageRadio af-radio-text"> <input class="Radio" type="radio" name="radio3" value="SERVICE" checked="checked" />SERVICE</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.program.base-id}"><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="serviceProgramIdInput" data-bind="value: programId" class="Textinput" maxlength="10" data-validation-rule="{required:true}"
+                            th:attr="data-validation-message='{required : \'' + #{bcm.program.valid.base-id} + '\'}'" />
+                            <button class="Icon Remove-sign remove"></button>
+                            <button id="serviceCheckBtn" class="Button" th:text="#{bcm.common.duplicate-check}"></button> 
+                            <span data-for="serviceProgramIdInput" class="Color-danger"></span> 
+                            <span data-for="" id="serviceProgramIdCheckMsg" class="Color-danger" style="display: none;"></span>
+                            <p th:utext="#{bcm.program.id.desc.html}"></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.program.base-name}"><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="serviceProgramNameInput" data-bind="value: programName" class="Textinput" maxlength="128" data-validation-rule="{required:true}"
+                            th:attr="data-validation-message='{required : \'' + #{bcm.program.valid.base-name} + '\'}'" />
+                            <button class="Icon Remove-sign remove"></button> 
+                            <span data-for="serviceProgramNameInput" class="Color-danger"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.program.base-path}"><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="serviceProgramPathInput" data-bind="value: programPath" class="Textinput" placeholder="/api/users" maxlength="995" data-validation-rule="{required:true}"
+                                th:attr="data-validation-message='{required : \'' + #{bcm.program.valid.base-path} + '\'}'" />
+                            <button class="Icon Remove-sign remove"></button> 
+                            <span data-for="serviceProgramPathInput" class="Color-danger"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- alopexgrid -->
+        <div class="skiaf-grid Margin-top-20">
+            <div id="serviceGrid"></div>
+        </div>
+        <div class="skiaf-grid-btn">
+            <div id="serviceMethodAddArea" class="left">
+                <button id="serviceMethodAddBtn" class="Button basic1 Onlyicon grid">
+                    <span class="Icon gridplus" data-position="top"></span>
+                </button>
+                <div class="Tooltip white" data-base="#serviceMethodAddBtn" data-position="bottom" th:text="#{bcm.common.add}"></div>
+                <label class="ImageCheckbox af-checkbox-text"> <input data-bind="checked: addService" class="Checkbox" type="checkbox" name="pgm_method" value="GET-LIST"
+                    th:text="#{bcm.program.add.get-list}" />
+                </label> 
+                <label class="ImageCheckbox af-checkbox-text"> 
+                    <input data-bind="checked: addService" class="Checkbox" type="checkbox" name="pgm_method" value="POST"
+                        th:text="#{bcm.program.add.post}" />
+                </label> 
+                <label class="ImageCheckbox af-checkbox-text"> 
+                    <input data-bind="checked: addService" class="Checkbox" type="checkbox" name="pgm_method" value="GET"
+                        th:text="#{bcm.program.add.get}" />
+                </label> 
+                <label class="ImageCheckbox af-checkbox-text"> 
+                    <input data-bind="checked: addService" class="Checkbox" type="checkbox" name="pgm_method" value="PUT"
+                        th:text="#{bcm.program.add.put}" />
+                </label> 
+                <label class="ImageCheckbox af-checkbox-text"> 
+                    <input data-bind="checked: addService" class="Checkbox" type="checkbox" name="pgm_method" value="PATCH"
+                        th:text="#{bcm.program.add.patch}" />
+                </label>
+                <label class="ImageCheckbox af-checkbox-text"> 
+                    <input data-bind="checked: addService" class="Checkbox" type="checkbox" name="pgm_method" value="DELETE"
+                        th:text="#{bcm.program.add.delete}" />
+                </label> 
+                <label class="ImageCheckbox af-checkbox-text"> 
+                    <input data-bind="checked: addService" class="Checkbox" type="checkbox" name="pgm_method" value="ETC"
+                        th:text="#{bcm.program.add.etc}" />
+                </label>
+            </div>
+        </div>
+        <!-- // alopexgrid -->
+
+    </div>
+    <div class="guide">
+        <dl th:utext="#{bcm.program.add.guide.html}">
+        </dl>
+    </div>
+</div>
+<div class="layerpop-btnwrap">
+    <button id="cancleBtn" class="Button basic1" th:text="#{bcm.common.cancel}"></button>
+    <button id="saveBtn" class="Button" data-disabled="true" th:text="#{bcm.common.save}"></button>
+</div>
+
+<!-- popup data include -->
+<th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+
+<script type="text/javascript" th:src="@{/static/skiaf/script/program/program-common.js}"></script>
+<script type="text/javascript" th:src="@{/static/skiaf/script/program/program-save-popup.js}"></script>
+
+
+</html>

@@ -1,0 +1,37 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+    <head>
+        <base th:href="@{/}" />
+        
+        <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+        <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+        <th:block layout:include="skiaf/fragments/data"></th:block>
+        
+        <script th:inline="javascript">
+            
+            /*<![CDATA[*/
+                window.SKIAF.bcmUIHomeUrl = /*[[${bcmUIHomeUrl}]]*/;
+            /*]]>*/
+             
+            if(SKIAF.bcmDomain.length > 0){
+                location.replace(SKIAF.contextPath + SKIAF.bcmUIHomeUrl);
+            }else{
+                location.replace(SKIAF.contextPath + SKIAF.bcmHomeUrl);
+            }
+        </script>
+    </head>
+    <body>
+    </body>
+</html>

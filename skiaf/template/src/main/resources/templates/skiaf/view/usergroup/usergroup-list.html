@@ -1,0 +1,80 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="skiaf/layout/default-layout">
+
+<th:block layout:fragment="html_head">
+    <title th:text="#{bcm.usergroup.title}"></title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+
+<th:block layout:fragment="custom_css"></th:block>
+
+<th:block layout:fragment="content_body">
+    <!-- Content Area -->
+    <div class="skiaf-wrap-content">
+        <div class="skiaf-wrap-detail">
+            <h1 th:text="#{bcm.usergroup.title}"></h1>
+        </div>
+        <!-- Sub Content Area -->
+        <div class="skiaf-ui-contents">
+            <!-- searchbox -->
+            <div class="skiaf-searchbox">
+                <div class="searchbox-left">
+                    <div class="searchbox">
+                        <div class="Divselect">
+                            <select id="select" data-bind-option="codeId:codeName" data-bind="options:data, selectedOptions:optionSelected"></select>
+                            <span></span>
+                        </div>
+                    </div>
+                    <div class="skiaf-ui-search">
+                        <input data-bind="value : keyword" id="defaultSearchText" class="Textinput" maxlength="20" th:placeholder="#{bcm.usergroup.search-placeholder}" />
+                        <button class="Icon Remove-sign remove"></button>
+                        <button id="defaultSearchBtn" class="Button search" th:text="#{bcm.common.search}"></button>
+                    </div>
+                    <div class="searchbox">
+                        <label class="ImageCheckbox">
+                            <input data-bind="checked: isunusedinclude" class="Checkbox" type="checkbox" name="chk2" value="userGroupListCheck" th:text="#{bcm.common.unused-include}" />
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- // searchbox -->
+            <!-- table -->
+            <div class="skiaf-table">
+                <div class="skiaf-ui-rightbtn top">
+                    <button id="btnUserGroupUpdate" class="Button" th:text="#{bcm.common.modify}"></button>
+                    <button id="btnUserGroupAdd" class="Button" th:text="#{bcm.common.register}"></button>
+                    <button id="btnUserGroupDetail" class="Button link" th:text="#{bcm.usergroup.detail}"></button>
+                </div>
+            </div>
+            <!-- //table -->
+            <!-- alopexgrid -->
+            <div class="skiaf-grid">
+                <div id="userGroupGrid"></div>
+            </div>
+            <!-- // alopexgrid -->
+        </div>
+        <!-- // Sub Content Area -->
+    </div>
+    <!-- // Content Area -->
+
+</th:block>
+
+<th:block layout:fragment="custom_js">
+    <script type="text/javascript"
+        th:src="@{/static/skiaf/script/usergroup/usergroup-list.js}"></script>
+</th:block>
+
+</html>

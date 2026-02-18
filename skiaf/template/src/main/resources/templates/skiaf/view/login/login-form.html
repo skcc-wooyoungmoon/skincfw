@@ -1,0 +1,84 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="skiaf/layout/login-layout">
+
+<th:block layout:fragment="html_head">
+    <title><th:block th:text="#{bcm.common.login}" /></title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+
+<th:block layout:fragment="custom_css"></th:block>
+
+<th:block layout:fragment="content_body">
+
+    <!-- login Area -->
+    <div class="skiaf-ui-login">
+        <div class="login-box">
+            <dl>
+                <dt>
+                    <th:block th:text="#{bcm.common.login}" />
+                </dt>
+                <dd class="login-area sso">
+                    <!-- <form id="ssoLoginForm"> -->
+                    <!-- 테스트용 -->
+                    <div class="left Margin-bottom-10" th:if="${isUseSSO} == false">
+                        <h3>SSO Status Value</h3><br />
+                        <label>0200 : SSO 인증 성공인 경우</label><br /> 
+                        <label>0201 : SSO 인증 실패인 경우</label><br /> 
+                        <label>0202 : SSO 미인증인 경우</label><br /> 
+                        <label>0204 : SSO 인증 서버 "접근권한오류"인 경우</label><br /> 
+                        <label>0205: 인증서버 오류인 경우</label><br /> 
+                        <input class="Textinput" name="ssoTestLoginId" placeholder="SSO Test Id" value="" /> 
+                        <input class="Textinput" name="ssoStatus" placeholder="SSO Result Status" value="" /> 
+                        <input class="Textinput" name="nextSsoStatus" placeholder="SSO Next Result Status" value="" />
+                    </div>
+                    <!-- 테스트용 -->
+                    <div class="left" id="loginValidationArea">
+                        <input class="Textinput" id="id" autocomplete="off" th:placeholder="#{bcm.common.id}" value="" data-validation-rule="{required:true}"
+                            th:attr="data-validation-message='{required : \'' + #{bcm.login.valid.id.null} + '\'}'" /> <span data-for="id" class="Color-danger"></span> <input class="Textinput"
+                            type="password" id="password" autocomplete="off" th:placeholder="#{bcm.common.password}" value="" data-validation-rule="{required:true}"
+                            th:attr="data-validation-message='{required : \'' + #{bcm.login.valid.password.null} + '\'}'" /> <span data-for="password" class="Color-danger"></span>
+                        <div class="Divselect Margin-top-10">
+                            <select data-bind-option="codeId:codeName" data-bind="options: options, selectedOptions: optionSelected" class="Select" id="languageCode"></select> <span></span>
+                        </div>
+                    </div>
+                    <!-- </form> -->
+                    <div class="right">
+                        <button type="button" id="loginBtn">
+                            <th:block th:text="#{bcm.common.login}" />
+                        </button>
+                        <button type="button" class="sso" id="ssoLoginBtn">
+                            <th:block th:utext="#{bcm.login.sso-login.label}" />
+                        </button>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!-- // login Area -->
+</th:block>
+
+<th:block layout:fragment="custom_js">
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+        window.SKIAF.returnUrlAfterLogin = /*[[${returnUrlAfterLogin}]]*/;
+        window.SKIAF.languageSupportList = /*[[${languageSupportList}]]*/;
+        window.SKIAF.useSsoLoginBtn = /*[[${useSsoLoginBtn}]]*/;
+    /*]]>*/
+    </script>
+    <script type="text/javascript" th:src="@{/static/skiaf/script/login/login-form.js}"></script>
+</th:block>
+
+</html>

@@ -1,0 +1,359 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorator="skiaf/layout/default-layout">
+
+<th:block layout:fragment="html_head">
+    <title>인터페이스 전문 Sample</title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+
+<th:block layout:fragment="custom_css"></th:block>
+
+<th:block layout:fragment="content_body">
+    <!-- Content Area -->
+    <div class="skiaf-wrap-content">
+        <div class="skiaf-wrap-detail">
+            <h1>전문 변환 Sample</h1>
+        </div>
+        <!-- Sub Content Area -->
+        <div class="skiaf-ui-contents">
+            <!-- tab -->
+            <div class="Tabs">
+                <ul>
+                    <li data-content="#tab1" style="padding: 0 50px;">Step 1 : 전문 환경 설정</li>
+                    <li data-content="#tab2" style="padding: 0 50px;">Step 2 : 송신 데이터 생성</li>
+                    <li data-content="#tab3" style="padding: 0 50px;">Step 3 : 송신 전문 생성</li>
+                    <li data-content="#tab4" style="padding: 0 50px;">Step 4 : 수신 전문 변환</li>
+                </ul>
+                <div id="tab1">
+                    <div class="tab-detail">
+                        <h3>전문(송/수신) 변환시 사용 할 환경 설정 (xml)</h3>
+                        <div class="detail-right">
+                            <button class="Dropdownbutton Button" style="padding-right:30px;" id="btnConfigDesc">설명</button>
+                        </div>
+                    </div>
+                    <div class="skiaf-table">
+                        <table class="Table Form-type">
+                            <colgroup>
+                                <col style="width: 110px;" />
+                                <col />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th>사용 할 xml</th>
+                                    <td><label class="ImageRadio af-radio-text"> <input class="Radio" type="radio" id="radioUseConfigType" name="radioUseConfigType" value="FILE"
+                                            data-bind="checked : useConfigType" />서버파일 사용
+                                    </label> <label class="ImageRadio af-radio-text"> <input class="Radio" type="radio" id="radioUseConfigType" name="radioUseConfigType" value="STRING"
+                                            data-bind="checked : useConfigType" checked="checked" />화면내용 사용
+                                    </label></td>
+                                </tr>
+                                <tr>
+                                    <th>서버 파일 path</th>
+                                    <td><span style="color: #0000FF">서버파일 사용</span><span>&nbsp;&nbsp;&nbsp;(테스트용 Sample xml)</span>
+                                        <div class="Margin-top-5"><!-- 수정 -->
+                                            <input class="Textinput" type="text" id="txtConfigFileName" style="width: 85%" data-bind="value : configFileName" />
+                                            <button class="Button" id="btnReadConfig">서버 파일 읽기</button> <!-- 수정 -->
+                                        </div><!-- 수정 -->
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>xml 내용</th>
+                                    <td><span style="color: #0000FF">화면내용 사용</span><span>&nbsp;&nbsp;&nbsp;(테스트용 Sample, 내용을 변경 해서 테스트 가능)</span>
+                                        <textarea class="Textarea Margin-top-5" id="txaConfigContents" rows="17" style="width: 100%; padding: 4px;" data-bind="text : configContents"></textarea><!-- 수정 -->
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div id="divConfigDesc" style="display: none;">
+                        <h5 class="Margin-top-15 Margin-bottom-15">xml 규약 설명</h5>
+                        <div class="skiaf-table">
+                            <table class="Table Form-type">
+                                <colgroup>
+                                    <col style="width: 60px;" /> <!-- 수정 -->
+                                    <col style="width: 90px;" /> <!-- 수정 -->
+                                    <col style="width: 90px;" /> <!-- 수정 -->
+                                    <col style="width: 120px;" /> <!-- 수정 -->
+                                    <col />
+                                </colgroup>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5">
+                                            <p>* 전문 송/수신시 동일한 xml 환경 사용.</p>
+                                            <p>* xml 요소명과 속성명은 변경 할 수 없음.</p>
+                                            <textarea class="Textarea Margin-top-5" id="txaInitConfig" rows="17" style="width: 100%; padding: 4px; background-color: rgb(235, 235, 228);" data-disabled="true" disabled="true">
+<xml version="1.0" encoding="UTF-8">
+<root>
+ <header>
+  <logging id="DB_LOGGER" value="true"></logging>
+  <bizappid id="cr.orh.CRORHO00#psCRORH54UM300_P002" name="인터페이스 포멧 파일"></bizappid>
+  <parsing id="VARIABLE_PARSE" col_separator=")___(" row_separator=")___."></parsing>	
+  <!-- XML_PARSE, FIXED_PARSE, VARIABLE_PARSE, //-->
+ </header>
+ <metadata>
+  <fld seq="1" id="programId" length="15" name="프로그램 ID" type="string" padding="L" paddchar=" "></fld>
+  <fld seq="2" id="httpMethod" length="10" name="HTTP METHOD" type="string" padding="R" paddchar="0x20"></fld>
+  <fld seq="3" id="programName" length="130" name="프로그램 명" type="string" padding="L" paddchar="*"></fld>
+  <fld seq="4" id="programType" length="50" name="프로그램 유형" type="string" padding="R" paddchar=":"></fld>
+  </metadata>
+</root>
+</xml>
+                                            </textarea> <!-- 수정 -->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="13">xml</th>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="5">header</th>
+                                        <th>logging</th>
+                                        <th>id / value</th>
+                                        <td>
+                                              참조용 요소 id/value (전문 변환시 미사용, 사용자 지정 사용 가능)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>bizappid</th>
+                                        <th>id / value</th>
+                                        <td>
+                                            참조용 요소 id/value (전문 변환시 미사용, 사용자 지정 사용 가능)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="3">parsing</th>
+                                        <th>id</th>
+                                        <td>
+                                                전문 변환 형식
+                                            <p>* XML_PARSE : 전문을 xml 형식으로 변환 (SKIAF 모듈을 사용 송신/수신 하는 경우 수신측은 전문 변환용 xml을 사용 하지 않아도 됨)</p>
+                                            <p>* FIXED_PARSE : 전문을 고정 길이로 변환</p>
+                                            <p>* VARIABLE_PARSE : 전문을 가변길이 형식으로 변환 (속성중 col_separator, col_separator 를 사용 하여 변환)</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>col_separator</th>
+                                        <td>
+                                            id가 VARIABLE_PARSE 일 경우 각 Column 구분자로 사용할 문자열을 지정
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>row_separator</th>
+                                        <td>
+                                            id가 VARIABLE_PARSE 일 경우 각 ROW 구분자로 사용할 문자열을 지정
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th rowspan="8">metadata</th>
+                                        <th rowspan="8">fld</th>
+                                        <th>seq</th>
+                                        <td>
+                                            순번 (전문 변환시 미사용, 사용자 지정 사용 가능)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>id</th>
+                                        <td>
+                                            전문 변환시 사용 하는 Column 식별자 (Column 영문명)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>length</th>
+                                        <td>
+                                            전문 고정길이 변환시 사용 하는 Column 길이
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>name</th>
+                                        <td>
+                                            Column 한글명 (전문 변환시 미사용, 사용자 지정 사용 가능
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>type</th>
+                                        <td>
+                                            Column 값 type (전문 변환시 미사용, 사용자 지정 사용 가능)
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>padding</th>
+                                        <td>
+                                                전문 고정길이 변환시 정렬 구분자
+                                                <p>* R : 오른쪽 정렬</p>
+                                                <p>* L : 왼쪽 정렬</p>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th>paddchar</th>
+                                        <td>
+                                                전문 고정길이 변환시 나머지 공간을 채울 character 값
+                                                <p>* character 문자 사용 : " ", "#", "*" 등 가능</p>
+                                                <p>* ascii 16진수 값: 0x00, 0x20 등 가능</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="tab2">
+                        <div class="tab-detail">
+                            <h3>송신 전문 생성을 위한 Sample 데이터(JSON) 작성</h3>
+                            <div class="detail-right">
+                                <button class="Dropdownbutton Button" id="btnJsonDesc" style="padding-right:30px;">설명</button>
+                                <button class="Button" id="btnMakeJsonData">JSON Sample Data 생성</button>
+                            </div>
+                        </div>
+                        <textarea class="Textarea" name="txaSendJsonData" id="txaSendJsonData" rows="15" style="width: 100%; padding: 4px" data-bind="text : sendJsonData"></textarea>
+                    <div id="divJsonDesc" style="display: none;">                    
+                        <h5 class="Margin-top-15 Margin-bottom-15">JSON data를 만들 sample</h5>
+                        <!-- alopexgrid -->
+                        <div class="skiaf-grid">
+                            <div id="programGrid"></div>
+                        </div>
+                    </div>
+                </div>
+                    <div id="tab3">
+                        <div class="tab-detail">
+                            <h3>Step2의 데이터(JSON)를 가지고 송신 전문 생성</h3>
+                            <div class="detail-right">
+                                <button class="Dropdownbutton Button" id="btnSendDesc" style="padding-right:30px;">설명</button> <!-- 수정 -->
+                                <button class="Button" type="submit" id="btnSend">전문 생성</button> <!-- 수정 -->
+                            </div>
+                        </div>
+                        <div class="skiaf-table">
+                            <!-- <div class="skiaf-ui-layersearch Margin-bottom-20"> --> <!-- 수정 -->
+                                <table class="Table Form-type">
+                                    <colgroup>
+                                        <col style="width: 110px;" />
+                                        <col style="width: 150px;" />
+                                        <col style="width: 110px;" />
+                                        <col />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>상태 코드</th>
+                                            <td><input class="Textinput" type="text" id="txtSendStatusCode" readonly="true" style="width: 100%; background-color: rgb(235, 235, 228);" data-disabled="true"  data-bind="value : sendStatusCode" /></td> <!-- 수정 -->
+                                            <th>상태 메시지</th>
+                                            <td><textarea class="Textarea" id="txaSendStatusMessage" rows="2" style="width: 100%; padding: 4px; background-color: rgb(235, 235, 228);" data-disabled="true" disabled="true" data-bind="text : sendStatusMessage"></textarea></td> <!-- 수정 -->
+                                        </tr>
+                                        <tr>
+                                            <th>변환 된 송신 전문 내용</th>
+                                            <td colspan="3"><textarea class="Textarea" id="txaSendData" rows="15" style="width: 100%; padding: 4px; background-color: rgb(235, 235, 228); " data-disabled="true" disabled="true" data-bind="text : sendData"></textarea></td> <!-- 수정 -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <!-- </div> --> <!-- 수정 -->
+                            <div id="divSendDesc" style="display: none;">
+                                <h5 class="Margin-top-15 Margin-bottom-15">전문 생성 설명</h5> <!-- 수정 -->
+                                <table class="Table Form-type">
+                                    <colgroup>
+                                        <col style="width: 110px;" />
+                                        <col style="width: 150px;" />
+                                        <col style="width: 110px;" />
+                                        <col />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>설명</th>
+                                            <td colspan="3">
+                                                <h6>전문 생성시 사용한 환경</h6> <textarea class="Textarea Margin-top-5" id="txaSendUseConfig" rows="14" style="width: 100%; padding: 4px; background-color: rgb(235, 235, 228);" data-disabled="true" disabled="true" data-bind="text : sendUseConfig"></textarea> &nbsp; <!-- 수정 -->
+                                                <h6>소스 내용</h6>
+                                                <pre>
+String readConfig; // 전문 변환 규칙 xml text 또는 xml 파일 path
+String jsonData; // 수신 받은 buffer에서 JSON으로 변환된 data를 받을 문자열
+StringBuilder readBuffer; // 수신 data를 받아올 buffer (byte단위로 data를 받아 와야 함)
+
+...
+
+// JSON data를 StringBuffer에 전문 생성
+readBuffer = ifFormater.convertJsonToBuffer(jsonData, readConfig);
+</pre>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="tab4">
+                        <div class="tab-detail">
+                            <h3>Step3에서 생성된 전문(수신 데이터)을 가지고 JSON 데이터 생성</h3>
+                            <div class="detail-right">
+                                <button class="Dropdownbutton Button" id="btnReceiveDesc" style="padding-right:30px;">설명</button> <!-- 수정 -->
+                                <button class="Button" type="submit" id="btnReceive">전문 변환</button> <!-- 수정 -->
+                            </div>
+                        </div>
+                        <div class="skiaf-table">
+                            <!-- <div class="skiaf-ui-layersearch Margin-bottom-20"> --> <!-- 수정 -->
+                                <table class="Table Form-type">
+                                    <colgroup>
+                                        <col style="width: 110px;" />
+                                        <col style="width: 150px;" />
+                                        <col style="width: 110px;" />
+                                        <col />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>상태 코드</th>
+                                            <td><input class="Textinput" type="text" id="txtReceiveStatusCode" style="width: 100%; background-color: rgb(235, 235, 228);" readonly="true" data-disabled="true" data-bind="value : receiveStatusCode" /></td> <!-- 수정 -->
+                                            <th>상태 메시지</th>
+                                            <td><textarea class="Textarea" id="txaReceiveStatusMessage" rows="2" style="width: 100%; padding: 4px; background-color: rgb(235, 235, 228);" data-disabled="true" disabled="true" data-bind="value : receiveStatusMessage"></textarea></td> <!-- 수정 -->
+                                        </tr>
+                                        <tr>
+                                            <th>수신 전문을 JSON 형식으로 변환한 내용</th>
+                                            <td colspan="3"><textarea class="Textarea" id="txaReceiveData" rows="15" style="width: 100%; padding: 4px; background-color: rgb(235, 235, 228);" data-disabled="true" disabled="true" data-bind="value : receiveData"></textarea></td> <!-- 수정 -->
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            <!-- </div> --> <!-- 수정 -->
+                            <div id="divReceiveDesc" style="display: none;">
+                                <h5 class="Margin-top-15 Margin-bottom-15">전문 변환 설명</h5> <!-- 수정 -->
+                                <table class="Table Form-type">
+                                    <colgroup>
+                                        <col style="width: 110px;" />
+                                        <col style="width: 150px;" />
+                                        <col style="width: 110px;" />
+                                        <col />
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <th>설명</th>
+                                            <td colspan="3">
+                                                <h6>전문 변환시 사용한 환경</h6> <textarea class="Textarea Margin-top-5" id="txaReceiveUseConfig" rows="14" style="width: 100%; padding: 4px; background-color: rgb(235, 235, 228);" data-disabled="true" disabled="true" data-bind="value : receiveUseConfig"></textarea> <!-- 수정 -->
+                                                <p>&nbsp;</p>
+                                                <h6>소스 내용</h6>
+                                                <pre>
+String readConfig; // 전문 변환 규칙 xml text 또는 xml 파일 path
+String jsonData; // 수신 받은 buffer에서 JSON으로 변환된 data를 받을 문자열
+StringBuilder readBuffer; // 수신 data를 받아올 buffer (byte단위로 data를 받아 와야 함)
+...
+// 수신된 전문을 JSON 문자열로 변환
+jsonData = ifFormater.convertBufferToJson(readBuffer, readConfig);
+</pre>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+            <!-- //tab -->
+        </div>
+        <!-- // Sub Content Area -->
+    </div>
+    <!-- // Content Area -->
+</th:block>
+
+<th:block layout:fragment="custom_js">
+    <script type="text/javascript" th:src="@{/static/skiaf/script/examp/examp-format.js}"></script>
+</th:block>
+</html>

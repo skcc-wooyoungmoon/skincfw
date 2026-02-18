@@ -1,0 +1,66 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="skiaf/layout/login-layout">
+
+<th:block layout:fragment="html_head">
+    <title><th:block th:text="#{bcm.login.sso-login.title}" /></title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+
+<th:block layout:fragment="custom_css"></th:block>
+
+<th:block layout:fragment="content_body">
+
+    <!-- login Area -->
+    <div class="skiaf-ui-login">
+        <div class="login-box">
+            <dl>
+                <dt>
+                    <th:block th:text="#{bcm.common.login}" />
+                </dt>
+                <dd class="login-area">
+                    <form id="ssoLoginForm">
+                        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                    </form>
+                    <div class="left">
+                        <input class="Textinput" autocomplete="off" th:placeholder="#{bcm.common.id}" value="skiaf_admin" /> <input class="Textinput" type="password" autocomplete="off"
+                            th:placeholder="#{bcm.common.password}" value="skiaf_admin" />
+                    </div>
+                    <div class="right">
+                        <button type="button" id="loginBtn">
+                            <th:block th:text="#{bcm.common.login}" />
+                        </button>
+                        <button type="button" id="ssoLoginBtn">
+                            <th:block th:utext="#{bcm.login.sso-login.label}" />
+                        </button>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!-- // login Area -->
+</th:block>
+
+<th:block layout:fragment="custom_js">
+    <script th:inline="javascript">
+    /*<![CDATA[*/
+        $('.skiaf-wrap-login').progress();
+        window.SKIAF.returnUrlAfterLogin = /*[[${returnUrlAfterLogin}]]*/;
+    /*]]>*/
+    </script>
+    <script type="text/javascript" th:src="@{/static/skiaf/script/login/sso-login-process.js}"></script>
+</th:block>
+
+</html>

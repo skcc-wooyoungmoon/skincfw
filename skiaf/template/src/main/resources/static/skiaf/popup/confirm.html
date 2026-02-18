@@ -1,0 +1,50 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!-- Confirm 타입 -->
+<div class="alert-ui">
+    <div class="alert-box confirm">
+        <span class="alert-img"></span>
+        <div class="text" id="confirmMessage"></div>
+    </div>
+    <div class="alert-btnwrap">
+        <button class="Button basic1" type="button" data-type="button" data-disabled="false" id="btnPopupConfirmCancel">취소</button>
+        <button class="Button" type="button" data-type="button" data-disabled="false" id="btnPopupConfirmConfirm">확인</button>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $a.page(function() {
+        // 초기화 함수
+        this.init = function(id, param) {
+
+            // 다국어처리
+            $('#btnPopupConfirmCancel').text(
+                    SKIAF.i18n.messages['bcm.common.cancel']);
+            $('#btnPopupConfirmConfirm').text(
+                    SKIAF.i18n.messages['bcm.common.confirm']);
+
+            // 확인 메세지
+            var message = param['message'];
+            $('#confirmMessage').text(message);
+
+            // 확인 버튼 클릭시 콜백함수 실행 후 팝업 close
+            $('.alert-btnwrap #btnPopupConfirmConfirm').on('click', function() {
+                $a.close({
+                    type : 'confirm'
+                });
+            });
+
+            // 취소 버튼 클릭시
+            $('.alert-btnwrap #btnPopupConfirmCancel').on('click', function() {
+                $a.close();
+            });
+        }
+    });
+</script>

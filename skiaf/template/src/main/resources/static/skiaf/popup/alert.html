@@ -1,0 +1,40 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!-- Alert 타입 -->
+<div class="alert-ui" id="popup-common-alert">
+    <div class="alert-box">
+        <span class="alert-img"></span>
+        <div class="text" id="alertMessage"></div>
+    </div>
+    <div class="alert-btnwrap">
+        <button class="Button" type="button" data-type="button" data-disabled="false" id="btnPopupAlertConfirm">확인</button>
+    </div>
+</div>    
+<script type="text/javascript">
+    var AlertModule = $a.page(function() {
+        // 초기화 함수
+        this.init = function(id, param) {
+            
+            // 다국어처리
+            $('#btnPopupAlertConfirm').text(SKIAF.i18n.messages['bcm.common.confirm']);
+            
+            // 알림메세지
+            var message = param['message'];           
+            $('#popup-common-alert .alert-box #alertMessage').text(message);
+            
+            // 확인 버튼 클릭시 콜백함수 실행 후 팝업 close
+            $('#popup-common-alert .alert-btnwrap #btnPopupAlertConfirm').on('click', function(){
+                $a.close({
+                    type : 'confirm'
+                });
+            });
+        }
+    });
+</script>

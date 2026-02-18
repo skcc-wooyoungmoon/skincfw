@@ -1,0 +1,84 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+<!-- Content Area -->
+<div class="layerpop-box">
+    <h1 th:text="#{bcm.usergroup.update.title}"></h1>
+    <div class="skiaf-table" id="userGroupUpdate">
+        <table id="userGroupUpdateTable" class="Table Form-type">
+            <colgroup>
+                <col style="width:150px;" />
+                <col />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th th:text="#{bcm.usergroup.id}"></th>
+                    <td data-bind="text : userGroupId">
+                    </td>
+                </tr>
+                <tr>
+                    <th><span th:text="#{bcm.usergroup.name}"></span><span class="Color-danger">*</span></th>
+                    <td>
+                        <input class="Textinput Width-100" id="inputUserGroupName" data-bind="value : userGroupName" maxlength="128" data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.usergroup.valid.name} + '\'}'"/>
+<!--                         <button class="Icon Remove-sign remove"></button> -->
+                        <span data-for="inputUserGroupName" class="Color-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.usergroup.desc}"></th>
+                    <td>
+                        <input class="Textinput Width-100" name="userGroupDesc" data-bind="value : userGroupDesc" />
+<!--                         <button class="Icon Remove-sign remove"></button> -->
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.usergroup.company}"></th>
+                    <td data-bind = "text : companyName">
+<!--                         <div class="Divselect" > -->
+<!--                             <select id="selectPopup" data-bind-option="codeId:codeName" data-bind="options:dataPopup, selectedOptions:optionSelected"></select> -->
+<!--                             <span></span> -->
+<!--                         </div> -->
+                    </td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.usergroup.usercount}"></th>
+                    <td data-bind = "text : userCount"></td>
+                </tr>
+                <tr>
+                    <th th:text="#{bcm.common.use-yn}"></th>
+                    <td>
+                        <label class="ImageRadio af-radio-text"> 
+                            <input class="Radio" type="radio" name="useYnTxt" value="Y" data-bind="checked : useYnTxt" />Y
+                        </label> 
+                        <label class="ImageRadio af-radio-text"> 
+                            <input class="Radio" type="radio" name="useYnTxt" value="N" data-bind="checked : useYnTxt" />N
+                        </label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<div class="layerpop-btnwrap">
+    <button class="Button Typeb" id="btnUpdateUserGroupCancel">취소</button>
+    <button class="Button" id="btnUpdateUserGroup">저장</button>
+</div>
+
+<!-- popup data include -->
+<th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+    <script type="text/javascript" th:src="@{/static/skiaf/script/usergroup/usergroup-update-popup.js}"></script>
+
+</html>

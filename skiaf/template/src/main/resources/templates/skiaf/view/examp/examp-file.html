@@ -1,0 +1,45 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="skiaf/layout/default-layout">
+
+<th:block layout:fragment="html_head">
+    <title>파일 테스트</title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+
+<th:block layout:fragment="custom_css"></th:block>
+
+<th:block layout:fragment="content_body">
+    <!-- Content Area -->
+    <div class="skiaf-wrap-content">
+        
+        <div class="skiaf-fileupload">
+            <div id="fileuploader" class="Fileupload" data-selectType="advance"></div>
+        </div>
+        
+        <div class="skiaf-ui-rightbtn">
+            <button id="deleteAllBtn" class="Button" th:text="#{bcm.common.delete}"></button>
+            <button id="saveBtn" class="Button" th:text="#{bcm.common.save}"></button>
+        </div>
+    </div>
+
+    <!-- // Content Area -->
+</th:block>
+<th:block layout:fragment="custom_js">
+    <script th:inline="javascript" type="text/javascript" th:src="@{/static/skiaf/script/file/attach-file.js}"></script>
+    <script th:inline="javascript" type="text/javascript" th:src="@{/static/skiaf/script/examp/examp-file.js}"></script>
+</th:block>
+
+</html>

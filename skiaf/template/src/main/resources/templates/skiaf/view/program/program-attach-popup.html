@@ -1,0 +1,57 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+    <div class="layerpop-box">
+        <div id="programAttachArea" class="skiaf-table">
+            <table class="Table Form-type">
+                <colgroup>
+                    <col style="width: 150px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th th:text="#{bcm.program.id}"></th>
+                        <td data-bind="text: programId"></td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.program.name}"></th>
+                        <td data-bind="text: programName"></td>
+                    </tr>
+                    <tr>
+                        <th th:text="#{bcm.program.help.file}"></th>
+                        <td id="programAttachUpload" style="display: none;">
+                            <div class="Clearfix">
+                                <div id="programFileUploader" class="Fileupload" data-selectType="basic"></div>
+                            </div>
+                            <p class="Display-block" th:text="#{bcm.program.help.desc1}"></p>
+                        </td>
+                        <td id="programAttachDownload" style="display: none;"><a href="javascript: void(0);" class="Display-block Ellipsis Margin-bottom-10" data-bind="text: fileFullName"></a>
+                        <!-- 0907 수정-->
+                            <p class="Display-block" th:text="#{bcm.program.help.desc2}"></p></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="layerpop-btnwrap">
+        <button id="programAttachCancel" class="Button basic1" th:text="#{bcm.common.cancel}"></button>
+        <button id="programAttachDelete" class="Button" style="display: none;">삭제</button>
+        <button id="programAttachSave" class="Button" th:text="#{bcm.common.save}" style="display: none;"></button>
+    </div>
+    
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+    <script type="text/javascript" th:src="@{/static/skiaf/script/program/program-attach-popup.js}"></script>
+</html>

@@ -1,0 +1,200 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+<div class="layerpop-box">
+    <input id="attachFileType" type="hidden" class="Textinput" th:value='${board.attachFileType}' />
+    <h1>${board.boardName} #{bcm.common.modify}</h1>
+    <div id="selectedArticleInfo" class="skiaf-table">
+        <!-- table -->
+        <div class="skiaf-table posts">
+            <div style="display: none;">
+                <input data-bind="value: boardType" />
+            </div>
+            <table class="Table Form-type">
+                <colgroup>
+                    <col />
+                    <col style="width:300px;" />
+                </colgroup>
+                <tbody>
+                    <tr>
+                        <th data-bind="text: articleTitle"></th>
+                        <th id="emergencyNoticeDanger" data-bind="text : emergencyNotice" class="Color-danger" style='display: none;'></th>
+                        <th id="emergencyNoticeNomal" data-bind="text : emergencyNotice"></th>
+                    </tr>
+                    <tr>
+                        <th data-bind="text: createByDate"></th>
+                        <th data-bind="text: articleBeginEndDtm"></th>
+                    </tr>
+                    <tr id="articleContentHtml">
+                        <td data-bind='html: articleContentHtml' colspan='2'></td>                                
+                    </tr>
+                    <tr id="articleContentText" style='display: none;'>     
+                        <td data-bind='text: articleContentText' colspan='2'></td>                           
+                    </tr>
+                    <tr th:unless="${board.attachFileType == 'NO'}">
+                        <td colspan="2">
+                            <ul id="attchfile-area" class="fileList" data-bind="foreach: attachFile">
+                                <li><img data-bind="attr: {src: image}" /> <a data-bind="attr: {href: href},{text: originalFileName}" /> </li>
+                            </ul>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${board.commentUseYn}" class="comment-area" id="comment-area">
+            <div>
+               <span th:text="#{bcm.board.comment}" /> [ <span data-bind='text: commentCount' /> ]
+            </div>
+            <div>
+                <textarea class='Textarea' id='commentAddData' data-bind='text: commentAddData' rows='2' type="text" data-validation-rule="{required:true, minlength:1, maxblength:128}" th:attr="data-validation-message='{required : \'' + #{bcm.board.comment.valid.pre-comment.null} + '\'}'" ></textarea>
+                <button id='articleCreateCommentBtn' class='Button' th:text="#{bcm.common.register}"></button>
+                <span data-for="commentAddData" class="Color-danger"></span>
+            </div>
+            <ul class="comment-box" data-bind="foreach: comment">
+                <li>
+                    <div class="comment-head">
+                        <span class='Float-left'><b data-bind='text: createBy'></b> <span data-bind='text: createDate'></span></span>
+                        <button class="Button basic1 small" th:text="#{bcm.common.delete}"></button>
+                        <button class="Button basic1 small" th:text="#{bcm.common.modify}"></button>
+                    </div>
+                    <p data-bind='text: commentCtnt'></p>
+                </li>
+                <li style="display:none;">
+                    <div class="comment-edit">
+                        <input class='Input' data-bind='value: commentId' style='display: none;' />
+                        <textarea class='Textarea' id='commentModifyData' data-bind='text: commentCtnt' rows='2' data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.board.comment.valid.pre-comment.null} + '\'}'" ></textarea>
+                        <button class="Button basic1" th:text="#{bcm.common.cancel}"></button>
+                        <button class="Button" th:text="#{bcm.common.modify}"></button>
+                        <span data-for="commentModifyData" class="Color-danger"></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="updateArticleDetail" class="skiaf-table" style="display: none;">
+        <table class="Table Form-type">
+            <colgroup>
+                <col style="width: 150px;" />
+                <col />
+            </colgroup>
+            <tbody>
+                <tr>
+                    <th><span th:text='#{bcm.board.article-title}'></span><span class="Color-danger">*</span></th>
+                    <td>
+                        <input id='titleSaveData' class="Textinput" type="text" maxlength="80" data-bind="value: articleTitle" data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.board.valid.title} + '\'}'" />
+                        <button class="Icon Remove-sign remove"></button> 
+                        <label th:if="${board.emergencyUseYn}" class="ImageCheckbox"> 
+                            <input data-bind="checked: emgcYn" value="true" class="Checkbox" type="checkbox" name="emgcYn" /> 
+                            <span th:text='#{bcm.board.emergency-notice-yes-no}'></span>
+                        </label>
+                        <label class="ImageCheckbox" th:unless="${board.emergencyUseYn}" style="display: none;"> 
+                            <input data-bind="checked: emgcYn" value="true" class="Checkbox" type="checkbox" name="emgcYn" /> 
+                            <span th:text='#{bcm.board.emergency-notice-yes-no}'></span>
+                        </label>
+                        <span data-for="titleSaveData" class="Color-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th><span th:text='#{bcm.board.article-content}'></span><span class="Color-danger">*</span></th>
+                    <td>
+                        <div class="Margin-bottom-10">
+                            <label class="ImageRadio Margin-right-20"> 
+                                <input class="Radio" type="radio" name="articleType" th:value="${skiaf.enum.ARTICLE_TYPE.HTML}" data-bind="checked: articleType" />HTML
+                            </label> 
+                            <label class="ImageRadio"> 
+                                <input class="Radio" type="radio" name="articleType" th:value="${skiaf.enum.ARTICLE_TYPE.TEXT}" data-bind="checked: articleType" />TEXT
+                            </label>
+                        </div>
+                        <div id="WebeditorArticleUpdatePopup"></div>
+                    </td>
+                </tr>
+                <tr th:if="${board.termUseYn}">
+                    <th th:text='#{bcm.board.article-publication-period}'></th>
+                    <td>
+                        <div class="Daterange" data-default-date="false" data-type="daterange">
+                            <div class="Startdate Dateinput" data-type="dateinput">
+                                <input class="Textinput" id="validBeginDtm" name="articleBeginDtm" data-maskedinput-rule="0000-00-00" data-type="textinput" data-classinit="true" maxlength="16" placeholder="yyyy-MM-dd" type="text"
+                                       data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.board.valid.period-start} + '\'}'" />
+                                <div class="Calendar"></div>
+                            </div>
+                            ~
+                            <div class="Enddate Dateinput" data-type="dateinput">
+                                <input class="Textinput" id="validEndDtm" name="articleEndDtm" data-maskedinput-rule="0000-00-00" data-type="textinput" data-classinit="true" maxlength="16" placeholder="yyyy-MM-dd" type="text"
+                                       data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.board.valid.period-end} + '\'}'" />
+                                <div class="Calendar"></div>
+                            </div>                            
+                            <span data-for="validBeginDtm" class="Color-danger"></span>
+                            <span data-for="validEndDtm" class="Color-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr th:unless="${board.termUseYn}" style="display: none;">
+                    <th th:text='#{bcm.board.article-publication-period}'></th>
+                    <td>
+                        <div class="Daterange" data-default-date="false" data-type="daterange">
+                            <div class="Startdate Dateinput" data-type="dateinput">
+                                <input class="Textinput" id="validBeginDtm" name="articleBeginDtm" data-maskedinput-rule="0000-00-00" data-type="textinput" data-classinit="true" maxlength="16" placeholder="yyyy-MM-dd" type="text"
+                                       data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.board.valid.period-start} + '\'}'" />
+                                <div class="Calendar"></div>
+                            </div>
+                            ~
+                            <div class="Enddate Dateinput" data-type="dateinput">
+                                <input class="Textinput" id="validEndDtm" name="articleEndDtm" data-maskedinput-rule="0000-00-00" data-type="textinput" data-classinit="true" maxlength="16" placeholder="yyyy-MM-dd" type="text"
+                                       data-validation-rule="{required:true}" th:attr="data-validation-message='{required : \'' + #{bcm.board.valid.period-end} + '\'}'" />
+                                <div class="Calendar"></div>
+                            </div>                            
+                            <span data-for="validBeginDtm" class="Color-danger"></span>
+                            <span data-for="validEndDtm" class="Color-danger"></span>
+                        </div>
+                    </td>
+                </tr>
+                <tr th:if="${board.attachFileType == 'NO'}" style="display: none;">
+                    <th th:text='#{bcm.common.attachment-file}'></th>
+                    <td class="skiaf-fileupload">
+                        <div id="fileuploaderA" class="Fileupload" data-selectType="advance"></div>
+                        <p class="Color-danger" th:text='#{bcm.common.attachment.desc}'></p>
+                        <p class="Color-danger" th:text='#{bcm.common.attachment.desc1}'></p>
+                    </td>
+                </tr>
+                <tr th:unless="${board.attachFileType == 'NO'}">
+                    <th th:text='#{bcm.common.attachment-file}'></th>
+                    <td class="skiaf-fileupload">
+                        <div id="fileuploaderA" class="Fileupload" data-selectType="advance"></div>
+                        <p class="Color-danger" th:text='#{bcm.common.attachment.desc}'></p>
+                        <p class="Color-danger" th:text='#{bcm.common.attachment.desc1}'></p>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div id="selectedArticleInfoBtn" class="layerpop-btnwrap">
+    <button class="Button Typeb" id="articleListBtn" th:text="#{bcm.common.close}"></button>
+    <button class="Button" id="articleModifyBtn" th:text="#{bcm.common.modify}"></button>
+</div>
+<div id="updateArticleDetailBtn" class="layerpop-btnwrap" style="display: none;">
+    <button id="articleCancelBtn" th:text="#{bcm.common.cancel}" class="Button basic1"></button>
+    <button id="articleDeleteBtn" th:text="#{bcm.common.delete}" class="Button basic1"></button>
+    <button id="articleSaveBtn" th:text="#{bcm.common.save}" class="Button"></button>
+</div>  
+
+<!-- popup data include -->
+<th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+<script type="text/javascript" th:src="@{/static/skiaf/script/file/attach-file.js}"></script>
+<script type="text/javascript" th:src="@{/static/skiaf/script/board/article-detail-update-popup.js}"></script>
+
+</html>

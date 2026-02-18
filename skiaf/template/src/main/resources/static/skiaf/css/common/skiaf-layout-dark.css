@@ -1,0 +1,1118 @@
+/**
+ * Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+ *
+ * This software is the confidential and proprietary information of SK INNOVATION.
+ * You shall not disclose such confidential information and shall use it only in accordance
+ * with the terms of the license agreement you entered into with SK INNOVATION.
+ */
+@charset "UTF-8";
+/************************************************************************************************************
+
+   admin CSS
+
+************************************************************************************************************/
+
+/************************************************************************************************************
+   Layout
+************************************************************************************************************/
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+.skiaf-wrap {
+    min-width: 1280px;
+    height: 100%;
+    min-height: 100%;
+    margin-left: 0;
+}
+
+.Button.skiaf-btn {
+    border: 0;
+    background-color: transparent;
+}
+
+.Button.skiaf-utilbtn,
+.Button.Onlyicon:hover.skiaf-utilbtn {
+    height: 60px;
+    width: 60px;
+    border: 0;
+    border-radius: 0;
+    background-color: #fff;
+}
+
+.Button.skiaf-utilbtn.my,
+.Button.Onlyicon:hover.skiaf-utilbtn.my {
+    background-color: #e8252d;
+}
+
+/************************************************************************************************************
+   Header
+************************************************************************************************************/
+
+#header {
+    position: relative;
+    z-index: 50;
+    height: 60px;
+    /* border-bottom: 1px solid #dcdfe2;*/ /* theme dark */
+    background-color: #182330; /* theme dark */
+}
+
+#header .row {
+    position: relative;
+    width: 1280px;
+    margin: auto;
+}
+
+#header:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+#header h1 {
+    float: left;
+    width: 220px;
+    padding-top: 7px;
+    padding-left: 20px;
+}
+
+#header h1 span {
+    position: relative;
+    top: -1px;
+    display: inline-block;
+    font-size: 24px;
+    color: #ffffff; /* theme dark */
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#header .topUtil {
+    position: absolute;
+    right: 0;
+    padding-top: 26px;
+}
+
+#header .topUtil li {
+    display: inline-block;
+    padding: 0 10px;
+    color: #ffffff; /* theme dark */
+    border-right: 1px solid #dcdfe252; /* theme dark */
+}
+
+#header .topUtil li:last-child {
+    padding-right: 0;
+    padding-left: 6px;
+    border-right: 0;
+}
+
+#header .topUtil li:first-child { /* theme dark */
+    opacity: 0.6;
+}
+
+#header .topUtil li a {
+    color: #ffffff; /* theme dark */
+    opacity: 0.6; /* theme dark */
+}
+
+#header .topUtil .Tooltip{ /* theme dark */
+    position: fixed !important;
+}
+
+#header .topUtil li .Icon{
+    margin-top: -8px;
+    background-image: url(../../alopex/ui/css/images/glyphicons-halflings-white.png); /* theme dark */
+}
+#header .gnb {
+    float: left;
+    margin-left: 80px;
+}
+
+#header .gnb>ul {
+    float: left;
+}
+
+#header .gnb>ul>li {
+    float: left;
+    position: relative;
+}
+
+#header .gnb>ul>li>a {
+    display: block;
+    height: 60px;
+    padding: 0 35px;
+    line-height: 74px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff; /* theme dark */
+}
+
+#header .gnb>ul>li.over>a {
+    color: #ffffff;
+    background-color:  #ef8009;    /* theme dark */
+}
+
+#header .gnb>ul>li>a:hover {
+    color: #ffffff;
+    background-color: #ef8009;    /* theme dark */
+}
+
+#header .gnb>ul>li>ul {
+    display: none;
+    position: absolute;
+    padding: 10px 0;
+    width: 100%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    border: 1px solid #dcdfe2;
+}
+
+#header .gnb>ul>li>ul>li {
+    position: relative;
+}
+
+#header .gnb>ul>li>ul>li>a {
+    display: block;
+    padding-left: 35px;
+    height: 35px;
+    line-height: 35px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
+#header .gnb>ul>li>ul>li>a:hover {
+    background-color: #edeff0;
+    border-top: 1px solid #dcdfe2;
+    border-bottom: 1px solid #dcdfe2;
+}
+
+#header .gnb>ul>li>ul>li.over>a {
+    background-color: #edeff0;
+    border-top: 1px solid #dcdfe2;
+    border-bottom: 1px solid #dcdfe2;
+}
+
+#header .gnb>ul>li>ul>li>ul {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 100%;
+    z-index: 10;
+    padding-top: 20px;
+    width: 170px;
+    border: 1px solid #dcdfe2;
+    background-color: #edeff0;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+#header .gnb>ul>li>ul>li>ul>li>a {
+    display: block;
+    padding-left: 25px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+#header .gnb>ul>li>ul>li>ul>li>a:hover {
+    font-weight: bold;
+}
+
+/************************************************************************************************************
+   LNB
+************************************************************************************************************/
+
+.skiaf-layout-lnb-wrap {
+    display: table-cell;
+    min-width: 220px;
+    width: 220px;
+    padding-bottom: 30px;
+    vertical-align: top;
+    line-height: 140%;
+    border-right: 1px solid #dcdfe2;
+    border-left: 1px solid #dcdfe2;
+    background-color: #4f5f6f; /* theme dark */
+}
+
+.skiaf-layout-lnb-wrap .pageTitle {
+    padding-left: 20px;
+    color: #fff;
+    font-size: 16px;
+    line-height: 64px;
+    font-weight: bold;
+    background-color: #e8252d;
+}
+
+.lnbArea .lnb a:hover {
+    color: #ef8009;
+}
+
+.lnbArea .lnb>li {
+    border-bottom: 1px solid #6b7986; /* theme dark */
+}
+
+.lnbArea .lnb>li>a {
+    display: block;
+    position: relative;
+    padding-left: 40px;
+    line-height: 34px;
+    color: #ffffff; /* theme dark */
+}
+
+.lnbArea .lnb>li.hasSub>a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 20px;
+    top: 11px;
+    width: 20px;
+    height: 20px;
+    background: url("../../images/ico_plus_dark.png") no-repeat; /* theme dark */
+    transition: all 0.2s ease;
+}
+
+.lnbArea .lnb>li.active>a {
+    /* color: #fff; */ /* theme dark */
+    /* background-color: #ef8009; */ /* theme dark */
+}
+
+.lnbArea .lnb>li>ul {
+    display: none;
+    border-top: 1px solid #6b7986; /* theme dark */
+}
+
+.lnbArea .lnb>li>ul>li {
+    border-top: 1px solid #6b7986; /* theme dark */
+}
+
+.lnbArea .lnb>li>ul>li.hasSub>a::before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 35px;
+    top: 11px;
+    width: 20px;
+    height: 20px;
+    background: url("../../images/ico_plus_dark.png") no-repeat; /* theme dark */
+    transition: all 0.2s ease;
+}
+
+.lnbArea .lnb>li>ul>li:first-child {
+    border-top: none;
+}
+
+.lnbArea .lnb>li.hasSub.active>a {
+    /* color: #fff; */ /* theme dark */
+    /* background-color: #ef8009; */ /* theme dark */
+}
+
+.lnbArea .lnb>li.hasSub.active>a::before {
+    background: url("../../images/ico_minus_dark.png") no-repeat;/* theme dark */
+}
+
+.lnbArea .lnb>li>ul>li.hasSub.active>a::before {
+    background: url("../../images/ico_minus01.png") no-repeat; /* theme dark */
+}
+
+.lnbArea .lnb>li>ul>li>a {
+    display: block;
+    position: relative;
+    padding-left: 55px;
+    line-height: 34px;
+    color: #ffffff; /* theme dark */
+}
+
+.lnbArea .lnb>li>ul>li.active>a {
+    /* color: #ef8009; */ /* theme dark */
+    color: #fff; /* theme dark */
+    background-color: #ef8009; /* theme dark */
+}
+
+.lnbArea .lnb>li>ul>li>ul {
+    display: none;
+    padding-top: 10px;
+    background-color: #f6f7f7;
+    /*border-top: 1px solid #6b7986;*/ /* theme dark */
+}
+
+.lnbArea .lnb>li>ul>li>ul>li {
+    padding-bottom: 10px;
+}
+
+.lnbArea .lnb>li>ul>li>ul>li>a {
+    position: relative;
+    padding-left: 60px;
+}
+
+.lnbArea .lnb>li>ul>li>ul>li>a:hover {
+    color: #ef8009;
+}
+
+.lnbArea .lnb>li>ul>li>ul>li.active>a {
+    color: #ef8009;
+}
+
+.lnbArea .lnb>li>ul>li>ul>li>a:before {
+    content: "";
+    display: block;
+    position: absolute;
+    left: 47px;
+    top: 8px;
+    width: 3px;
+    height: 3px;
+    background-color: #ef8009;
+}
+
+.lnbArea .lnb>li>ul>li>ul>li>ul {
+    margin-top: 5px;
+}
+
+.lnbArea .lnb>li>ul>li>ul>li>ul>li {
+    margin-bottom: 5px;
+}
+
+.lnbArea .lnb>li>ul>li>ul>li>ul>li>a {
+    padding-left: 60px;
+    font-size: 12px;
+}
+
+.lnbArea .lnb>li>ul>li>ul>li>ul>li.active>a {
+    color: #ef8009;
+}
+
+.lnbArea .lnb .depth3 {
+    display: block !important;
+}
+
+/************************************************************************************************************
+   Footer
+************************************************************************************************************/
+
+.skiaf-layout-footer {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    min-width: 1280px;
+    min-height: 1px;
+    padding-top: 24px;
+    padding-bottom: 24px;
+    border-top: 1px solid #d8d8d8;
+    background: #ffffff;
+}
+
+.skiaf-layout-footer .footer {
+    width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.skiaf-layout-footer .footer .left .footer-logo {
+    display: inline-block;
+}
+
+.skiaf-layout-footer .footer .left .footer-copy {
+    display: inline-block;
+    position: relative;
+    top: -4px;
+    margin-left: 30px;
+}
+
+.skiaf-layout-footer .footer .left .footer-copy p {
+    margin: 0;
+    font-size: 12px;
+    color: #999;
+    line-height: 16px;
+}
+
+/************************************************************************************************************
+   Content Area
+************************************************************************************************************/
+
+.skiaf-layout-content {
+    display: table;
+    width: 1280px;
+    margin: 0 auto;
+    margin-top: 20px;
+    min-height: 600px;
+}
+
+.skiaf-wrap-content {
+    display: table-cell;
+    padding: 22px 0 0 40px;
+    width: 100%;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.skiaf-wrap-content .skiaf-ui-contents {
+    padding-bottom: 40px;
+}
+
+.skiaf-ui-contents::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.skiaf-ui-contents .skiaf-left-area {
+    float: left;
+    width: calc(50% - 20px);
+    width: -webkit-calc(50% - 20px);
+    margin-right: 20px;
+}
+
+.skiaf-ui-contents .skiaf-right-area {
+    float: left;
+    width: 50%;
+}
+
+/* 메뉴 관리 */
+
+.skiaf-ui-contents .skiaf-left-area.menu {
+    width: calc(30% - 20px);
+    width: -webkit-calc(30% - 20px);
+    padding-top: 3px;
+}
+
+.skiaf-ui-contents .skiaf-right-area.menu {
+    width: 70%;
+}
+
+/************************************************************************************************************
+
+   Main
+
+************************************************************************************************************/
+
+.skiaf-main {
+    margin-top: 8px;
+    margin-bottom: 30px;
+    padding-top: 64px;
+    padding-left: 64px;
+    height: 504px;
+    border-radius: 3px;
+    border: 1px solid #dcdfe2;
+    background-color: #edeff0;
+    background-image: url('../../images/bcm-main.jpg');
+    background-repeat: no-repeat;
+    background-position: center bottom;
+}
+
+.skiaf-main h2 {
+    margin-bottom: 28px;
+    font-size: 36px;
+}
+
+.skiaf-main ul {
+    margin-top: 40px;
+}
+
+.skiaf-main ul>li {
+    display: inline-block;
+    height: 80px;
+    padding: 21px;
+    margin-right: 7px;
+    vertical-align: middle;
+    border: 1px solid #dcdfe2;
+    background-color: #ffffff;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.skiaf-main ul>li .Button {
+    height: 26px;
+    margin-top: -12px;
+    font-size: 14px;
+    line-height: 15px;
+}
+
+.skiaf-main ul>li span {
+    display: block;
+    line-height: 18px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.skiaf-main ul>li p {
+    display: inline-block;
+    margin-top: 3px;
+    margin-right: 25px;
+    font-size: 12px;
+}
+
+.skiaf-main-txt>p {
+    font-size: 14px;
+    line-height: 20px;
+}
+
+/************************************************************************************************************
+
+   Login
+
+************************************************************************************************************/
+
+.skiaf-ui-login {
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 170px;
+}
+
+.skiaf-ui-login dt {
+    padding-bottom: 30px;
+    text-align: center;
+    font-size: 28px;
+    line-height: 28px;
+    font-weight: bold;
+    border-bottom: 1px solid #dcdfe2;
+}
+
+.skiaf-ui-login dd {
+    font-size: 14px;
+    color: #555555;
+}
+
+.skiaf-ui-login dd a {
+    float: right;
+    color: #555555;
+}
+
+.skiaf-ui-login .login-area {
+    margin-top: 60px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.skiaf-ui-login .login-area::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.skiaf-ui-login .login-box .left {
+    display: inline-block;
+}
+
+.skiaf-ui-login .login-box .login-area.sso .left input {
+    width: 245px;
+    height: 30px;
+}
+
+.skiaf-ui-login .login-box .login-area.sso .left .Divselect {
+    width: 245px;
+    height: 30px;
+    line-height: 16px;
+}
+
+.skiaf-ui-login .login-box .login-area .left .Divselect span {
+    margin-left: 10px;
+    color: #555555;
+    font-size: 12px;
+}
+
+.skiaf-ui-login .login-box .login-area .left .Divselect {
+    width: 365px;
+    height: 30px;
+    line-height: 16px;
+}
+
+.skiaf-ui-login .login-box .left input {
+    display: block;
+    width: 365px;
+    height: 30px;
+    padding: 5px 20px;
+    line-height: 16px;
+    border: 1px solid #dcdfe2;
+}
+
+.skiaf-ui-login .login-box .left input:first-child {
+    margin-bottom: 10px;
+}
+
+.skiaf-ui-login .login-box .right {
+    display: inline-block;
+    height: 110px;
+    margin-left: 7px;
+    vertical-align: top;
+}
+
+.skiaf-ui-login .login-box .right::after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.skiaf-ui-login .login-box .right button {
+    float: left;
+    width: 110px;
+    height: 110px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #e8252d;
+}
+
+.skiaf-ui-login .login-area .right button.sso {
+    display: none;
+}
+
+.skiaf-ui-login .login-area.sso .right button.sso {
+    display: inline-block;
+}
+
+.skiaf-ui-login .login-box .right button.sso {
+    margin-left: 5px;
+    background-color: #ba1e24;
+}
+
+.skiaf-ui-login .login-box span[data-for]{
+    display: block;
+    position: absolute;
+    top: 120px;
+    left : 80px;
+    font-size: 12px;
+}
+
+.skiaf-ui-login .login-box .left span[data-for]{
+    top: 120px;
+}
+
+.skiaf-ui-login .login-box .left span[data-for]:nth-child(4){
+    top: 135px;
+}
+
+/* 비밀번호 변경 */
+
+.skiaf-ui-login.password {
+    margin-top: 80px;
+}
+
+.skiaf-ui-login.password .tab-detail h3 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.skiaf-ui-login.password .guide {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #dcdfe2;
+}
+
+.skiaf-ui-login.password .guide dt {
+    padding: 0;
+    text-align: left;
+    font-size: 13px;
+    line-height: 16px;
+    color: #999999;
+    border: 0;
+}
+
+.skiaf-ui-login.password .guide dd {
+    font-size: 13px;
+    color: #999999;
+}
+
+.skiaf-ui-login.password .guide ul {
+    padding-left: 10px;
+}
+
+.skiaf-ui-login.password .guide li::before {
+    content: "- ";
+}
+
+.skiaf-ui-login.password .btn-area {
+    text-align: center;
+}
+
+/************************************************************************************************************
+
+   Error
+
+************************************************************************************************************/
+
+.skiaf-ui-error {
+    width: 800px;
+    margin: 100px auto;
+}
+
+.skiaf-ui-error .error-box {
+    border: 1px solid #dcdfe2;
+}
+
+.skiaf-ui-error .error-box .error-area {
+    padding: 47px 0;
+    text-align: center;
+}
+
+.skiaf-ui-error .error-box .error-area .left {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.skiaf-ui-error .error-box .error-area .right {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 40px;
+    text-align: left;
+}
+
+.skiaf-ui-error .error-box .error-area .right h4 {
+    font-size: 21px;
+    font-weight: bold;
+    color: #222222;
+}
+
+.skiaf-ui-error .error-box .error-area .right p {
+    margin-top: 20px;
+    line-height: 16px;
+    font-size: 12px;
+    color: #555555;
+}
+
+.skiaf-ui-error .error-box ul {
+    display: block;
+    padding: 13px 0;
+    text-align: center;
+    border-top: 1px solid #dcdfe2;
+    background-color: #f7f7f7;
+}
+
+.skiaf-ui-error .error-box ul li {
+    display: inline-block;
+    margin-right: 30px;
+    font-size: 14px;
+    color: #555555;
+    font-weight: bold;
+}
+
+.skiaf-ui-error .error-box ul li:last-child {
+    margin-right: 0;
+}
+
+.skiaf-ui-error .error-box ul li::before {
+    content: "";
+    display: inline-block;
+    margin-right: 6px;
+    width: 4px;
+    height: 4px;
+    vertical-align: middle;
+    border-radius: 2px;
+    background-color: #555555;
+}
+
+.skiaf-ui-error .error-btn {
+    margin-top: 30px;
+    text-align: center;
+}
+
+/************************************************************************************************************
+
+   Layer
+
+************************************************************************************************************/
+
+/* Dialog layer pop  */
+
+.Dialog h1 {
+    height: 0;
+    visibility: hidden;
+}
+
+.Dialog .guide {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #dcdfe2;
+}
+
+.Dialog .guide dt {
+    padding: 0;
+    text-align: left;
+    font-size: 13px;
+    line-height: 16px;
+    color: #999999;
+    border: 0;
+}
+
+.Dialog .guide dd {
+    font-size: 13px;
+    color: #999999;
+}
+
+.Dialog .guide ul {
+    padding-left: 10px;
+}
+
+.Dialog .guide li::before {
+    content: "- ";
+}
+
+.Dialog .btn-area {
+    text-align: center;
+}
+
+/************************************************************************************************************
+   HELP 도움말 버튼
+************************************************************************************************************/
+
+/* 도움말 버튼용 CSS */
+
+
+.skiaf-help {
+    display: none;
+    position: absolute;
+    top: 7px;
+    right: 0;
+    width: auto;
+    padding: 5px 0px 5px 10px;
+    font-size: 11px;
+    text-align: center;
+    vertical-align: middle;
+    box-sizing: content-box;
+    border-radius: 12px;
+    background-color: #00479d;    /*#9aa6b2;    #b00c17; */
+}
+
+.skiaf-help a {
+    padding-right: 30px;
+    font-weight: normal;
+    color: #ffffff;
+    background:url("../../images/ico_preview.png") no-repeat right 10px center;
+}
+
+.Dialog .skiaf-dialog-help {
+    display: none;
+    position: absolute;
+    top: 6px;
+    right: 40px;
+    height: 24px;
+    width: auto;
+    padding-left: 10px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 2.4;
+    background-color: #00479d;
+    border-radius: 12px;
+}
+
+.Dialog .skiaf-dialog-help a {
+    padding-right: 30px;
+    font-weight: normal;
+    color: #ffffff;
+    background:url("../../images/ico_preview.png") no-repeat right 10px center;
+}
+
+/************************************************************************************************************
+
+   Template UI
+
+************************************************************************************************************/
+
+/************************************************************************************************************
+   Template UI : Sub Detail > Action buttons
+************************************************************************************************************/
+
+.skiaf-ui-rightbtn {
+    margin: 20px 0;
+    padding: 10px 0;
+    text-align: right;
+    border-top: solid 1px #d8d8d8;
+}
+
+.skiaf-ui-rightbtn.top {
+    margin: 0;
+    overflow: hidden;
+    border-top: 0;
+}
+
+.skiaf-ui-leftbtn {
+    margin: 20px 0;
+    padding: 10px 0;
+    text-align: left;
+    border-top: solid 1px #d8d8d8;
+}
+
+.skiaf-ui-leftbtn.grid {
+    margin-top: -5px;
+}
+
+.skiaf-ui-leftbtn.top {
+    margin: 0;
+    overflow: hidden;
+    border-top: 0;
+}
+
+.skiaf-ui-rightbtn.type2 {
+    margin: 5px 0 0 0;
+    padding: 0;
+    padding-bottom: 5px;
+    border-top: 0;
+}
+
+/************************************************************************************************************
+   Template UI : Sub Detail > Tab
+************************************************************************************************************/
+
+.skiaf-ui-codeTab>ul {
+    width: 600px;
+}
+
+/************************************************************************************************************
+   Template UI : Sub Detail > 프로그램 등록
+************************************************************************************************************/
+
+.typebox.service {
+    display: none;
+}
+
+/************************************************************************************************************
+   Template UI : Sub Detail > 메뉴 관리
+************************************************************************************************************/
+
+/* 메뉴 트리 박스 */
+
+.menu-box {
+    overflow: auto;
+    height: 492px;
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin: 0;
+    margin-top: 7px;
+    border: 1px solid #dcdfe2;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.Tree li>a.off {
+    color: #aaaaaa;
+}
+
+.Tree li>a.notclick {
+    cursor: default;
+}
+
+/* layerpop 메뉴트리 */
+
+.layerpop-box .skiaf-page-menulist {
+    height: 350px;
+    overflow: auto;
+}
+
+/************************************************************************************************************
+   Template UI : Sub Detail > 게시글 메인유형
+************************************************************************************************************/
+
+/* 게시글 table */
+
+.posts .Table tbody th {
+    font-weight: normal;
+}
+
+.posts .Table tbody tr:first-child th:first-child {
+    font-weight: bold;
+}
+
+.posts .Table tbody th.Color-danger {
+    font-weight: bold;
+    color: #c60001;
+}
+
+.posts .Icon {
+    margin-right: 8px;
+}
+
+/* 댓글 작성 */
+
+.comment-area>div {
+    padding: 7px;
+    font-size: 13px;
+    color: #222222;
+    border: 1px solid #dcdfe2;
+    border-top: 0;
+}
+
+.comment-area>div>.Textarea {
+    height: 60px;
+    width: calc(100% - 75px);
+    width: -webkit-calc(100% - 75px);
+}
+
+.comment-area>div>.Button {
+    height: 60px;
+}
+
+/* 댓글 목록 */
+
+.comment-box {
+    font-size: 13px;
+    color: #222222;
+    border: 1px solid #dcdfe2;
+    border-top: 0;
+    border-bottom: 0;
+}
+
+.comment-box>li {
+    position: relative;
+    padding: 7px;
+    border-bottom: 1px solid #dcdfe2;
+}
+
+.comment-box>li .comment-head {
+    margin-bottom: 10px;
+    color: #999999;
+    text-align: right;
+}
+
+.comment-box>li .comment-head b {
+    margin-right: 20px;
+    color: #222222;
+}
+
+.comment-box>li .comment-head .small {
+    min-width: 10px;
+}
+
+/* 댓글 수정 */
+
+.comment-edit .Textarea {
+    height: 60px;
+    width: calc(100% - 150px);
+    width: -webkit-calc(100% - 150px);
+}
+
+.comment-edit .Button {
+    height: 60px;
+}
+
+/* 파일 목록 */
+
+.fileList {
+    padding: 5px 0;
+}
+
+.fileList li {
+    margin-top: 2px;
+    /*height: 20px; line-height: 20px;*/
+}
+
+.fileList li img {
+    margin-right: 5px;
+    width: 14px;
+    height: 14px;
+    vertical-align: middle;
+}
+
+.fileList li:first-child {
+    margin: 0;
+}
+
+.fileList li a {
+    font-size: 12px;
+    color: #999999;
+}

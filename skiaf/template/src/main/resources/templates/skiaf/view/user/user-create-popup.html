@@ -1,0 +1,133 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <!-- <head layout:replace="skiaf/fragments/config :: configFragment"></head>  -->
+
+    <div class="layerpop-box">
+        <h1><th:block th:text="#{bcm.user.user-register}"/></h1>
+        <div class="skiaf-table">
+            <table class="Table Form-type" id="userCreateForm">
+                <colgroup>
+                    <col style="width:170px;" />
+                    <col />
+                </colgroup>
+                <tbody>
+                    <tr id="loginIdTr">
+                        <th><th:block th:text="#{bcm.user.sso-login-id}"/><span class="Color-danger">*</span></th>
+                        <td>
+                            <input type="hidden" class="Textinput" data-bind="value: isDuplicated"/>
+                            <input id="loginId" data-bind="value: loginId" maxlength="32" class="Textinput" /><button class="Icon Remove-sign remove"></button>
+                            <button id="idDuplicateBtn" class="Button Margin-left-10"><th:block th:text="#{bcm.common.duplicate-check}"/></button>
+                            <span data-for="loginId" class="Color-danger" id="loginIdMessage"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.user-name}"/><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="userName" data-bind="value: userName" maxlength="128" class="Textinput " /><button class="Icon Remove-sign remove"></button>
+                            <span data-for="userName" class="Color-danger" id="userNameMessage"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.email}"/><span class="Color-danger">*</span></th>
+                        <td>
+                            <input id="email1" class="Textinput" data-bind="value: email1" maxlength="50" style="width:30%;" /><button class="Icon Remove-sign remove"></button>
+                            @
+                            <input id="email2" class="Textinput" data-bind="value: email2" maxlength="50" style="width:30%;" /><button class="Icon Remove-sign remove"></button>
+                            <div class="Divselect" style="width:30%;" >
+                                <select name="emailSelect">
+                                    <option value=""><th:block th:text="#{bcm.user.direct-input}"/></option>
+                                    <option value="sk.com">sk.com</option>
+                                    <option value="partner.sk.com">partner.sk.com</option>
+                                </select>
+                                <span></span>
+                            </div>
+                            <span data-for="email1" class="Color-danger" id="email1Message"></span>
+                        </td>
+                    </tr>
+                    <tr id="companyTr">
+                        <th><th:block th:text="#{bcm.user.company-name}"/><span class="Color-danger">*</span></th>
+                        <td>  
+                            <div class="Divselect" style="width: 220px">
+                                <select data-bind="options: companyOptions, selectedOptions: companyCode"></select>
+                                <span></span>
+                            </div>
+                            <span data-for="company" class="Color-danger" id="companyMessage"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.department-name}"/></th>
+                        <td>
+                            <input data-bind="value: departmentName" maxlength="128" class="Textinput Width-100" /><button class="Icon Remove-sign remove"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.position}"/></th>
+                        <td>
+                            <input data-bind="value: positionName" maxlength="128" class="Textinput" /><button class="Icon Remove-sign remove"></button>
+                            <label class="ImageCheckbox af-checkbox-text">
+                                <input id="regular" class="Checkbox" type="checkbox" value="true" data-bind="checked:regularYn" /><th:block th:text="#{bcm.user.regular-y}"/>
+                            </label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.tel-no}"/></th>
+                        <td>
+                            <input data-bind="value: telNo1" maxlength="3" class="Textinput" style="width: 70px;" /><button class="Icon Remove-sign remove"></button>
+                            -
+                            <input data-bind="value: telNo2" maxlength="4" class="Textinput" style="width: 70px;" /><button class="Icon Remove-sign remove"></button>
+                            -
+                            <input data-bind="value: telNo3" maxlength="4" class="Textinput" style="width: 70px;" /><button class="Icon Remove-sign remove"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.mobile-no}"/></th>
+                        <td>
+                            <input data-bind="value: mobileNo1" maxlength="3" class="Textinput" style="width: 70px;" /><button class="Icon Remove-sign remove"></button>
+                            -
+                            <input data-bind="value: mobileNo2" maxlength="4" class="Textinput" style="width: 70px;" /><button class="Icon Remove-sign remove"></button>
+                            -
+                            <input data-bind="value: mobileNo3" maxlength="4" class="Textinput" style="width: 70px;" /><button class="Icon Remove-sign remove"></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th><th:block th:text="#{bcm.user.sso-apply}"/><span class="Color-danger">*</span></th>
+                        <td>
+                            <label class="ImageRadio">
+                                <input class="Radio" type="radio" name="sso" value="true" checked="checked" data-bind="checked: ssoYn"/>Y
+                            </label>
+                            <label class="ImageRadio">
+                                 <input class="Radio" type="radio" name="sso" value="false"/>N
+                            </label>
+                            <p>
+                                <th:block th:text="#{bcm.user.sso-rule1}"/><br />
+                                <th:block th:text="#{bcm.user.sso-rule2(${bcmPasswordSuffix})}"/>
+                            </p>
+                        </td>
+                    </tr>
+    
+    
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="layerpop-btnwrap">
+        <button id="cancleBtn" class="Button Typeb"><th:block th:text="#{bcm.common.cancel}"/></button>
+        <button id="saveBtn" class="Button"><th:block th:text="#{bcm.common.save}"/></button>
+    </div>
+
+    <!-- popup data include -->
+    <th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+    <script type="text/javascript" th:src="@{/static/skiaf/script/user/user-create-popup.js}"></script>
+</html>

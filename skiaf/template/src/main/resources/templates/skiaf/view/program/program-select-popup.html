@@ -1,0 +1,54 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<div class="layerpop-box">
+    <h1>프로그램 검색</h1>
+    <div id="programPopupSearchArea" class="skiaf-searchbox">
+        <div class="searchbox-left">
+            <div class="searchbox" style="display: none;">
+                <div class="Divselect">
+                    <select data-bind="options: programtype, selectedOptions: selectedtype" class="Select" id="detail-type">
+                    </select> <span></span>
+                </div>
+            </div>
+            <div class="skiaf-ui-search">
+                <input data-bind="value: keyword" class="Textinput" th:placeholder="#{bcm.program.search-placeholder}" maxlength="20" />
+                <button class="Icon Remove-sign remove"></button>
+                <button class="Button search" th:text="#{bcm.common.search}"></button>
+            </div>
+            <div class="searchbox">
+                <label class="ImageCheckbox"> <input data-bind="checked: isunusedinclude" class="Checkbox" type="checkbox" name="chk2" value="check" /> <span
+                    th:text="#{bcm.common.unused-include}"></span>
+                </label>
+            </div>
+        </div>
+    </div>
+    <!-- alopexgrid -->
+    <div class="skiaf-grid">
+        <div id="programPopupGrid"></div>
+    </div>
+    <!-- //alopexgrid -->
+
+</div>
+<div class="layerpop-btnwrap">
+    <button id="programPopupCancle" class="Button basic1" th:text="#{bcm.common.cancel}"></button>
+    <button id="programPopupConfirm" class="Button" th:text="#{bcm.common.confirm}"></button>
+</div>
+
+<!-- popup data include -->
+<th:block layout:include="skiaf/fragments/popup-data"></th:block>
+
+<script type="text/javascript" th:src="@{/static/skiaf/script/program/program-select-popup.js}"></script>
+
+</html>

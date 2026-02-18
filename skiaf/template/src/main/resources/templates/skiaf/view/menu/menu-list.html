@@ -1,0 +1,154 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    layout:decorator="skiaf/layout/default-layout">
+
+<th:block layout:fragment="html_head">
+    <title><th:block th:text="#{bcm.menu.title}" /></title>
+</th:block>
+
+<th:block layout:fragment="add_lib_css"></th:block>
+    
+    <th:block layout:fragment="custom_css"></th:block>
+
+    <th:block layout:fragment="content_body">
+        <!-- Content Area -->
+        <div class="skiaf-wrap-content">
+            <div class="skiaf-wrap-detail">
+                <h1><th:block th:text="#{bcm.menu.title}"/></h1>
+            </div>
+            <!-- Sub Content Area -->
+            <div class="skiaf-ui-contents">
+                <div class="skiaf-left-area menu">
+                    <div class="alopexgrid-search-plugin Margin-bottom-0" id="search" style="margin-left:-3px;">
+                        <div class="alopexgrid-search-plugin-section">
+                            <input id="menuSearchKeyword" name="alopexgrid_search_keyword" style="width:204px;" th:placeholder="#{bcm.common.search-placeholder}" class="alopexgrid-search-plugin-keyword" type="text" />
+                            <button class="Icon Remove-sign remove"></button>
+                            <span class="alopexgrid-search-plugin-result"></span>
+                        </div>
+                        <div class="alopexgrid-search-plugin-section">
+                            <button class="alopexgrid-search-plugin-search" type="button" id="btnMenuFind" style="margin-right: 2px;"></button>
+                            <button class="alopexgrid-search-plugin-next" type="button" id="btnMenuNext" style="border-radius:3px;"></button>
+                        </div>
+                    </div>
+                    <div class="menu-box" id="menuTreeContent">
+                        <ul class="Tree" data-source-type="flat" data-html-bind="false" id="menuTree">
+                        
+                        </ul>
+                    </div>
+                    <div class="skiaf-ui-leftbtn top">
+                        <button class="Button small basic1" id="btnMenuTreeExpand">+ <th:block th:text="#{bcm.menu.all-open}"/></button>
+                        <button class="Button small basic1" id="btnMenuTreeCollapse">- <th:block th:text="#{bcm.menu.all-close}"/></button>
+                        <button class="Button small basic1" id="btnMenuTreeChange"><th:block th:text="#{bcm.menu.order-change}"/></button>
+                    </div>
+                </div>
+                <div class="skiaf-right-area menu" id="menuDetail">
+                    <div class="tab-detail">
+                        <h3>
+                            [<span data-bind="text : menuName1"></span>] <th:block th:text="#{bcm.menu.menu-info}"/>
+                        </h3>
+                        <div class="detail-right">
+                            <button class="Button" id="btnMenuEdit"><th:block th:text="#{bcm.common.modify}"/></button>
+                            <button class="Button" id="btnMenuAdd"><th:block th:text="#{bcm.common.register}"/></button>
+                        </div>
+                    </div>
+                    <!-- table -->
+                    <div class="skiaf-table">
+                        <table class="Table Form-type">
+                            <colgroup>
+                                <col style="width: 120px;" />
+                                <col />
+                                <col style="width: 120px;" />
+                                <col />
+                            </colgroup>
+                            <tbody>
+                                <tr>
+                                    <th><th:block th:text="#{bcm.menu.menu-id}"/></th>
+                                    <td data-bind="text : menuId"></td>
+                                    <th><th:block th:text="#{bcm.menu.parent-menu-id}"/></th>
+                                    <td data-bind="text : parentMenuId"></td>
+                                </tr>
+                                <tr>
+                                    <th><th:block th:text="#{bcm.menu.menu-name}"/></th>
+                                    <td data-bind="text : menuName1"></td>
+                                    <th><th:block th:text="#{bcm.menu.parent-menu-name}"/></th>
+                                    <td data-bind="text : parentMenuName"></td>
+                                </tr>
+                                <tr>
+                                    <th><th:block th:text="#{bcm.menu.menu-desc}"/></th>
+                                    <td colspan="3" data-bind="text : menuDesc"></td>
+                                </tr>
+                                <tr>
+                                    <th><th:block th:text="#{bcm.menu.menu-type}"/></th>
+                                    <td colspan="3" data-bind="text : menuTypeTxt"></td>
+                                </tr>
+                                <tr id="urlField">
+                                    <th><th:block th:text="#{bcm.menu.url}"/></th>
+                                    <td data-bind="text : urlAddr"></td>
+                                    <th><th:block th:text="#{bcm.menu.open-type}"/></th>
+                                    <td data-bind="text : openTypeTxt"></td>
+                                </tr>
+                                <tr id="programField" data-bind="with: program">
+                                    <th><th:block th:text="#{bcm.menu.program-id}"/></th>
+                                    <td data-bind="text : programId"></td>
+                                    <th><th:block th:text="#{bcm.menu.open-type}"/></th>
+                                    <td data-bind="text : openTypeTxt"></td>
+                                </tr>
+                                <tr>
+                                    <th><th:block th:text="#{bcm.menu.sort-number}"/></th>
+                                    <td data-bind="text : menuSortSeq"></td>
+                                    <th><th:block th:text="#{bcm.common.use-yn}"/></th>
+                                    <td data-bind="text : useYnTxt"></td>
+                                </tr>
+                                <tr>
+                                    <th><th:block th:text="#{bcm.common.update-by}"/></th>
+                                    <td data-bind="text : updateBy"></td>
+                                    <th><th:block th:text="#{bcm.common.update-date}"/></th>
+                                    <td data-bind="text : updateDate"></td>
+                                </tr>
+                                <tr>
+                                    <th><th:block th:text="#{bcm.common.create-by}"/></th>
+                                    <td data-bind="text : createBy"></td>
+                                    <th><th:block th:text="#{bcm.common.create-date}"/></th>
+                                    <td data-bind="text : createDate"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- //table -->
+                    <div style="display: no ne;" id="menuRoleField">
+                        <div class="tab-detail Margin-top-15">
+                            <h3><th:block th:text="#{bcm.menu.menu-role-info}"/></h3>
+                            <div class="detail-right">
+                                <button class="Button" id="btnRoleEdit"><th:block th:text="#{bcm.common.modify}"/></button>
+                            </div>
+                        </div>
+                        <!-- alopexgrid -->
+                        <div class="skiaf-grid">
+                            <div id="roleInfoGrid"></div>
+                        </div>
+                    </div>
+    
+                    <!-- // alopexgrid -->
+                </div>
+            </div>
+            <!-- // Sub Content Area -->
+        </div>
+        <!-- // Content Area -->
+    </th:block>
+
+    <th:block layout:fragment="custom_js">
+        <script th:inline="javascript" th:src="@{/static/skiaf/script/menu/menu-list.js}"></script>
+    </th:block>
+
+</html>

@@ -1,0 +1,73 @@
+<!--
+
+    Copyright (c) 2018 SK INNOVATION Co., Ltd. All rights reserved.
+
+    This software is the confidential and proprietary information of SK INNOVATION.
+    You shall not disclose such confidential information and shall use it only in accordance
+    with the terms of the license agreement you entered into with SK INNOVATION.
+
+-->
+<!-- Exception 타입 -->
+<div id="popup_exception" class="alert-ui">
+    <div class="alert-box exception">
+        <span class="alert-img"></span>
+        <div class="text more">
+            <p id="userMessage"></p>
+            <p id="inquireField">[시스템 문의 : 00-0000-1234]</p>
+            <a href="#" style="display: none;">더보기</a>
+        </div>
+    </div>
+    <div class="moreview" style="display: none;">
+        <p id="systemMessage"></p>
+    </div>
+    <div class="alert-btnwrap">
+        <button class="Button" type="button" data-type="button"
+            data-disabled="false" id="btnPopupExceptionConfirm">확인</button>
+    </div>
+</div>
+<script type="text/javascript">
+$a.page(function() {
+    // 초기화 함수
+    this.init = function(id, param) {
+        
+        // 다국어처리
+        $('#inquireField').text('[' + SKIAF.i18n.messages['bcm.common.system-inquire'] + ' : ' + SKIAF.i18n.messages['bcm.common.person-in-charge.cell-phone'] + ']');
+        $('#popup_exception .text.more a').text(SKIAF.i18n.messages['bcm.common.more']);
+        
+        // 메세지
+        var meta = param['meta'];
+        $('#userMessage').text(meta.userMessage);
+    
+        if(meta.systemMessage == null || meta.systemMessage == '') {
+            $('#popup_exception .text.more a').hide();
+        } else {
+            $('#systemMessage').text(meta.systemMessage);
+            $('#popup_exception .text.more a').show();
+        }
+    
+                    
+        //확인버튼 클릭 이벤트
+        $('.alert-btnwrap #btnPopupExceptionConfirm').on('click', function(e) {
+            $a.close({
+                    type : 'confirm'
+             });
+        });
+    
+        //exception 더보기 버튼
+        $('.Dialog .text.more a').on('click',function(e){
+            e.preventDefault();
+            $(this).closest('.alert-ui').parent().height('auto');
+            $(this).closest('.Dialog').height('auto');
+            var setHeight = ($('window').height()/2)-( $(this).closest('.Dialog').height()/2 );
+            if( $(this).closest('.alert-box').next('.moreview').is(':hidden') ){
+                $(this).closest('.alert-box').next('.moreview').show();
+                setHeight = ($(window).height()-$(this).closest('.Dialog').outerHeight(true))/2;
+            }else{
+                $(this).closest('.alert-box').next('.moreview').hide();
+                setHeight = ($(window).height()-$(this).closest('.Dialog').outerHeight(true))/2;
+            }
+            $(this).closest('.Dialog').css({'top': setHeight +'px'});
+        });
+    }
+});
+</script>

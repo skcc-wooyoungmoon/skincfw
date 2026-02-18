@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.skiaf.bcm.log.domain.repository.mybatis.LoggingEventRepositoryMybatisMapper">
+
+	<!-- 기본로그, 이벤트 로그 Oracle DB mybatis query mapper -->
+
+	<!-- 검색조건 -->
+	<sql id="logging-list-condition">
+		WHERE 1=1
+		<if test="search.startTimestamp != null and search.startTimestamp > 0">
+			AND E.timestmp > #{search.startTimestamp}
+		</if>
+		<if test="search.endTimestamp != null and search.endTimestamp > 0">
+			<![CDATA[
+			AND E.timestmp <= #{search.endTimestamp}
+			]]>
+		</if>
+		<if test="search.loggingType == 'SYSTEM'">
+			<if test="!search.eventLogInclude">
+				AND (SELECT COUNT(*) CNT FROM LOGGING_EVENT_PROPERTY P WHERE E.event_id = P.event_id) = 0	
+			</if>
+			<if test="search.keyword != null and search.keyword != ''">
+	   			AND (
+	   				UPPER(E.formatted_message) 	LIKE '%' || UPPER(#{search.keyword}) || '%' 
+                       OR UPPER(E.level_string) 	LIKE '%' || UPPER(#{search.keyword}) || '%' 
+                       OR UPPER(E.logger_name) 	LIKE '%' || UPPER(#{search.keyword}) || '%' 
+                       OR UPPER(E.caller_class) 	LIKE '%' || UPPER(#{search.keyword}) || '%' 
+                       OR UPPER(E.caller_method) 	LIKE '%' || UPPER(#{search.keyword}) || '%' 
+                       OR UPPER(E.caller_line) 	LIKE '%' || UPPER(#{search.keyword}) || '%' 
+                   )
+	   		</if>
+	   		<if test="search.levels != null and search.levels.size() > 0">
+	   			AND E.level_string IN
+	   			<foreach collection="search.levels" item="level" open="(" close=")" separator=",">
+	   				#{level}
+	   			</foreach>
+	   		</if>
+	   		<if test="search.logger != null and search.logger != ''">
+	   			AND UPPER(E.logger_name) LIKE '%' || UPPER(#{search.logger}) || '%'
+	   		</if>
+	   		<if test="search.caller != null and search.caller != ''">
+	   			AND (
+	   				UPPER(E.caller_class) LIKE '%' || UPPER(#{search.caller}) || '%'
+	   				OR UPPER(E.caller_method) LIKE '%' || UPPER(#{search.caller}) || '%'
+                       OR UPPER(E.caller_line) LIKE '%' || UPPER(#{search.caller}) || '%'
+	   			)
+	   		</if>
+		</if>
+		<if test="search.loggingType == 'EVENT'">
+			AND (SELECT COUNT(*) CNT FROM LOGGING_EVENT_PROPERTY P WHERE E.event_id = P.event_id) > 0
+			
+			<if test="search.keyword != null and search.keyword != ''">
+				AND (
+					UPPER(E.formatted_message) LIKE '%' || UPPER(#{search.keyword}) || '%'
+                	OR (SELECT UPPER(mapped_value) FROM LOGGING_EVENT_PROPERTY P WHERE P.event_id = E.event_id AND P.mapped_key = 'EVENT_TYPE') LIKE '%' || UPPER(#{search.keyword}) || '%'
+	                OR (SELECT UPPER(mapped_value) FROM LOGGING_EVENT_PROPERTY P WHERE P.event_id = E.event_id AND P.mapped_key = 'LOGIN_ID') LIKE '%' || UPPER(#{search.keyword}) || '%'
+	            )
+			</if>
+			<if test="search.eventGroup != null and search.eventGroup != ''">
+				AND (SELECT UPPER(mapped_value) FROM LOGGING_EVENT_PROPERTY P WHERE P.event_id = E.event_id AND P.mapped_key = 'EVENT_GROUP') LIKE '%' || UPPER(#{search.eventGroup}) || '%'
+			</if>
+			<if test="search.eventType != null and search.eventType != ''">
+				AND (SELECT UPPER(mapped_value) FROM LOGGING_EVENT_PROPERTY P WHERE P.event_id = E.event_id AND P.mapped_key = 'EVENT_TYPE') LIKE '%' || UPPER(#{search.eventType}) || '%'
+			</if>
+			<if test="search.loginId != null and search.loginId != ''">
+				AND (SELECT UPPER(mapped_value) FROM LOGGING_EVENT_PROPERTY P WHERE P.event_id = E.event_id AND P.mapped_key = 'LOGIN_ID') LIKE '%' || UPPER(#{search.loginId}) || '%'
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 정렬 -->
+	<sql id="logging-list-orderBy">
+		<if test="search.sort != null">
+			ORDER BY 
+			<foreach collection="search.sort" item="sort" separator=",">
+				${sort.property} ${sort.direction} 
+			</foreach>
+		</if>
+	</sql>
+	
+	<!-- 목록 총 count -->
+	<select id="findTotalCount" resultType="int">
+		SELECT
+		  COUNT(*) CNT
+		FROM LOGGING_EVENT E
+		<include refid="logging-list-condition" />
+	</select>
+
+	<!-- 페이징 목록 -->
+	<select id="findPaginated" resultType="com.skiaf.bcm.log.domain.service.dto.LoggingDTO">
+		SELECT B.* FROM (
+			SELECT A.* FROM (
+				SELECT
+					E.*,
+					ROW_NUMBER() OVER( <include refid="logging-list-orderBy" /> ) RNUM,
+					(SELECT MAPPED_VALUE FROM LOGGING_EVENT_PROPERTY P WHERE P.EVENT_ID = E.EVENT_ID AND P.MAPPED_KEY = 'LOGIN_ID') LOGIN_ID,
+					(SELECT MAPPED_VALUE FROM LOGGING_EVENT_PROPERTY P WHERE P.EVENT_ID = E.EVENT_ID AND P.MAPPED_KEY = 'EVENT_GROUP') EVENT_GROUP,
+					(SELECT MAPPED_VALUE FROM LOGGING_EVENT_PROPERTY P WHERE P.EVENT_ID = E.EVENT_ID AND P.MAPPED_KEY = 'EVENT_TYPE') EVENT_TYPE
+				FROM LOGGING_EVENT E
+				<include refid="logging-list-condition" />
+				) A
+		<![CDATA[
+			WHERE A.RNUM <= ( #{search.pageNumber} * 10 ) + #{search.pageSize}
+			) B
+		WHERE B.RNUM > ( #{search.pageNumber} * 10 ) 
+		]]> 
+	</select>
+	
+	<!-- 목록 -->
+	<select id="findBySearch" resultType="com.skiaf.bcm.log.domain.service.dto.LoggingDTO">
+		SELECT
+		  E.*,
+		  (SELECT MAPPED_VALUE FROM LOGGING_EVENT_PROPERTY P WHERE P.EVENT_ID = E.EVENT_ID AND P.MAPPED_KEY = 'LOGIN_ID')  LOGIN_ID,
+		  (SELECT MAPPED_VALUE FROM LOGGING_EVENT_PROPERTY P WHERE P.EVENT_ID = E.EVENT_ID AND P.MAPPED_KEY = 'EVENT_GROUP')  EVENT_GROUP,
+		  (SELECT MAPPED_VALUE FROM LOGGING_EVENT_PROPERTY P WHERE P.EVENT_ID = E.EVENT_ID AND P.MAPPED_KEY = 'EVENT_TYPE')  EVENT_TYPE
+		FROM LOGGING_EVENT E
+		<include refid="logging-list-condition" />
+		<include refid="logging-list-orderBy" />
+	</select>
+    
+</mapper>

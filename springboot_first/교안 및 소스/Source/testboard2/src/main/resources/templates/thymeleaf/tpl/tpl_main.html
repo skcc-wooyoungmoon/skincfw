@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head th:replace="/tpl/tpl_fragments :: tpl_head( '메인 페이지' )" />
+	
+	<body>
+		<nav th:replace="/tpl/tpl_fragments_bs_topmenu :: tpl_nav( naviVal='main' )" />
+		
+		<header th:replace="/tpl/tpl_fragments :: tpl_header" />
+		
+		<div th:replace="/tpl/tpl_fragments :: tpl_main_title( val1='Main Page', val2='' )" class="container mt-5 mb-5">
+			<h3>Main Page</h3>
+		</div>
+		
+		<footer th:replace="/tpl/tpl_fragments :: tpl_footer" />
+	
+	</body>
+</html>
